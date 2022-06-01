@@ -1,5 +1,5 @@
 {
-  "name": "turborepo-basic-shared",
+  "name": "netwerkr",
   "version": "0.0.0",
   "private": true,
   "workspaces": [
@@ -14,11 +14,11 @@
   },
   "devDependencies": {
     "prettier": "latest",
-    "turbo": "latest"
+    "turbo": "^1.2.14"
   },
   "engines": {
-    "npm": ">=7.0.0",
+    "pnpm": ">=7.1.7",
     "node": ">=14.0.0"
   },
-  "packageManager": "npm@8.9.0"
+  "packageManager": "pnpm@7.1.7"
 }
