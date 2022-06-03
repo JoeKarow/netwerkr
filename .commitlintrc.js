@@ -56,7 +56,7 @@ module.exports = {
       },
     ],
     useEmoji: true,
-    scopes: [...apps, ...packages],
+    scopes: ['base', ...apps, ...packages],
     enableMultipleScopes: true,
     maxSubjectLength: 50,
   },
