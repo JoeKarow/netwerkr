@@ -5,7 +5,7 @@ const packages = fs.readdirSync(path.resolve(__dirname, 'packages'));
 const apps = fs.readdirSync(path.resolve(__dirname, 'apps'));
 
 module.exports = {
-  extends: ["@commitlint/config-conventional"]
+  extends: ['@commitlint/config-conventional'],
   prompt: {
     types: [
       {
