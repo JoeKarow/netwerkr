@@ -2,14 +2,20 @@
 const fs = require('fs');
 const path = require('path');
 
+/**
+ *  @param {string[]} packages
+ *  @param {string[]} apps
+ *  @param {string[]} design
+ */
 const packages = fs.readdirSync(path.resolve(__dirname, 'packages'));
 const apps = fs.readdirSync(path.resolve(__dirname, 'apps'));
+const design = fs.readdirSync(path.resolve(__dirname, 'design'));
 
 module.exports = {
   extends: ['@commitlint/config-conventional'],
   rules: {
     // @see: https://commitlint.js.org/#/reference-rules
-    'scope-enum': [2, 'always', ['global', ...apps, ...packages]],
+    'scope-enum': [2, 'always', ['global', ...apps, ...packages, ...design]],
   },
   prompt: {
     types: [
