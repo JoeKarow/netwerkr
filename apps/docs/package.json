@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint"
   },
-    "lint-staged": {
+  "lint-staged": {
     "*": "next lint"
   },
   "dependencies": {
@@ -24,6 +24,6 @@
     "eslint-config-custom": "workspace:*",
     "next-transpile-modules": "9.0.0",
     "tsconfig": "workspace:*",
-    "typescript": "^4.7.2"
+    "typescript": "^4.7.3"
   }
 }
