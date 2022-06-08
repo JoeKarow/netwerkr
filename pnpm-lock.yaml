@@ -99,7 +99,7 @@ importers:
 
   packages/ui:
     specifiers:
-      '@types/react': ^18.0.12
+      '@types/react': 17.0.45
       '@types/react-dom': ^18.0.5
       eslint: ^8.17.0
       eslint-config-custom: workspace:*
@@ -107,7 +107,7 @@ importers:
       tsconfig: workspace:*
       typescript: ^4.7.3
     devDependencies:
-      '@types/react': 18.0.12
+      '@types/react': 17.0.45
       '@types/react-dom': 18.0.5
       eslint: 8.17.0
       eslint-config-custom: link:../eslint-config-acme
@@ -573,6 +573,14 @@ packages:
     resolution: {integrity: sha512-OWPWTUrY/NIrjsAPkAk1wW9LZeIjSvkXRhclsFO8CZcZGCOg2G0YZy4ft+rOyYxy8B7ui5iZzi9OkDebZ7/QSA==}
     dependencies:
       '@types/react': 18.0.12
+    dev: true
+
+  /@types/react/17.0.45:
+    resolution: {integrity: sha512-YfhQ22Lah2e3CHPsb93tRwIGNiSwkuz1/blk4e6QrWS0jQzCSNbGLtOEYhPg02W0yGTTmpajp7dCTbBAMN3qsg==}
+    dependencies:
+      '@types/prop-types': 15.7.5
+      '@types/scheduler': 0.16.2
+      csstype: 3.1.0
     dev: true
 
   /@types/react/18.0.10:
