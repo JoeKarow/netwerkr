@@ -30,7 +30,7 @@ importers:
   apps/docs:
     specifiers:
       '@types/node': ^17.0.41
-      '@types/react': 18.0.10
+      '@types/react': 18.0.12
       eslint: 8.16.0
       eslint-config-custom: workspace:*
       next: ^12.1.6
@@ -47,7 +47,7 @@ importers:
       ui: link:../../packages/ui
     devDependencies:
       '@types/node': 17.0.41
-      '@types/react': 18.0.10
+      '@types/react': 18.0.12
       eslint: 8.16.0
       eslint-config-custom: link:../../packages/eslint-config-acme
       next-transpile-modules: 9.0.0
@@ -57,7 +57,7 @@ importers:
   apps/web:
     specifiers:
       '@types/node': ^17.0.41
-      '@types/react': 18.0.10
+      '@types/react': 18.0.12
       eslint: 8.16.0
       eslint-config-custom: workspace:*
       next: ^12.1.6
@@ -74,7 +74,7 @@ importers:
       ui: link:../../packages/ui
     devDependencies:
       '@types/node': 17.0.41
-      '@types/react': 18.0.10
+      '@types/react': 18.0.12
       eslint: 8.16.0
       eslint-config-custom: link:../../packages/eslint-config-acme
       next-transpile-modules: 9.0.0
@@ -573,14 +573,6 @@ packages:
     resolution: {integrity: sha512-OWPWTUrY/NIrjsAPkAk1wW9LZeIjSvkXRhclsFO8CZcZGCOg2G0YZy4ft+rOyYxy8B7ui5iZzi9OkDebZ7/QSA==}
     dependencies:
       '@types/react': 18.0.12
-    dev: true
-
-  /@types/react/18.0.10:
-    resolution: {integrity: sha512-dIugadZuIPrRzvIEevIu7A1smqOAjkSMv8qOfwPt9Ve6i6JT/FQcCHyk2qIAxwsQNKZt5/oGR0T4z9h2dXRAkg==}
-    dependencies:
-      '@types/prop-types': 15.7.5
-      '@types/scheduler': 0.16.2
-      csstype: 3.1.0
     dev: true
 
   /@types/react/18.0.12:
