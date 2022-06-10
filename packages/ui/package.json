@@ -1,23 +1,23 @@
 {
-  "name": "ui",
+  "name": "@joekarow/ui",
   "version": "0.0.0",
   "main": "./index.tsx",
   "types": "./index.tsx",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint *.{ts*, js*}"
+    "lint": "eslint *.{ts*, js,jsx}"
   },
   "lint-staged": {
-    "*.ts*": "eslint *.{ts*,js*}"
+    "*.ts*": "eslint *.{ts*,js,jsx}"
   },
   "devDependencies": {
     "@types/react": "^18.0.12",
     "@types/react-dom": "^18.0.5",
     "eslint": "^8.17.0",
-    "eslint-config-custom": "workspace:*",
+    "@joekarow/eslint-config-custom": "workspace:*",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "tsconfig": "workspace:*",
+    "@joekarow/tsconfig": "workspace:*",
     "typescript": "^4.7.3"
   },
   "dependencies": {
