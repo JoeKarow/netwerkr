@@ -1,5 +1,12 @@
 {
-  "extends": "tsconfig/nextjs.json",
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.jsx"],
-  "exclude": ["node_modules"]
+  "extends": "@joekarow/tsconfig/nextjs.json",
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    "**/*.jsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
