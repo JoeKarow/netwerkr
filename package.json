@@ -39,6 +39,12 @@
   "pnpm": {
     "overrides": {
       "minimist@<1.2.6": ">=1.2.6"
+    },
+    "peerDependencyRules": {
+      "allowedVersions": {
+        "react": "18",
+        "react-dom": "18"
+      }
     }
   }
 }
