@@ -5,10 +5,10 @@
   "types": "./index.tsx",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint *.ts*"
+    "lint": "eslint *.{ts*, js*}"
   },
   "lint-staged": {
-    "*.ts*": "eslint *.ts*"
+    "*.ts*": "eslint *.{ts*,js*}"
   },
   "devDependencies": {
     "@types/react": "^18.0.12",
@@ -16,7 +16,11 @@
     "eslint": "^8.17.0",
     "eslint-config-custom": "workspace:*",
     "react": "^18.1.0",
+    "react-dom": "^18.1.0",
     "tsconfig": "workspace:*",
     "typescript": "^4.7.3"
+  },
+  "dependencies": {
+    "@nextui-org/react": "^1.0.0-beta.9"
   }
 }
