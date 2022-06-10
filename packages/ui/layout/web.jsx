@@ -1,5 +1,5 @@
 import React from 'react'
-import { HeaderAction } from '../section/HeaderAction'
+import { HeaderAction } from '../section'
 import useSWR from 'swr'
 
 const fetcher = ( url ) => fetch( url ).then( ( res ) => res.json() )
