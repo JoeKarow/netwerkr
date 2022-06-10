@@ -15,15 +15,15 @@
     "next": "^12.1.6",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "ui": "workspace:*"
+    "@joekarow/ui": "workspace:*"
   },
   "devDependencies": {
     "@types/node": "^17.0.41",
     "@types/react": "18.0.12",
     "eslint": "8.17.0",
-    "eslint-config-custom": "workspace:*",
+    "@joekarow/eslint-config-custom": "workspace:*",
     "next-transpile-modules": "9.0.0",
-    "tsconfig": "workspace:*",
+    "@joekarow/tsconfig": "workspace:*",
     "typescript": "^4.7.3"
   }
 }

@@ -10,6 +10,7 @@ importers:
       '@commitlint/cli': ^17.0.2
       '@commitlint/config-conventional': ^17.0.2
       '@commitlint/cz-commitlint': ^17.0.0
+      '@joekarow/eslint-config-custom': workspace:^0.0.0
       commitizen: ^4.2.4
       cz-git: ^1.3.4
       husky: ^8.0.1
@@ -20,6 +21,7 @@ importers:
       '@commitlint/cli': 17.0.2
       '@commitlint/config-conventional': 17.0.2
       '@commitlint/cz-commitlint': 17.0.0_nlwf7yf5555jiq2ch63nbqq5xy
+      '@joekarow/eslint-config-custom': link:packages/eslint-config-acme
       commitizen: 4.2.4
       cz-git: 1.3.4
       husky: 8.0.1
@@ -29,56 +31,56 @@ importers:
 
   apps/docs:
     specifiers:
+      '@joekarow/eslint-config-custom': workspace:*
+      '@joekarow/tsconfig': workspace:*
+      '@joekarow/ui': workspace:*
       '@types/node': ^17.0.41
       '@types/react': 18.0.12
       eslint: 8.17.0
-      eslint-config-custom: workspace:*
       next: ^12.1.6
       next-transpile-modules: 9.0.0
       react: ^18.1.0
       react-dom: ^18.1.0
-      tsconfig: workspace:*
       typescript: ^4.7.3
-      ui: workspace:*
     dependencies:
+      '@joekarow/ui': link:../../packages/ui
       next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
-      ui: link:../../packages/ui
     devDependencies:
+      '@joekarow/eslint-config-custom': link:../../packages/eslint-config-acme
+      '@joekarow/tsconfig': link:../../packages/tsconfig
       '@types/node': 17.0.41
       '@types/react': 18.0.12
       eslint: 8.17.0
-      eslint-config-custom: link:../../packages/eslint-config-acme
       next-transpile-modules: 9.0.0
-      tsconfig: link:../../packages/tsconfig
       typescript: 4.7.3
 
   apps/web:
     specifiers:
+      '@joekarow/eslint-config-custom': workspace:*
+      '@joekarow/tsconfig': workspace:*
+      '@joekarow/ui': workspace:*
       '@types/node': ^17.0.41
       '@types/react': 18.0.12
       eslint: 8.17.0
-      eslint-config-custom: workspace:*
       next: ^12.1.6
       next-transpile-modules: 9.0.0
       react: ^18.1.0
       react-dom: ^18.1.0
-      tsconfig: workspace:*
       typescript: ^4.7.3
-      ui: workspace:*
     dependencies:
+      '@joekarow/ui': link:../../packages/ui
       next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
-      ui: link:../../packages/ui
     devDependencies:
+      '@joekarow/eslint-config-custom': link:../../packages/eslint-config-acme
+      '@joekarow/tsconfig': link:../../packages/tsconfig
       '@types/node': 17.0.41
       '@types/react': 18.0.12
       eslint: 8.17.0
-      eslint-config-custom: link:../../packages/eslint-config-acme
       next-transpile-modules: 9.0.0
-      tsconfig: link:../../packages/tsconfig
       typescript: 4.7.3
 
   design/diagrams:
@@ -103,25 +105,25 @@ importers:
 
   packages/ui:
     specifiers:
-      '@nextui-org/react': 1.0.0-beta.9
+      '@joekarow/eslint-config-custom': workspace:*
+      '@joekarow/tsconfig': workspace:*
+      '@nextui-org/react': ^1.0.0-beta.9
       '@types/react': ^18.0.12
       '@types/react-dom': ^18.0.5
       eslint: ^8.17.0
-      eslint-config-custom: workspace:*
       react: ^18.1.0
       react-dom: ^18.1.0
-      tsconfig: workspace:*
       typescript: ^4.7.3
     dependencies:
       '@nextui-org/react': 1.0.0-beta.9_ef5jwxihqo6n7gxfmzogljlgcm
     devDependencies:
+      '@joekarow/eslint-config-custom': link:../eslint-config-acme
+      '@joekarow/tsconfig': link:../tsconfig
       '@types/react': 18.0.12
       '@types/react-dom': 18.0.5
       eslint: 8.17.0
-      eslint-config-custom: link:../eslint-config-acme
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
-      tsconfig: link:../tsconfig
       typescript: 4.7.3
 
 packages:
