@@ -1,6 +1,6 @@
-import { Button } from "ui/nextui";
+import { Button } from "@joekarow/ui/nextui";
 
-export default function Web() {
+export default function Web () {
   return (
     <div>
       <h1>Web</h1>
