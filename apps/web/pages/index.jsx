@@ -1,10 +1,10 @@
-import { Button } from "ui";
+import { Button } from "ui/nextui";
 
 export default function Web() {
   return (
     <div>
       <h1>Web</h1>
-      <Button />
+      <Button>Boop!</Button>
     </div>
   );
 }
