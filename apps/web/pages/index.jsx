@@ -1,10 +1,18 @@
-import { Button } from "@joekarow/ui/nextui";
+import { Layout } from '@joekarow/ui/layout/web'
 
-export default function Web () {
+export default function Main () {
   return (
-    <div>
+    <>
+
       <h1>Web</h1>
-      <Button>Boop!</Button>
-    </div>
+    </>
   );
+}
+
+Main.getLayout = function getLayout ( page ) {
+  return (
+    <Layout>
+      { page }
+    </Layout>
+  )
 }
