@@ -58,7 +58,7 @@ const useStyles = createStyles( ( theme ) => ( {
 //     links: { link: string; label: string; links: { link: string; label: string }[] }[];
 // }
 
-export function HeaderAction ( { links } ) {
+export default function HeaderAction ( { links } ) {
     const { classes } = useStyles();
     const [ opened, toggleOpened ] = useBooleanToggle( false );
     const items = links.map( ( link ) => {
@@ -121,7 +121,7 @@ export function HeaderAction ( { links } ) {
                     { items }
                 </Group>
                 <Button radius="xl" sx={ { height: 30 } }>
-                    Get early access
+                    Pretty lil&apos; button
                 </Button>
             </Container>
         </Header>
