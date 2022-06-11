@@ -6,18 +6,7 @@
   </a>
 </h1>
 
-<div align="center">
-  <h1>netwerkr</h1>
-  <br />
-  <a href="#about"><strong>Explore the screenshots »</strong></a>
-  <br />
-  <br />
-  <a href="https://github.com/JoeKarow/netwerkr/issues/new?assignees=&labels=bug&template=01_BUG_REPORT.md&title=bug%3A+">Report a Bug</a>
-  ·
-  <a href="https://github.com/JoeKarow/netwerkr/issues/new?assignees=&labels=enhancement&template=02_FEATURE_REQUEST.md&title=feat%3A+">Request a Feature</a>
-  ·
-  <a href="https://github.com/JoeKarow/netwerkr/issues/new?assignees=&labels=question&template=04_SUPPORT_QUESTION.md&title=support%3A+">Ask a Question</a>
-</div>
+This is an official starter turborepo.
 
 <div align="center">
 <br />
@@ -51,32 +40,9 @@
 
 ---
 
-## About
+## Setup
 
-> Networking is hard work, especially for those with a poor working memory.
-> netwerkr seeks to help keep track of all of those amazing new connections.
-
-<details>
-<summary>Screenshots</summary>
-<br>
-
-> Screenshots coming soon..
-
-|                               Home Page                               |                               Login Page                               |
-| :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
-| <img src="docs/images/screenshot.webp" title="Home Page" width="100%"> | <img src="docs/images/screenshot.webp" title="Login Page" width="100%"> |
-
-</details>
-
-### Built With
-
-- [Next.js](https://nextjs.org/)
-- [Mantine UI](https://mantine.dev/)
-- [Turborepo](https://turborepo.org/)
-
-## Getting Started
-
-### Prerequisites
+This repository is used in the `npx create-turbo@latest` command, and selected when choosing which package manager you wish to use with your monorepo (npm).
 
 - [NodeJS >= 16](https://nodejs.dev/)
 - [pnpm](https://pnpm.io/)
