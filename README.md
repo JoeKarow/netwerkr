@@ -1,77 +1,150 @@
-# Turborepo starter with npm
+<!-- markdownlint-disable MD033 -->
+<h1 align="center">
+  <a href="https://github.com/JoeKarow/netwerkr">
+    <!-- Please provide path to your logo here -->
+    <img src="docs/images/logo.svg" alt="Logo" width="100" height="100">
+  </a>
+</h1>
 
-This is an official starter turborepo.
+<div align="center">
+  <h1>netwerkr</h1>
+  <br />
+  <a href="#about"><strong>Explore the screenshots »</strong></a>
+  <br />
+  <br />
+  <a href="https://github.com/JoeKarow/netwerkr/issues/new?assignees=&labels=bug&template=01_BUG_REPORT.md&title=bug%3A+">Report a Bug</a>
+  ·
+  <a href="https://github.com/JoeKarow/netwerkr/issues/new?assignees=&labels=enhancement&template=02_FEATURE_REQUEST.md&title=feat%3A+">Request a Feature</a>
+  .
+  <a href="https://github.com/JoeKarow/netwerkr/issues/new?assignees=&labels=question&template=04_SUPPORT_QUESTION.md&title=support%3A+">Ask a Question</a>
+</div>
 
-## What's inside?
+<div align="center">
+<br />
 
-This turborepo uses [npm](https://www.npmjs.com/) as a package manager. It includes the following packages/apps:
+[![Project license](https://img.shields.io/github/license/JoeKarow/netwerkr.svg?style=flat-square)](LICENSE)
 
-### Apps and Packages
+[![Pull Requests welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)](https://github.com/JoeKarow/netwerkr/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
+[![code with love by JoeKarow](https://img.shields.io/badge/%3C%2F%3E%20with%20%E2%99%A5%20by-JoeKarow-ff1414.svg?style=flat-square)](https://github.com/JoeKarow)
 
-- `docs`: a [Next.js](https://nextjs.org) app
-- `web`: another [Next.js](https://nextjs.org) app
-- `ui`: a stub React component library shared by both `web` and `docs` applications
-- `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `tsconfig`: `tsconfig.json`s used throughout the monorepo
+</div>
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+<details open="open">
+<summary>Table of Contents</summary>
 
-### Utilities
+- [About](#about)
+  - [Built With](#built-with)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+- [Roadmap](#roadmap)
+- [Support](#support)
+- [Project assistance](#project-assistance)
+- [Contributing](#contributing)
+- [Authors & contributors](#authors--contributors)
+- [Security](#security)
+- [License](#license)
+- [Acknowledgements](#acknowledgements)
 
-This turborepo has some additional tools already setup for you:
+</details>
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+---
 
-## Setup
+## About
 
-This repository is used in the `npx create-turbo@latest` command, and selected when choosing which package manager you wish to use with your monorepo (npm).
+> Networking is hard work, especially for those with a poor working memory.
+> netwerkr seeks to help keep track of all of those amazing new connections.
 
-### Build
+<details>
+<summary>Screenshots</summary>
+<br>
 
-To build all apps and packages, run the following command:
+> Screenshots coming soon..
 
+|                               Home Page                               |                               Login Page                               |
+| :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
+| <img src="docs/images/screenshot.webp" title="Home Page" width="100%"> | <img src="docs/images/screenshot.webp" title="Login Page" width="100%"> |
+
+</details>
+
+### Built With
+
+- [Next.js](https://nextjs.org/)
+- [Mantine UI](https://mantine.dev/)
+- [Turborepo](https://turborepo.org/)
+
+## Getting Started
+
+### Prerequisites
+
+- [NodeJS >= 16](https://nodejs.dev/)
+- [pnpm](https://pnpm.io/)
+
+### Installation
+
+  ```bash
+pnpm install
+  ```
+
+## Usage
+
+```bash
+pnpm dev
 ```
-cd my-turborepo
-npm run build
-```
 
-### Develop
+## Roadmap
 
-To develop all apps and packages, run the following command:
+See the [open issues](https://github.com/JoeKarow/netwerkr/issues) for a list of proposed features (and known issues).
 
-```
-cd my-turborepo
-npm run dev
-```
+- [Top Feature Requests](https://github.com/JoeKarow/netwerkr/issues?q=label%3Aenhancement+is%3Aopen+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
+- [Top Bugs](https://github.com/JoeKarow/netwerkr/issues?q=is%3Aissue+is%3Aopen+label%3Abug+sort%3Areactions-%2B1-desc) (Add your votes using the 👍 reaction)
+- [Newest Bugs](https://github.com/JoeKarow/netwerkr/issues?q=is%3Aopen+is%3Aissue+label%3Abug)
 
-### Remote Caching
+## Support
 
-Turborepo can use a technique known as [Remote Caching (Beta)](https://turborepo.org/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+Reach out to the maintainer at one of the following places:
 
-By default, Turborepo will cache locally. To enable Remote Caching (Beta) you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+- [GitHub issues](https://github.com/JoeKarow/netwerkr/issues/new?assignees=&labels=question&template=04_SUPPORT_QUESTION.md&title=support%3A+)
+- Contact options listed on [this GitHub profile](https://github.com/JoeKarow)
 
-```
-cd my-turborepo
-npx turbo login
-```
+## Project assistance
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+If you want to say **thank you** or/and support active development of netwerkr:
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your turborepo:
+- Add a [GitHub Star](https://github.com/JoeKarow/netwerkr) to the project.
+- Tweet about the netwerkr.
+- Write interesting articles about the project on [Dev.to](https://dev.to/), [Medium](https://medium.com/) or your personal blog.
 
-```
-npx turbo link
-```
+Together, we can make netwerkr **better**!
 
-## Useful Links
+## Contributing
 
-Learn more about the power of Turborepo:
+First off, thanks for taking the time to contribute! Contributions are what make the open-source community such an amazing place to learn, inspire, and create. Any contributions you make will benefit everybody else and are **greatly appreciated**.
 
-- [Pipelines](https://turborepo.org/docs/core-concepts/pipelines)
-- [Caching](https://turborepo.org/docs/core-concepts/caching)
-- [Remote Caching (Beta)](https://turborepo.org/docs/core-concepts/remote-caching)
-- [Scoped Tasks](https://turborepo.org/docs/core-concepts/scopes)
-- [Configuration Options](https://turborepo.org/docs/reference/configuration)
-- [CLI Usage](https://turborepo.org/docs/reference/command-line-reference)
+Please read [our contribution guidelines](docs/CONTRIBUTING.md), and thank you for being involved!
+
+## Authors & contributors
+
+The original setup of this repository is by [Joe Karow](https://github.com/JoeKarow).
+
+For a full list of all authors and contributors, see [the contributors page](https://github.com/JoeKarow/netwerkr/contributors).
+
+## Security
+
+netwerkr follows good practices of security, but 100% security cannot be assured.
+netwerkr is provided **"as is"** without any **warranty**. Use at your own risk.
+
+_For more information and to report security issues, please refer to our [security documentation](docs/SECURITY.md)._
+
+## License
+
+This project is licensed under the **GNU General Public License v3**.
+
+See [LICENSE](LICENSE) for more information.
+
+## Acknowledgements
+
+<!-- > **[?]**
+> If your work was funded by any organization or institution, acknowledge their support here.
+> In addition, if your work relies on other software libraries, or was inspired by looking at other work, it is appropriate to acknowledge this intellectual debt too. -->
