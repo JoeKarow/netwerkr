@@ -53,8 +53,9 @@
 
 ## About
 
-> Networking is hard work, especially for those with a poor working memory.
-> netwerkr seeks to help keep track of all of those amazing new connections.
+Networking is hard work, especially for those with a poor working memory.
+
+netwerkr seeks to help keep track of all of those amazing new connections.
 
 <details>
 <summary>Screenshots</summary>
