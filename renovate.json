@@ -1,6 +1,14 @@
 {
   "extends": [
     "config:base",
-    ":preserveSemverRanges"
-  ]
+    ":preserveSemverRanges",
+    "monorepo:nextjs",
+    "monorepo:commitlint",
+    "monorepo:react"
+  ],
+  "addLabels": [
+    "dependencies"
+  ],
+  "reviewersFromCodeOwners": true,
+  "semanticCommits": "enabled"
 }
