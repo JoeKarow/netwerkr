@@ -5,27 +5,31 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Launch dev server",
+      "name": "Next.js: debug server-side",
+      "type": "node-terminal",
       "request": "launch",
-      "runtimeArgs": [
-        "dev"
-      ],
-      "runtimeExecutable": "pnpm",
-      "skipFiles": [
-        "<node_internals>/**"
-      ],
-      "type": "node"
+      "command": "pnpm dev"
     },
     {
-      "name": "Launch Brave",
+      "name": "Next.js: debug client-side",
       "request": "launch",
       "type": "chrome",
       "runtimeExecutable": "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
       // "runtimeArgs": ["--remote-debugging-port=9222"],
       "port": 9222,
-      "url": "http://localhost:3000",
-      "webRoot": "${workspaceFolder}",
-      "smartStep": true
+      "url": "http://localhost:3000"
     },
+    {
+      "name": "Next.js: debug full stack",
+      "type": "node-terminal",
+      "request": "launch",
+      "command": "pnpm run dev",
+      // "console": "integratedTerminal",
+      "serverReadyAction": {
+        "pattern": "started server on .+, url: (https?://.+)",
+        "action": "startDebugging",
+        "name": "Next.js: debug client-side"
+      }
+    }
   ]
 }

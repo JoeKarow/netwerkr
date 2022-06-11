@@ -1,11 +1,10 @@
 import links from '../../data/nav.json'
 
-// TODO: set up API to return navagation links based on if user is logged in or not
+// TODO: set up API to return navigation links based on if user is logged in or not
 
 
 
 const handler = async ( req, res ) => {
-    console.log( req )
     try {
         console.log( links )
         if ( req.method === 'GET' ) {
