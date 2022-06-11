@@ -17,18 +17,24 @@
       "runtimeExecutable": "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
       // "runtimeArgs": ["--remote-debugging-port=9222"],
       "port": 9222,
-      "url": "http://localhost:3000"
+      "url": "http://localhost:3000",
+      "webRoot": "${workspaceFolder}",
+      "outFiles": [
+        "${workspaceFolder}/**/*.js",
+        "!**/node_modules/**"
+      ]
     },
     {
       "name": "Next.js: debug full stack",
       "type": "node-terminal",
       "request": "launch",
       "command": "pnpm run dev",
+      "outputCapture": "std",
       // "console": "integratedTerminal",
       "serverReadyAction": {
         "pattern": "started server on .+, url: (https?://.+)",
         "action": "startDebugging",
-        "name": "Next.js: debug client-side"
+        "name": "Next.js: debug client-side",
       }
     }
   ]
