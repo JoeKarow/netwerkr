@@ -1,18 +1,17 @@
 {
-  "name": "@joekarow/ui",
+  "name": "@joekarow/netwerkr-ui",
   "version": "0.0.0",
   "main": "./index.tsx",
   "types": "./index.tsx",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint *.{ts*, js,jsx}"
+    "lint": "eslint *.{ts*,js,jsx}"
   },
   "lint-staged": {
     "*.ts*": "eslint *.{ts*,js,jsx}"
   },
   "devDependencies": {
-    "@joekarow/eslint-config-custom": "workspace:*",
-    "@joekarow/tsconfig": "workspace:*",
+    "@joekarow/netwerkr-config": "workspace:*",
     "@types/react": "^18.0.12",
     "@types/react-dom": "^18.0.5",
     "eslint": "^8.17.0",
@@ -21,6 +20,7 @@
     "typescript": "^4.7.3"
   },
   "dependencies": {
+    "@joekarow/eslint-config-netwerkr": "workspace:^1.0.0",
     "@mantine/core": "^4.2.8",
     "@mantine/dates": "^4.2.8",
     "@mantine/dropzone": "^4.2.8",

@@ -1,6 +1,6 @@
 import { AppProps } from 'next/app';
 import Head from 'next/head';
-import { MantineProvider } from '@joekarow/ui/mantine/core';
+import { MantineProvider } from '@joekarow/netwerkr-ui/mantine/core';
 
 export default function App ( props ) {
     const { Component, pageProps } = props;

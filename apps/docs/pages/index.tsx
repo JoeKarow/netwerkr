@@ -1,4 +1,4 @@
-import { Button } from "ui";
+import { Button } from "@joekarow/netwerkr-ui/Button";
 
 export default function Docs() {
   return (

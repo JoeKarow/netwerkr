@@ -1,4 +1,4 @@
-import { Layout } from '@joekarow/ui/layout/web'
+import { Layout } from '@joekarow/netwerkr-ui/layout/web'
 
 export default function Main () {
   return (

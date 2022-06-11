@@ -1,5 +1,5 @@
 {
-  "name": "web",
+  "name": "@joekarow/netwerkr-web",
   "version": "0.0.0",
   "private": true,
   "scripts": {
@@ -12,14 +12,14 @@
     "*": "next lint"
   },
   "dependencies": {
-    "@joekarow/ui": "workspace:*",
+    "@joekarow/eslint-config-netwerkr": "workspace:^1.0.0",
+    "@joekarow/netwerkr-ui": "workspace:*",
     "next": "^12.1.6",
     "react": "^18.1.0",
     "react-dom": "^18.1.0"
   },
   "devDependencies": {
-    "@joekarow/eslint-config-custom": "workspace:*",
-    "@joekarow/tsconfig": "workspace:*",
+    "@joekarow/netwerkr-config": "workspace:*",
     "@types/node": "^17.0.41",
     "@types/react": "18.0.12",
     "eslint": "8.17.0",

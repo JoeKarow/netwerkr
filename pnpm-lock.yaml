@@ -10,18 +10,21 @@ importers:
       '@commitlint/cli': ^17.0.2
       '@commitlint/config-conventional': ^17.0.2
       '@commitlint/cz-commitlint': ^17.0.0
-      '@joekarow/eslint-config-custom': workspace:^0.0.0
+      '@joekarow/eslint-config-netwerkr': workspace:^1.0.0
+      '@joekarow/netwerkr-config': workspace:^0.0.0
       commitizen: ^4.2.4
       cz-git: ^1.3.4
       husky: ^8.0.1
       lint-staged: ^13.0.1
       prettier: latest
       turbo: ^1.2.16
+    dependencies:
+      '@joekarow/eslint-config-netwerkr': link:packages/eslint-config-netwerkr
     devDependencies:
       '@commitlint/cli': 17.0.2
       '@commitlint/config-conventional': 17.0.2
       '@commitlint/cz-commitlint': 17.0.0_nlwf7yf5555jiq2ch63nbqq5xy
-      '@joekarow/eslint-config-custom': link:packages/eslint-config-acme
+      '@joekarow/netwerkr-config': link:packages/netwerkr-config
       commitizen: 4.2.4
       cz-git: 1.3.4
       husky: 8.0.1
@@ -31,9 +34,9 @@ importers:
 
   apps/docs:
     specifiers:
-      '@joekarow/eslint-config-custom': workspace:*
-      '@joekarow/tsconfig': workspace:*
-      '@joekarow/ui': workspace:*
+      '@joekarow/eslint-config-netwerkr': workspace:^1.0.0
+      '@joekarow/netwerkr-config': workspace:*
+      '@joekarow/netwerkr-ui': workspace:*
       '@types/node': ^17.0.41
       '@types/react': 18.0.12
       eslint: 8.17.0
@@ -43,13 +46,13 @@ importers:
       react-dom: ^18.1.0
       typescript: ^4.7.3
     dependencies:
-      '@joekarow/ui': link:../../packages/ui
+      '@joekarow/eslint-config-netwerkr': link:../../packages/eslint-config-netwerkr
+      '@joekarow/netwerkr-ui': link:../../packages/ui
       next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
     devDependencies:
-      '@joekarow/eslint-config-custom': link:../../packages/eslint-config-acme
-      '@joekarow/tsconfig': link:../../packages/tsconfig
+      '@joekarow/netwerkr-config': link:../../packages/netwerkr-config
       '@types/node': 17.0.41
       '@types/react': 18.0.12
       eslint: 8.17.0
@@ -58,9 +61,9 @@ importers:
 
   apps/web:
     specifiers:
-      '@joekarow/eslint-config-custom': workspace:*
-      '@joekarow/tsconfig': workspace:*
-      '@joekarow/ui': workspace:*
+      '@joekarow/eslint-config-netwerkr': workspace:^1.0.0
+      '@joekarow/netwerkr-config': workspace:*
+      '@joekarow/netwerkr-ui': workspace:*
       '@types/node': ^17.0.41
       '@types/react': 18.0.12
       eslint: 8.17.0
@@ -70,13 +73,13 @@ importers:
       react-dom: ^18.1.0
       typescript: ^4.7.3
     dependencies:
-      '@joekarow/ui': link:../../packages/ui
+      '@joekarow/eslint-config-netwerkr': link:../../packages/eslint-config-netwerkr
+      '@joekarow/netwerkr-ui': link:../../packages/ui
       next: 12.1.6_ef5jwxihqo6n7gxfmzogljlgcm
       react: 18.1.0
       react-dom: 18.1.0_react@18.1.0
     devDependencies:
-      '@joekarow/eslint-config-custom': link:../../packages/eslint-config-acme
-      '@joekarow/tsconfig': link:../../packages/tsconfig
+      '@joekarow/netwerkr-config': link:../../packages/netwerkr-config
       '@types/node': 17.0.41
       '@types/react': 18.0.12
       eslint: 8.17.0
@@ -86,7 +89,13 @@ importers:
   design/diagrams:
     specifiers: {}
 
-  packages/eslint-config-acme:
+  packages/eslint-config-netwerkr:
+    specifiers:
+      '@joekarow/netwerkr-config': workspace:^0.0.0
+    dependencies:
+      '@joekarow/netwerkr-config': link:../netwerkr-config
+
+  packages/netwerkr-config:
     specifiers:
       eslint-config-next: ^12.1.6
       eslint-config-prettier: ^8.5.0
@@ -100,13 +109,10 @@ importers:
       eslint-plugin-react: 7.30.0_eslint@8.17.0
       eslint-plugin-react-hooks: 4.5.0_eslint@8.17.0
 
-  packages/tsconfig:
-    specifiers: {}
-
   packages/ui:
     specifiers:
-      '@joekarow/eslint-config-custom': workspace:*
-      '@joekarow/tsconfig': workspace:*
+      '@joekarow/eslint-config-netwerkr': workspace:^1.0.0
+      '@joekarow/netwerkr-config': workspace:*
       '@mantine/core': ^4.2.8
       '@mantine/dates': ^4.2.8
       '@mantine/dropzone': ^4.2.8
@@ -128,6 +134,7 @@ importers:
       tabler-icons-react: ^1.48.1
       typescript: ^4.7.3
     dependencies:
+      '@joekarow/eslint-config-netwerkr': link:../eslint-config-netwerkr
       '@mantine/core': 4.2.8_idcj2mvouhaivksm6hy27twhpu
       '@mantine/dates': 4.2.8_mzmxbnoevmtuqnawcz2waqyyvm
       '@mantine/dropzone': 4.2.8_qv6e6iu5or2zhh5df5ign6zize
@@ -143,8 +150,7 @@ importers:
       swr: 1.3.0_react@18.1.0
       tabler-icons-react: 1.48.1_react@18.1.0
     devDependencies:
-      '@joekarow/eslint-config-custom': link:../eslint-config-acme
-      '@joekarow/tsconfig': link:../tsconfig
+      '@joekarow/netwerkr-config': link:../netwerkr-config
       '@types/react': 18.0.12
       '@types/react-dom': 18.0.5
       eslint: 8.17.0
@@ -4096,7 +4102,7 @@ packages:
     dev: true
 
   /strip-bom/3.0.0:
-    resolution: {integrity: sha1-IzTBjpx1n3vdVv3vfprj1YjmjtM=}
+    resolution: {integrity: sha512-vavAMRXOgBVNF6nyEEmL3DBK19iRpDcoIwW+swQ+CbGiu7lju6t+JklA1MHweoWtadgt4ISVUsXLyDq34ddcwA==}
     engines: {node: '>=4'}
     dev: false
 

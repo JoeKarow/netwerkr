@@ -1,5 +1,5 @@
 {
-  "extends": "@joekarow/tsconfig/react-library.json",
+  "extends": "@joekarow/netwerkr-config/tsconfig/react-library.json",
   "include": [
     "."
   ],
