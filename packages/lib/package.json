@@ -1,0 +1,20 @@
+{
+  "name": "@joekarow/netwerkr-lib",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^4.7.0"
+  },
+  "devDependencies": {
+    "@joekarow/eslint-config-netwerkr": "workspace:^1.0.0",
+    "@joekarow/netwerkr-config": "workspace:^0.0.0"
+  }
+}
