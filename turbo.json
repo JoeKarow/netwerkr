@@ -3,8 +3,13 @@
   "baseBranch": "origin/main",
   "pipeline": {
     "build": {
-      "dependsOn": ["^build"],
-      "outputs": ["dist/**", ".next/**"]
+      "dependsOn": [
+        "^build"
+      ],
+      "outputs": [
+        "dist/**",
+        ".next/**"
+      ]
     },
     "lint": {
       "outputs": []
@@ -12,5 +17,8 @@
     "dev": {
       "cache": false
     }
-  }
+  },
+  "globalDependencies": [
+    "@joekarow/netwerkr-config/.env2"
+  ]
 }
