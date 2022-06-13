@@ -5,7 +5,10 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "lint": "eslint . --ext .ts --ext .js"
+  },
+  "lint-staged": {
+    "*.{ts,js}": "eslint"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +18,7 @@
   },
   "devDependencies": {
     "@joekarow/eslint-config-netwerkr": "workspace:^1.0.0",
-    "@joekarow/netwerkr-config": "workspace:^0.0.0"
+    "@joekarow/netwerkr-config": "workspace:^0.0.0",
+    "next": "^12.1.6"
   }
 }

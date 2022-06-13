@@ -5,10 +5,10 @@
   "types": "./index.tsx",
   "license": "MIT",
   "scripts": {
-    "lint": "eslint *.{ts*,js,jsx}"
+    "lint": "eslint **/*.{ts*,js,jsx}"
   },
   "lint-staged": {
-    "*.ts*": "eslint *.{ts*,js,jsx}"
+    "*.{ts*,js,jsx}": "eslint"
   },
   "devDependencies": {
     "@joekarow/netwerkr-config": "workspace:*",
