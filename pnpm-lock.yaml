@@ -791,7 +791,7 @@ packages:
       '@emotion/memoize': 0.7.5
       '@emotion/unitless': 0.7.5
       '@emotion/utils': 1.0.0
-      csstype: 3.1.0
+      csstype: 3.0.9
     dev: false
 
   /@emotion/server/11.4.0:
