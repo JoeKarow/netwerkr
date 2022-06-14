@@ -1,0 +1,39 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODB_URI")
+}
+
+model accounts {
+  id                String @id @default(auto()) @map("_id") @db.ObjectId
+  access_token      String
+  expires_at        Int
+  provider          String
+  providerAccountId String
+  refresh_token     String
+  scope             String
+  token_type        String
+  type              String
+  userId            String @db.ObjectId
+  user              users  @relation(fields: [userId], references: [id])
+}
+
+model netwerkr {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+}
+
+model sessions {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+}
+
+model users {
+  id            String     @id @default(auto()) @map("_id") @db.ObjectId
+  email         String
+  emailVerified Boolean
+  image         String
+  name          String
+  accounts      accounts[]
+}
