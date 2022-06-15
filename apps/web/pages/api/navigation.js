@@ -7,7 +7,7 @@ import links from '../../data/nav.json'
 const handler = async ( req, res ) => {
     try {
         if ( req.method === 'GET' ) {
-            res.status( 200 ).json( links )
+            await res.status( 200 ).json( links )
         }
     } catch ( err ) {
         res.status( 500 ).json( err )

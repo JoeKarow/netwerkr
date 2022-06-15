@@ -12,7 +12,11 @@
     "dev": "turbo run dev --parallel",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md,jsx,js}\"",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "db": "turbo run db",
+    "db:push": "turbo run db:push",
+    "db:generate": "turbo run db:generate",
+    "db:studio": "turbo run db:studio"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.2",

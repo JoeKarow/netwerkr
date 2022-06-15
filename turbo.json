@@ -16,6 +16,12 @@
     },
     "dev": {
       "cache": false
+    },
+    "db": {
+      "outputs": []
+    },
+    "db:generate": {
+      "outputs": []
     }
   },
   "globalDependencies": [
