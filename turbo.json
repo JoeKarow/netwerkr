@@ -22,6 +22,9 @@
     },
     "db:generate": {
       "outputs": []
+    },
+    "test": {
+      "outputs": []
     }
   },
   "globalDependencies": [
