@@ -103,7 +103,7 @@ importers:
       axios: 0.27.2
       dotenv: 16.0.1
       mongodb: 4.7.0
-      next: 12.1.6_4cc5zw5azim2bix77d63le72su
+      next: 12.1.6_biqbaboplfbrettd7655fr4n2y
       next-auth: 4.5.0_biqbaboplfbrettd7655fr4n2y
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
@@ -1892,7 +1892,6 @@ packages:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
       csstype: 3.1.0
-    dev: true
 
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
