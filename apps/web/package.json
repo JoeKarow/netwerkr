@@ -11,7 +11,8 @@
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
     "db:studio": "prisma studio",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "pnpm db:generate"
   },
   "lint-staged": {
     "*": "next lint"
@@ -34,6 +35,8 @@
   },
   "devDependencies": {
     "@joekarow/netwerkr-config": "workspace:*",
+    "@simbathesailor/babel-plugin-use-what-changed": "^2.1.0",
+    "@simbathesailor/use-what-changed": "^2.0.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@types/node": "^17.0.44",
