@@ -42,7 +42,7 @@ importers:
       '@joekarow/netwerkr-config': workspace:*
       '@joekarow/netwerkr-ui': workspace:*
       '@types/node': ^17.0.45
-      '@types/react': 18.0.13
+      '@types/react': 18.0.14
       eslint: 8.17.0
       next: ^12.1.6
       next-transpile-modules: 9.0.0
@@ -58,7 +58,7 @@ importers:
     devDependencies:
       '@joekarow/netwerkr-config': link:../../packages/netwerkr-config
       '@types/node': 17.0.45
-      '@types/react': 18.0.13
+      '@types/react': 18.0.14
       eslint: 8.17.0
       next-transpile-modules: 9.0.0
       typescript: 4.7.3
@@ -77,7 +77,7 @@ importers:
       '@testing-library/jest-dom': ^5.16.4
       '@testing-library/react': ^13.3.0
       '@types/node': ^17.0.45
-      '@types/react': 18.0.13
+      '@types/react': 18.0.14
       axios: ^0.27.2
       dotenv: ^16.0.1
       eslint: 8.17.0
@@ -115,7 +115,7 @@ importers:
       '@testing-library/jest-dom': 5.16.4
       '@testing-library/react': 13.3.0_biqbaboplfbrettd7655fr4n2y
       '@types/node': 17.0.45
-      '@types/react': 18.0.13
+      '@types/react': 18.0.14
       eslint: 8.17.0
       jest: 28.1.1_@types+node@17.0.45
       jest-environment-jsdom: 28.1.1
@@ -1876,6 +1876,14 @@ packages:
       '@types/prop-types': 15.7.5
       '@types/scheduler': 0.16.2
       csstype: 3.1.0
+
+  /@types/react/18.0.14:
+    resolution: {integrity: sha512-x4gGuASSiWmo0xjDLpm5mPb52syZHJx02VKbqUKdLmKtAwIh63XClGsiTI1K6DO5q7ox4xAsQrU+Gl3+gGXF9Q==}
+    dependencies:
+      '@types/prop-types': 15.7.5
+      '@types/scheduler': 0.16.2
+      csstype: 3.1.0
+    dev: true
 
   /@types/scheduler/0.16.2:
     resolution: {integrity: sha512-hppQEBDmlwhFAXKJX2KnWLYu5yMfi91yazPb2l+lbJiwW+wdo1gNeRA+3RgNSO39WYX2euey41KEwnqesU2Jew==}
