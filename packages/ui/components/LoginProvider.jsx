@@ -1,8 +1,6 @@
-import React, { useRef, useState, Suspense } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Modal, Group } from "@mantine/core";
 import { getProviders, signOut, signIn, useSession } from "next-auth/react";
-import Link from 'next/link'
-import { useEffect } from "react";
 import { Icon, BrandTwitter, Key } from 'tabler-icons-react'
 
 /**
@@ -21,9 +19,14 @@ async function fetchProviders () {
     }
 }
 
+/* It's an async function that calls the getProviders() function, which returns a promise. */
 const providers = fetchProviders()
 
-function ProviderButtons ( { list } ) {
+/**
+ * It takes a list of providers, and returns a list of buttons
+ * @returns A list of buttons
+ */
+function providerButtons ( list ) {
     if ( list === null ) {
         return <p>Loading...</p>
     }
@@ -54,6 +57,11 @@ function ProviderButtons ( { list } ) {
 }
 
 
+/**
+ * It renders a button that opens a modal with a list of buttons that each call a different login
+ * provider
+ * @returns A modal with a list of buttons that will allow the user to sign in with a provider.
+ */
 const LoginProvider = () => {
     const { data: session, status } = useSession()
     const [ opened, setOpened ] = useState( false )
@@ -95,7 +103,7 @@ const LoginProvider = () => {
                     direction="column"
                     position="center"
                 >
-                    <ProviderButtons list={ list } />
+                    { providerButtons( list ) }
                 </Group>
             </Modal>
             <Button
