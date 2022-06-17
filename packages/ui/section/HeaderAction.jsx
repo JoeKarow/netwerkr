@@ -11,6 +11,7 @@ import {
 } from '@mantine/core';
 import { useBooleanToggle } from '@mantine/hooks';
 import { ChevronDown } from 'tabler-icons-react';
+import { LoginProvider } from '../components'
 
 const HEADER_HEIGHT = 60;
 
@@ -120,9 +121,7 @@ export default function HeaderAction ( { links } ) {
                 <Group spacing={ 5 } className={ classes.links }>
                     { items }
                 </Group>
-                <Button radius="xl" sx={ { height: 30 } }>
-                    Pretty lil&apos; button
-                </Button>
+                <LoginProvider />
             </Container>
         </Header>
     );

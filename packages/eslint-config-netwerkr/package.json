@@ -9,5 +9,11 @@
   "license": "ISC",
   "dependencies": {
     "@joekarow/netwerkr-config": "workspace:^0.0.0"
+  },
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^12.1.6",
+    "eslint": "^8.17.0",
+    "eslint-config-next": "^12.1.6",
+    "next": "^12.1.6"
   }
 }
