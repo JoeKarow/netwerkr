@@ -1,24 +1,29 @@
 import NextAuth from "next-auth"
-import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
-import clientPromise from "@joekarow/netwerkr-lib/mongodb"
 import TwitterProvider from 'next-auth/providers/twitter'
-// require( 'dotenv' ).config( {
-//     path: '@joekarow/netwerkr-config/.env.local'
-// } )
+import Auth0Provider from 'next-auth/providers/auth0'
+import { PrismaAdapter } from "@next-auth/prisma-adapter"
+import { PrismaClient } from "@prisma/client"
+
 
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
 
-// mongo connected?
+
+const prisma = new PrismaClient()
 
 export default NextAuth( {
-    adapter: MongoDBAdapter( clientPromise ),
+    adapter: PrismaAdapter( prisma ),
     secret: process.env.NEXTAUTH_SECRET,
     providers: [
         TwitterProvider( {
             clientId: process.env.TWITTER_ID,
             clientSecret: process.env.TWITTER_SECRET,
             version: "2.0",
+        } ),
+        Auth0Provider( {
+            clientId: process.env.AUTH0_CLIENT_ID,
+            clientSecret: process.env.AUTH0_CLIENT_SECRET,
+            issuer: process.env.AUTH0_ISSUER
         } )
     ],
     session: {

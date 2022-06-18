@@ -1,8 +1,5 @@
 // This approach is taken from https://github.com/vercel/next.js/tree/canary/examples/with-mongodb
 import { MongoClient } from "mongodb"
-// require( 'dotenv' ).config( {
-//     path: '@joekarow/netwerkr-config/.env.local'
-// } )
 
 const uri = process.env.MONGODB_URI
 const options = {
