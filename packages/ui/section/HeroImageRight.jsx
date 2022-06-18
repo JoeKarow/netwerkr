@@ -74,7 +74,7 @@ const useStyles = createStyles( ( theme, props ) => ( {
     },
 } ) );
 
-function HeroImageRight ( props ) {
+export function HeroImageRight ( props ) {
     const { classes } = useStyles( props.image.default.src );
     return (
         <div className={ classes.root }>
@@ -112,4 +112,3 @@ function HeroImageRight ( props ) {
         </div>
     );
 }
-export default HeroImageRight

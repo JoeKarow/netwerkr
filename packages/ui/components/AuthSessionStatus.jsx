@@ -2,7 +2,7 @@ import React from "react";
 import { useSession } from 'next-auth/react'
 
 
-const AuthSessionStatus = () => {
+export const AuthSessionStatus = () => {
     const { data: session, status } = useSession()
 
     if ( status === 'loading' ) {
@@ -17,4 +17,3 @@ const AuthSessionStatus = () => {
     )
 }
 
-export default AuthSessionStatus
