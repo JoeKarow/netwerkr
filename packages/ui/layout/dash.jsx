@@ -1,15 +1,15 @@
 import React from 'react'
-import { HeaderAction } from '../section'
+import { NavbarNested, HeaderUser } from '../section'
 import { links } from './navLinks'
 import { AppShell, Container } from '@mantine/core'
+import { user } from '../mockdata'
 
-const fetcher = ( url ) => fetch( url ).then( ( res ) => res.json() )
-export const MainLayout = ( { children } ) => {
-
+export const DashLayout = ( { children } ) => {
 
     return (
         <AppShell
-            header={ <HeaderAction links={ links } /> }
+            header={ <HeaderUser user={ user } /> }
+            navbar={ <NavbarNested /> }
         >
             <Container size='xl'>
                 { children }

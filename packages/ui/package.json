@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "lint": "eslint **/*.{ts*,js,jsx}",
-    "test": "jest"
+    "test": "jest",
+    "dev": "vscode-generate-index-standalone ./{**,!node_modules}/*.{js*,ts*} -w ./{**,!node_modules}/"
   },
   "lint-staged": {
     "*.{ts*,js,jsx}": "eslint"
@@ -23,7 +24,8 @@
     "jest-environment-jsdom": "^28.1.1",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
-    "typescript": "^4.7.3"
+    "typescript": "^4.7.3",
+    "vscode-generate-index-standalone": "^1.6.0"
   },
   "dependencies": {
     "@joekarow/eslint-config-netwerkr": "workspace:^1.0.0",
