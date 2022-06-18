@@ -793,7 +793,7 @@ packages:
       '@emotion/memoize': 0.7.5
       '@emotion/unitless': 0.7.5
       '@emotion/utils': 1.0.0
-      csstype: 3.1.0
+      csstype: 3.0.9
     dev: false
 
   /@emotion/server/11.4.0:
@@ -1536,7 +1536,10 @@ packages:
   /@radix-ui/react-compose-refs/0.1.0_react@18.2.0:
     resolution: {integrity: sha512-eyclbh+b77k+69Dk72q3694OHrn9B3QsoIRx7ywX341U9RK1ThgQjMFZoPtmZNQTksXHLNEiefR8hGVeFyInGg==}
     peerDependencies:
-      react: ^16.8 || ^17.0 || 18
+      prisma: '*'
+    peerDependenciesMeta:
+      prisma:
+        optional: true
     dependencies:
       '@babel/runtime': 7.18.3
       react: 18.2.0
