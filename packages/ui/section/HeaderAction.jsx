@@ -59,7 +59,7 @@ const useStyles = createStyles( ( theme ) => ( {
 //     links: { link: string; label: string; links: { link: string; label: string }[] }[];
 // }
 
-export default function HeaderAction ( { links } ) {
+export function HeaderAction ( { links } ) {
     const { classes } = useStyles();
     const [ opened, toggleOpened ] = useBooleanToggle( false );
     const items = links.map( ( link ) => {
