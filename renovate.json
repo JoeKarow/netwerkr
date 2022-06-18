@@ -10,5 +10,8 @@
     "dependencies"
   ],
   "reviewersFromCodeOwners": true,
-  "semanticCommits": "enabled"
+  "semanticCommits": "enabled",
+  "baseBranches": [
+    "develop"
+  ]
 }
