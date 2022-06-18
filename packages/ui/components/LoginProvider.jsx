@@ -62,7 +62,7 @@ function providerButtons ( list ) {
  * provider
  * @returns A modal with a list of buttons that will allow the user to sign in with a provider.
  */
-const LoginProvider = () => {
+export const LoginProvider = () => {
     const { data: session, status } = useSession()
     const [ opened, setOpened ] = useState( false )
     const [ auth, setAuth ] = useState( status === 'authenticated' )
@@ -117,4 +117,3 @@ const LoginProvider = () => {
     )
 }
 
-export default LoginProvider
