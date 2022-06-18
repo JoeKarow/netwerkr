@@ -4,7 +4,7 @@ import { links } from './navLinks'
 import { AppShell, Container } from '@mantine/core'
 
 const fetcher = ( url ) => fetch( url ).then( ( res ) => res.json() )
-export const Layout = ( { children } ) => {
+export const MainLayout = ( { children } ) => {
 
 
     return (

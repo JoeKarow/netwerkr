@@ -1,4 +1,4 @@
-import { Layout } from '@joekarow/netwerkr-ui/layout/web'
+import { MainLayout } from '@joekarow/netwerkr-ui/layout'
 import { HeroImageRight, FeaturesGrid } from '@joekarow/netwerkr-ui/section'
 import { AuthSessionStatus } from '@joekarow/netwerkr-ui/components'
 import * as heroBackground from '../public/img/chris-j-davis-7ezFz2Hxd40-unsplash.jpg'
@@ -20,8 +20,8 @@ export default function Main ( props ) {
 
 Main.getLayout = function getLayout ( page ) {
   return (
-    <Layout>
+    <MainLayout>
       { page }
-    </Layout>
+    </MainLayout>
   )
 }
