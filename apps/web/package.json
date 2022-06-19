@@ -17,6 +17,9 @@
   "lint-staged": {
     "*": "next lint"
   },
+  "prisma": {
+    "seed": "node prisma/seed.js"
+  },
   "dependencies": {
     "@joekarow/eslint-config-netwerkr": "workspace:^1.0.0",
     "@joekarow/netwerkr-lib": "workspace:^1.0.0",
