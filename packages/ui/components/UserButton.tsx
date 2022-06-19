@@ -14,11 +14,12 @@ import {
     Star,
     Message,
     Settings,
-    PlayerPause,
-    Trash,
     SwitchHorizontal,
     ChevronDown,
 } from 'tabler-icons-react';
+import {useSession} from 'next-auth/react'
+import {useProviders} from '../hooks'
+import { signIn, signOut } from 'next-auth/react';
 
 
 //TODO: Change menu items
@@ -54,9 +55,45 @@ export interface UserButton {
     }
 }
 
+interface LoginProvider {
+    name: String,
+    icon: JSX.Element
+}
+
 export function UserButton ( { user }: UserButton ) {
     const { classes, cx, theme } = useStyles();
     const [ userMenuOpened, setUserMenuOpened ] = useState( false );
+    const {data: session, status } = useSession()
+    const loginProviders = useProviders().map((provider: LoginProvider) => (
+        <Menu.Item key={provider.name} icon={provider.icon} onClick={() => signIn(provider.name.toLowerCase())}>
+            {provider.name}
+        </Menu.Item>))
+    if (status !== 'authenticated') {
+        return (
+                                <Menu
+                        size={ 260 }
+                        placement="end"
+                        transition="pop-top-right"
+                        className={ classes.userMenu }
+                        onClose={ () => setUserMenuOpened( false ) }
+                        onOpen={ () => setUserMenuOpened( true ) }
+                        control={
+                            <UnstyledButton
+                                className={ cx( classes.user, { [ classes.userActive ]: userMenuOpened } ) }
+                            >
+                                <Group spacing={ 7 }>
+                                    <Text weight={ 500 } size="sm" sx={ { lineHeight: 1 } } mr={ 3 }>
+                                        Log In
+                                    </Text>
+                                    <ChevronDown size={ 12 } />
+                                </Group>
+                            </UnstyledButton>
+                        }
+                    >
+                    {loginProviders}
+                    </Menu>
+        )
+    }
 
     return (
                     <Menu
@@ -71,9 +108,9 @@ export function UserButton ( { user }: UserButton ) {
                                 className={ cx( classes.user, { [ classes.userActive ]: userMenuOpened } ) }
                             >
                                 <Group spacing={ 7 }>
-                                    <Avatar src={ user.image } alt={ user.name } radius="xl" size={ 20 } />
+                                    <Avatar src={ session.user.image } alt={ session.user.name } radius="xl" size={ 20 } />
                                     <Text weight={ 500 } size="sm" sx={ { lineHeight: 1 } } mr={ 3 }>
-                                        { user.name }
+                                        { session.user.name }
                                     </Text>
                                     <ChevronDown size={ 12 } />
                                 </Group>
@@ -93,15 +130,8 @@ export function UserButton ( { user }: UserButton ) {
                         <Menu.Label>Settings</Menu.Label>
                         <Menu.Item icon={ <Settings size={ 14 } /> }>Account settings</Menu.Item>
                         <Menu.Item icon={ <SwitchHorizontal size={ 14 } /> }>Change account</Menu.Item>
-                        <Menu.Item icon={ <Logout size={ 14 } /> }>Logout</Menu.Item>
+                        <Menu.Item icon={ <Logout size={ 14 } /> } onClick={() => signOut()}>Logout</Menu.Item>
 
-                        <Divider />
-
-                        <Menu.Label>Danger zone</Menu.Label>
-                        <Menu.Item icon={ <PlayerPause size={ 14 } /> }>Pause subscription</Menu.Item>
-                        <Menu.Item color="red" icon={ <Trash size={ 14 } /> }>
-                            Delete account
-                        </Menu.Item>
                     </Menu>
     );
 }
