@@ -17,6 +17,7 @@
     "db": "turbo run db",
     "db:push": "turbo run db:push",
     "db:generate": "turbo run db:generate",
+    "db:seed": "turbo run db:seed",
     "db:studio": "turbo run db:studio",
     "test": "turbo run test"
   },

@@ -10,6 +10,7 @@
     "db": "",
     "db:push": "prisma db push",
     "db:generate": "prisma generate",
+    "db:seed": "prisma db seed",
     "db:studio": "prisma studio",
     "test": "jest",
     "postinstall": "pnpm db:generate"
