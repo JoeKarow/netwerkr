@@ -1,29 +1,33 @@
 const { PrismaClient } = require( '@prisma/client' )
 const prisma = new PrismaClient()
+const { twitterUrlBase, linkedInUrlBase } = require( './seed/socialMediaSetup' )
+const generateFakeContact = require( './seed/fakedata' )
+
+const fakeContacts = 21
+
 
 const main = async () => {
+    if ( !fakeContacts ) throw new Error( `variable 'fakeContacts' must be set` )
 
-    const twitterUrlBase = await prisma.SocialMediaService.upsert( {
-        where: { name: 'Twitter' },
-        update: {
-            urlbase: 'https://www.twitter.com/'
-        },
-        create: {
-            name: 'Twitter',
-            urlbase: 'https://www.twitter.com/'
+    await prisma.SocialMediaService.upsert( twitterUrlBase )
+    await prisma.SocialMediaService.upsert( linkedInUrlBase )
+
+    const socialMediaIds = await prisma.SocialMediaService.findMany( {
+        select: {
+            id: true
         }
     } )
 
-    const linkedinUrlBase = await prisma.SocialMediaService.upsert( {
-        where: { name: 'LinkedIn' },
-        update: {
-            urlbase: 'https://www.linkedin.com/in/'
-        },
-        create: {
-            name: 'LinkedIn',
-            urlbase: 'https://www.linkedin.com/in/'
-        }
-    } )
+    for ( let i = 0; i < fakeContacts; i++ ) {
+        console.info( `Generating fake contact ${ i + 1 } of ${ fakeContacts }` )
+        console.log( socialMediaIds )
+        await prisma.Contact.create( {
+            data: generateFakeContact( socialMediaIds )
+        } )
+    }
+
+
+
 
 }
 

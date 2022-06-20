@@ -4,7 +4,6 @@ import { CompleteContact, RelatedContactModel, CompleteSocialMediaService, Relat
 
 export const SocialMediaModel = z.object({
   id: z.string(),
-  contactId: z.string(),
   userId: z.string(),
   displayName: z.string(),
   username: z.string(),
@@ -12,6 +11,7 @@ export const SocialMediaModel = z.object({
   profileImg: z.string().nullish(),
   createdAt: z.date(),
   updatedAt: z.date(),
+  contactId: z.string(),
   socialMediaServiceId: z.string(),
 })
 

@@ -7,9 +7,9 @@ export const ContactEmailModel = z.object({
   id: z.string(),
   email: z.string(),
   label: z.nativeEnum(EmailLabel),
-  contactId: z.string(),
   createdAt: z.date(),
   updatedAt: z.date(),
+  contactId: z.string(),
 })
 
 export interface CompleteContactEmail extends z.infer<typeof ContactEmailModel> {

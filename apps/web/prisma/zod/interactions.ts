@@ -10,7 +10,7 @@ export const InteractionsModel = z.object({
   time: z.date(),
   content: z.string(),
   extPostId: z.string().nullish(),
-  socialMediaServiceId: z.string(),
+  socialMediaServiceId: z.string().nullish(),
 })
 
 export interface CompleteInteractions extends z.infer<typeof InteractionsModel> {

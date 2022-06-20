@@ -10,7 +10,7 @@ generator zod {
 
 datasource db {
   provider = "mongodb"
-  url      = env("MONGODB_URI")
+  url      = env("MONGODB_CONN")
 }
 
 model netwerkr {
@@ -81,10 +81,10 @@ model ContactEmail {
   email     String
   label     EmailLabel @default(Home)
   contact   Contact    @relation(fields: [contactId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  contactId String     @db.ObjectId
   createdAt DateTime   @default(now())
   updatedAt DateTime   @updatedAt
 
+  contactId String @db.ObjectId
   @@unique([email, contactId])
 }
 
@@ -112,18 +112,20 @@ enum PhoneLabel {
 }
 
 model SocialMedia {
-  id                   String             @id @default(auto()) @map("_id") @db.ObjectId
-  contact              Contact            @relation(fields: [contactId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  contactId            String             @db.ObjectId
-  service              SocialMediaService @relation(fields: [socialMediaServiceId], references: [id])
-  userId               String
-  displayName          String
-  username             String
-  protected            Boolean
-  profileImg           String?
-  createdAt            DateTime           @default(now())
-  updatedAt            DateTime           @updatedAt
-  socialMediaServiceId String             @db.ObjectId
+  id          String             @id @default(auto()) @map("_id") @db.ObjectId
+  contact     Contact            @relation(fields: [contactId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  service     SocialMediaService @relation(fields: [socialMediaServiceId], references: [id])
+  userId      String
+  displayName String
+  username    String
+  protected   Boolean
+  profileImg  String?
+  createdAt   DateTime           @default(now())
+  updatedAt   DateTime           @updatedAt
+
+
+  contactId            String @db.ObjectId
+  socialMediaServiceId String @db.ObjectId
 }
 
 model SocialMediaService {
@@ -147,7 +149,7 @@ model Interactions {
   extPostId      String?
   conversationId Conversation[]
 
-  socialMediaServiceId String @db.ObjectId
+  socialMediaServiceId String? @db.ObjectId
 }
 
 enum InteractionSource {
