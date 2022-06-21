@@ -4,15 +4,15 @@ on:
      branches:
        - main
        - develop
-   pull_request:
-     branches:
-       - main
-       - develop
-     types:
-      - closed
+#    pull_request:
+#      branches:
+#        - main
+#        - develop
+#      types:
+#       - closed
 jobs:
   autoupdate:
-    if: (github.event.pull_request.merged == true || github.event.push.created == true)
+#     if: (github.event.pull_request.merged == true || github.event.push.created == true)
     name: Auto update open PRs
     runs-on: ubuntu-20.04
     steps:
