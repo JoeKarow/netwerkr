@@ -22,7 +22,7 @@ jobs:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
           FROM_BRANCH: "main"
           TO_BRANCH: "develop"
-          PULL_REQUEST_TITLE: "chore: 🔨 sync ${{jobs.sync-branches.with.FROM_BRANCH}} to ${{jobs.sync-branches.with.TO_BRANCH}}"
+          PULL_REQUEST_TITLE: "chore: 🔨 sync main to develop"
           CONTENT_COMPARISON: true
       - name: Applying label to pull request
         id: label
