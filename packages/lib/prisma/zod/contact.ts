@@ -1,5 +1,5 @@
 import * as z from "zod"
-import * as imports from "../../lib/zod-prisma"
+import * as imports from "../zod-prisma"
 import { CompleteContactEmail, RelatedContactEmailModel, CompleteContactPhone, RelatedContactPhoneModel, CompleteSocialMedia, RelatedSocialMediaModel, CompleteInteractions, RelatedInteractionsModel, CompleteUser, RelatedUserModel } from "./index"
 
 export const ContactModel = z.object({

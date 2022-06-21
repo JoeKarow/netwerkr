@@ -1,5 +1,5 @@
 import * as z from "zod"
-import * as imports from "../../lib/zod-prisma"
+import * as imports from "../zod-prisma"
 import { Role } from "@prisma/client"
 import { CompleteAccount, RelatedAccountModel, CompleteSession, RelatedSessionModel, CompleteContact, RelatedContactModel } from "./index"
 

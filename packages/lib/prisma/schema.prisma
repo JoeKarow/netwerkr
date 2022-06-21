@@ -5,7 +5,7 @@ generator client {
 generator zod {
   provider = "zod-prisma"
   output   = "./zod"
-  imports  = "../lib/zod-prisma"
+  imports  = "./zod-prisma"
 }
 
 datasource db {

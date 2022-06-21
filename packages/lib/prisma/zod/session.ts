@@ -1,5 +1,5 @@
 import * as z from "zod"
-import * as imports from "../../lib/zod-prisma"
+import * as imports from "../zod-prisma"
 import { CompleteUser, RelatedUserModel } from "./index"
 
 export const SessionModel = z.object({

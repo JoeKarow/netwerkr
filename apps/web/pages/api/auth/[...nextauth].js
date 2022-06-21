@@ -2,14 +2,14 @@ import NextAuth from "next-auth"
 import TwitterProvider from 'next-auth/providers/twitter'
 import Auth0Provider from 'next-auth/providers/auth0'
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import { PrismaClient } from "@prisma/client"
+import prisma from '@joekarow/netwerkr-lib/prisma'
 
 
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
 
 
-const prisma = new PrismaClient()
+
 
 export default NextAuth( {
     adapter: PrismaAdapter( prisma ),

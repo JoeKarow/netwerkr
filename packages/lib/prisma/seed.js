@@ -1,5 +1,5 @@
-const { PrismaClient } = require( '@prisma/client' )
-const prisma = new PrismaClient()
+
+const prisma = require( './index' )
 const { twitterUrlBase, linkedInUrlBase } = require( './seed/socialMediaSetup' )
 const generateFakeContact = require( './seed/fakedata' )
 
