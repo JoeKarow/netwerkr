@@ -1,5 +1,6 @@
 import * as z from "zod"
 import * as imports from "../../lib/zod-prisma"
+import { Role } from "@prisma/client"
 import { CompleteAccount, RelatedAccountModel, CompleteSession, RelatedSessionModel, CompleteContact, RelatedContactModel } from "./index"
 
 export const UserModel = z.object({
@@ -9,6 +10,8 @@ export const UserModel = z.object({
   emailVerified: z.date().nullish(),
   image: z.string().nullish(),
   twitterList: z.string().nullish(),
+  role: z.nativeEnum(Role),
+  disabled: z.boolean().nullish(),
   createdAt: z.date(),
   updatedAt: z.date(),
 })
