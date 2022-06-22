@@ -69,7 +69,7 @@ interface HeaderProps {
     user: { name: string; image: string };
 }
 
-export function HeaderUser ( { user }: HeaderProps ) {
+export function HeaderUser () {
     const { classes, theme, cx } = useStyles();
     // const [ opened, toggleOpened ] = useBooleanToggle( false );
     const [ userMenuOpened, setUserMenuOpened ] = useState( false );
@@ -80,7 +80,7 @@ export function HeaderUser ( { user }: HeaderProps ) {
                 <Group position="apart">
                     <h1>netwerkr</h1>
 
-                    <UserButton user={user} />
+                    <UserButton/>
                 </Group>
             </Container>
         </div>
