@@ -11,6 +11,7 @@
     "db:generate": "prisma generate",
     "db:seed": "prisma db seed",
     "db:studio": "prisma studio",
+    "dev": "vscode-generate-index-standalone ./{**,!node_modules}/*.{js*,ts*} -w ./{**,!node_modules}/",
     "test": "jest",
     "postinstall": "pnpm db:generate"
   },
