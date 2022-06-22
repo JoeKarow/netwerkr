@@ -23,6 +23,15 @@
     "db:generate": {
       "outputs": []
     },
+    "db:push": {
+      "outputs": []
+    },
+    "db:seed": {
+      "outputs": []
+    },
+    "db:studio": {
+      "outputs": []
+    },
     "test": {
       "outputs": []
     }

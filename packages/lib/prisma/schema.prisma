@@ -1,0 +1,187 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+generator zod {
+  provider = "zod-prisma"
+  output   = "./zod"
+  imports  = "./zod-prisma"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODB_CONN")
+}
+
+model netwerkr {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+}
+
+model Account {
+  id                String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String    @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt         DateTime? @default(now())
+  updatedAt         DateTime? @updatedAt
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  twitterList   String?
+  role          Role      @default(USER)
+  disabled      Boolean?
+  accounts      Account[]
+  sessions      Session[]
+  contacts      Contact[] @relation("contactCollection")
+  profile       Contact?  @relation("userProfile", fields: [profileId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  profileId     String?   @unique @db.ObjectId
+  createdAt     DateTime? @default(now())
+  updatedAt     DateTime? @updatedAt
+
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Contact {
+  id            String         @id @default(auto()) @map("_id") @db.ObjectId /// @zod.refine(imports.mongoId)
+  firstName     String?
+  lastName      String?
+  email         ContactEmail[]
+  phone         ContactPhone[]
+  photo         String
+  socialMedia   SocialMedia[]
+  interactions  Interactions[]
+  onTwitterList Boolean
+
+  associatedUser   User      @relation("contactCollection", fields: [associatedUserId], references: [id], onDelete: Cascade)
+  associatedUserId String    @db.ObjectId
+  profileForUser   User?     @relation("userProfile")
+  createdAt        DateTime? @default(now())
+  updatedAt        DateTime? @updatedAt
+}
+
+model ContactEmail {
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  email     String
+  primary   Boolean?
+  label     EmailLabel @default(Home)
+  contact   Contact    @relation(fields: [contactId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  createdAt DateTime?  @default(now())
+  updatedAt DateTime?  @updatedAt
+
+  contactId String @db.ObjectId
+  @@unique([email, contactId])
+}
+
+enum EmailLabel {
+  Home
+  Work
+  Other
+}
+
+model ContactPhone {
+  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+  number    String
+  label     PhoneLabel
+  primary   Boolean?
+  contact   Contact    @relation(fields: [contactId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  contactId String     @db.ObjectId
+  createdAt DateTime?  @default(now())
+  updatedAt DateTime?  @updatedAt
+}
+
+enum PhoneLabel {
+  Home
+  Work
+  Mobile
+  Other
+}
+
+model SocialMedia {
+  id          String             @id @default(auto()) @map("_id") @db.ObjectId
+  contact     Contact            @relation(fields: [contactId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  service     SocialMediaService @relation(fields: [socialMediaServiceId], references: [id])
+  userId      String
+  displayName String
+  username    String
+  protected   Boolean
+  profileImg  String?
+  createdAt   DateTime?          @default(now())
+  updatedAt   DateTime?          @updatedAt
+
+
+  contactId            String @db.ObjectId
+  socialMediaServiceId String @db.ObjectId
+}
+
+model SocialMediaService {
+  id      String @id @default(auto()) @map("_id") @db.ObjectId
+  name    String @unique
+  urlbase String
+
+
+  Interactions Interactions[]
+  SocialMedia  SocialMedia[]
+}
+
+model Interactions {
+  id             String              @id @default(auto()) @map("_id") @db.ObjectId
+  Contact        Contact             @relation(fields: [contactId], references: [id])
+  contactId      String              @db.ObjectId
+  source         InteractionSource
+  sourceSocial   SocialMediaService? @relation(fields: [socialMediaServiceId], references: [id])
+  time           DateTime
+  content        String
+  extPostId      String?
+  conversationId Conversation[]
+  createdAt      DateTime?           @default(now())
+  updatedAt      DateTime?           @updatedAt
+
+  socialMediaServiceId String? @db.ObjectId
+}
+
+enum InteractionSource {
+  Twitter
+  LinkedIn
+  PhoneCall
+  SMS
+  Email
+  DM
+  InPerson
+}
+
+model Conversation {
+  id             String  @id @default(auto()) @map("_id") @db.ObjectId
+  twitterConvoId String?
+
+
+  Interactions   Interactions? @relation(fields: [interactionsId], references: [id])
+  interactionsId String?       @db.ObjectId
+}
