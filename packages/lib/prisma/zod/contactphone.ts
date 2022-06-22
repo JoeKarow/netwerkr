@@ -7,9 +7,10 @@ export const ContactPhoneModel = z.object({
   id: z.string(),
   number: z.string(),
   label: z.nativeEnum(PhoneLabel),
+  primary: z.boolean().nullish(),
   contactId: z.string(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
+  createdAt: z.date().nullish(),
+  updatedAt: z.date().nullish(),
 })
 
 export interface CompleteContactPhone extends z.infer<typeof ContactPhoneModel> {

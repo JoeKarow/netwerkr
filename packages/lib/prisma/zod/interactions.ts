@@ -10,6 +10,8 @@ export const InteractionsModel = z.object({
   time: z.date(),
   content: z.string(),
   extPostId: z.string().nullish(),
+  createdAt: z.date().nullish(),
+  updatedAt: z.date().nullish(),
   socialMediaServiceId: z.string().nullish(),
 })
 

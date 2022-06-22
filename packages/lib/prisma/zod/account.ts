@@ -15,8 +15,8 @@ export const AccountModel = z.object({
   scope: z.string().nullish(),
   id_token: z.string().nullish(),
   session_state: z.string().nullish(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
+  createdAt: z.date().nullish(),
+  updatedAt: z.date().nullish(),
 })
 
 export interface CompleteAccount extends z.infer<typeof AccountModel> {

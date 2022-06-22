@@ -18,8 +18,8 @@ model netwerkr {
 }
 
 model Account {
-  id                String   @id @default(auto()) @map("_id") @db.ObjectId
-  userId            String   @db.ObjectId
+  id                String    @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String    @db.ObjectId
   type              String
   provider          String
   providerAccountId String
@@ -30,9 +30,9 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
-  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  createdAt         DateTime @default(now())
-  updatedAt         DateTime @updatedAt
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt         DateTime? @default(now())
+  updatedAt         DateTime? @updatedAt
 
   @@unique([provider, providerAccountId])
 }
@@ -56,9 +56,11 @@ model User {
   disabled      Boolean?
   accounts      Account[]
   sessions      Session[]
-  contacts      Contact[]
-  createdAt     DateTime  @default(now())
-  updatedAt     DateTime  @updatedAt
+  contacts      Contact[] @relation("contactCollection")
+  profile       Contact?  @relation("userProfile", fields: [profileId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  profileId     String?   @unique @db.ObjectId
+  createdAt     DateTime? @default(now())
+  updatedAt     DateTime? @updatedAt
 
 }
 
@@ -78,19 +80,21 @@ model Contact {
   interactions  Interactions[]
   onTwitterList Boolean
 
-  associatedUser   User     @relation(fields: [associatedUserId], references: [id], onDelete: Cascade)
-  associatedUserId String   @db.ObjectId
-  createdAt        DateTime @default(now())
-  updatedAt        DateTime @updatedAt
+  associatedUser   User      @relation("contactCollection", fields: [associatedUserId], references: [id], onDelete: Cascade)
+  associatedUserId String    @db.ObjectId
+  profileForUser   User?     @relation("userProfile")
+  createdAt        DateTime? @default(now())
+  updatedAt        DateTime? @updatedAt
 }
 
 model ContactEmail {
   id        String     @id @default(auto()) @map("_id") @db.ObjectId
   email     String
+  primary   Boolean?
   label     EmailLabel @default(Home)
   contact   Contact    @relation(fields: [contactId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+  createdAt DateTime?  @default(now())
+  updatedAt DateTime?  @updatedAt
 
   contactId String @db.ObjectId
   @@unique([email, contactId])
@@ -106,10 +110,11 @@ model ContactPhone {
   id        String     @id @default(auto()) @map("_id") @db.ObjectId
   number    String
   label     PhoneLabel
+  primary   Boolean?
   contact   Contact    @relation(fields: [contactId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   contactId String     @db.ObjectId
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
+  createdAt DateTime?  @default(now())
+  updatedAt DateTime?  @updatedAt
 }
 
 enum PhoneLabel {
@@ -128,8 +133,8 @@ model SocialMedia {
   username    String
   protected   Boolean
   profileImg  String?
-  createdAt   DateTime           @default(now())
-  updatedAt   DateTime           @updatedAt
+  createdAt   DateTime?          @default(now())
+  updatedAt   DateTime?          @updatedAt
 
 
   contactId            String @db.ObjectId
@@ -156,6 +161,8 @@ model Interactions {
   content        String
   extPostId      String?
   conversationId Conversation[]
+  createdAt      DateTime?           @default(now())
+  updatedAt      DateTime?           @updatedAt
 
   socialMediaServiceId String? @db.ObjectId
 }

@@ -6,9 +6,10 @@ import { CompleteContact, RelatedContactModel } from "./index"
 export const ContactEmailModel = z.object({
   id: z.string(),
   email: z.string(),
+  primary: z.boolean().nullish(),
   label: z.nativeEnum(EmailLabel),
-  createdAt: z.date(),
-  updatedAt: z.date(),
+  createdAt: z.date().nullish(),
+  updatedAt: z.date().nullish(),
   contactId: z.string(),
 })
 

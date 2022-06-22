@@ -9,8 +9,8 @@ export const SocialMediaModel = z.object({
   username: z.string(),
   protected: z.boolean(),
   profileImg: z.string().nullish(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
+  createdAt: z.date().nullish(),
+  updatedAt: z.date().nullish(),
   contactId: z.string(),
   socialMediaServiceId: z.string(),
 })

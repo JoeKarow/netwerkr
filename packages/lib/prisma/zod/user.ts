@@ -12,14 +12,16 @@ export const UserModel = z.object({
   twitterList: z.string().nullish(),
   role: z.nativeEnum(Role),
   disabled: z.boolean().nullish(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
+  profileId: z.string().nullish(),
+  createdAt: z.date().nullish(),
+  updatedAt: z.date().nullish(),
 })
 
 export interface CompleteUser extends z.infer<typeof UserModel> {
   accounts: CompleteAccount[]
   sessions: CompleteSession[]
   contacts: CompleteContact[]
+  profile?: CompleteContact | null
 }
 
 /**
@@ -31,4 +33,5 @@ export const RelatedUserModel: z.ZodSchema<CompleteUser> = z.lazy(() => UserMode
   accounts: RelatedAccountModel.array(),
   sessions: RelatedSessionModel.array(),
   contacts: RelatedContactModel.array(),
+  profile: RelatedContactModel.nullish(),
 }))

@@ -9,8 +9,8 @@ export const ContactModel = z.object({
   photo: z.string(),
   onTwitterList: z.boolean(),
   associatedUserId: z.string(),
-  createdAt: z.date(),
-  updatedAt: z.date(),
+  createdAt: z.date().nullish(),
+  updatedAt: z.date().nullish(),
 })
 
 export interface CompleteContact extends z.infer<typeof ContactModel> {
@@ -19,6 +19,7 @@ export interface CompleteContact extends z.infer<typeof ContactModel> {
   socialMedia: CompleteSocialMedia[]
   interactions: CompleteInteractions[]
   associatedUser: CompleteUser
+  profileForUser?: CompleteUser | null
 }
 
 /**
@@ -32,4 +33,5 @@ export const RelatedContactModel: z.ZodSchema<CompleteContact> = z.lazy(() => Co
   socialMedia: RelatedSocialMediaModel.array(),
   interactions: RelatedInteractionsModel.array(),
   associatedUser: RelatedUserModel,
+  profileForUser: RelatedUserModel.nullish(),
 }))
