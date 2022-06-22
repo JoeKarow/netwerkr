@@ -22,7 +22,7 @@ jobs:
           # All of these options are optional, so you can remove them if you are happy with the defaults
           concurrent_skipping: 'same_content'
 #           paths_ignore: '["**/README.md", "**/docs/**"]'
-#           do_not_skip: '["pull_request", "workflow_dispatch", "schedule"]'
+          do_not_skip: '["pull_request", "workflow_dispatch", "schedule"]'
   codeql:
     needs: preflight
     # If 'skip-duplicate-actions' terminates before the paths checks are performed (for example, when a successful duplicate run has
