@@ -1,15 +1,16 @@
 import React from "react";
 import { getContact } from '@joekarow/netwerkr-lib/db'
 import { DashLayout } from '@joekarow/netwerkr-ui/layout'
-
-
+import { ProfileGrid } from '@joekarow/netwerkr-ui/section'
+import { JsonView } from '@joekarow/netwerkr-ui/devtools'
 
 const Profile = ( props ) => {
     const { data } = props
-    console.log( data )
+    // console.log( data )
     return (
         <>
-            { JSON.stringify( data ) }
+            <ProfileGrid />
+            <JsonView data={ data } />
         </>
     )
 
