@@ -4,7 +4,8 @@
     ":preserveSemverRanges",
     "monorepo:nextjs",
     "monorepo:commitlint",
-    "monorepo:react"
+    "monorepo:react",
+    "github>whitesource/merge-confidence:beta"
   ],
   "addLabels": [
     "dependencies"
