@@ -1,17 +1,8 @@
 {
   "extends": [
-    "config:base",
-    ":preserveSemverRanges",
-    "monorepo:nextjs",
-    "monorepo:commitlint",
-    "monorepo:react",
+    "github>JoeKarow/renovate-config",
     "github>whitesource/merge-confidence:beta"
   ],
-  "addLabels": [
-    "dependencies"
-  ],
-  "reviewersFromCodeOwners": true,
-  "semanticCommits": "enabled",
   "baseBranches": [
     "develop"
   ]
