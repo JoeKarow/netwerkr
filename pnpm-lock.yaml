@@ -166,9 +166,11 @@ importers:
       '@joekarow/eslint-config-netwerkr': workspace:^1.0.0
       '@joekarow/netwerkr-config': workspace:^0.0.0
       '@prisma/client': ^3.15.2
+      luxon: ^2.4.0
       mongodb: ^4.7.0
       next: ^12.1.6
       prisma: ^3.15.2
+      vscode-generate-index-standalone: ^1.6.0
       zod: ^3.17.3
       zod-prisma: ^0.5.4
     dependencies:
@@ -178,8 +180,10 @@ importers:
       '@faker-js/faker': 7.3.0
       '@joekarow/eslint-config-netwerkr': link:../eslint-config-netwerkr
       '@joekarow/netwerkr-config': link:../netwerkr-config
+      luxon: 2.4.0
       next: 12.1.6_biqbaboplfbrettd7655fr4n2y
       prisma: 3.15.2
+      vscode-generate-index-standalone: 1.6.0
       zod: 3.17.3
       zod-prisma: 0.5.4_prisma@3.15.2+zod@3.17.3
 
@@ -208,6 +212,7 @@ importers:
     specifiers:
       '@joekarow/eslint-config-netwerkr': workspace:^1.0.0
       '@joekarow/netwerkr-config': workspace:*
+      '@joekarow/netwerkr-lib': workspace:^1.0.0
       '@mantine/core': ^4.2.8
       '@mantine/dates': ^4.2.8
       '@mantine/dropzone': ^4.2.8
@@ -236,6 +241,7 @@ importers:
       tabler-icons-react: ^1.49.0
       typescript: ^4.7.3
       vscode-generate-index-standalone: ^1.6.0
+      zod: ^3.17.3
     dependencies:
       '@joekarow/eslint-config-netwerkr': link:../eslint-config-netwerkr
       '@mantine/core': 4.2.9_k5qmd4pret6g27b3vdtxxoxgem
@@ -255,6 +261,7 @@ importers:
       tabler-icons-react: 1.49.0_react@18.2.0
     devDependencies:
       '@joekarow/netwerkr-config': link:../netwerkr-config
+      '@joekarow/netwerkr-lib': link:../lib
       '@testing-library/jest-dom': 5.16.4
       '@testing-library/react': 13.3.0_biqbaboplfbrettd7655fr4n2y
       '@types/jest': 28.1.1
@@ -268,6 +275,7 @@ importers:
       react-dom: 18.2.0_react@18.2.0
       typescript: 4.7.3
       vscode-generate-index-standalone: 1.6.0
+      zod: 3.17.3
 
 packages:
 
@@ -5437,6 +5445,11 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       yallist: 4.0.0
+
+  /luxon/2.4.0:
+    resolution: {integrity: sha512-w+NAwWOUL5hO0SgwOHsMBAmZ15SoknmQXhSO0hIbJCAmPKSsGeK8MlmhYh2w6Iib38IxN2M+/ooXWLbeis7GuA==}
+    engines: {node: '>=12'}
+    dev: true
 
   /lz-string/1.4.4:
     resolution: {integrity: sha512-0ckx7ZHRPqb0oUm8zNr+90mtf9DQB60H1wMCjBtfi62Kl3a7JbHob6gA2bC+xRvZoOL+1hzUK8jeuEIQE8svEQ==}

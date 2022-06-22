@@ -14,6 +14,7 @@
   },
   "devDependencies": {
     "@joekarow/netwerkr-config": "workspace:*",
+    "@joekarow/netwerkr-lib": "workspace:^1.0.0",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
     "@types/jest": "^28.1.1",
@@ -26,7 +27,8 @@
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "typescript": "^4.7.3",
-    "vscode-generate-index-standalone": "^1.6.0"
+    "vscode-generate-index-standalone": "^1.6.0",
+    "zod": "^3.17.3"
   },
   "dependencies": {
     "@joekarow/eslint-config-netwerkr": "workspace:^1.0.0",
