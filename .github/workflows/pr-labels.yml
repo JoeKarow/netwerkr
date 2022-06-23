@@ -11,16 +11,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 🏷 Verify PR has a valid label (with PR review)
-        if: ${{ github.event.pull_request.user.login }} != 'github-actions'
+        if: ${{ github.event.pull_request.author.login }} != "github-actions"
         uses: jesusvasquez333/verify-pr-label-action@v1.4.0
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           valid-labels: >-
             breaking-change, bugfix, documentation, enhancement,
             refactor, performance, new-feature, maintenance, ci, dependencies
-#           disable-reviews: true
+      #           disable-reviews: true
       - name: 🏷 Verify PR has a valid label (without PR review)
-        if: ${{ github.event.pull_request.user.login }} == 'github-actions'
+        if: ${{ github.event.pull_request.author.login }} == "github-actions"
         uses: jesusvasquez333/verify-pr-label-action@v1.4.0
         with:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
