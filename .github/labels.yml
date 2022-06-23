@@ -39,6 +39,8 @@
 - name: "no-stale"
   color: fef2c0
   description: "This is exempt from the stale bot."
+- name: "automerge"
+  color: 00ff00
 
 - name: "security"
   color: ee0701
