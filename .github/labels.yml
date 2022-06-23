@@ -41,6 +41,7 @@
   description: "This is exempt from the stale bot."
 - name: "automerge"
   color: 00ff00
+  description: "Enable Kodiak auto-merge"
 
 - name: "security"
   color: ee0701
