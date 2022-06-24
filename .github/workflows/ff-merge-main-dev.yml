@@ -12,23 +12,19 @@ on:
       - develop
 
 jobs:
-  wait-for-checks:
-    name: Wait for check suites to finish
+  nightly-merge:
     runs-on: ubuntu-latest
-    steps:
-      - uses: jitterbit/await-check-suites@v1
-  ff-sync:
-    needs: wait-for-checks
-    name: Auto merge main -> develop sync using fast forward
-    runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: Fast Forward PR
-        id: ff-pr
-        uses: joekarow/fast-forward-js-action@master
+
+      - name: Nightly Merge
+        uses: robotology/gh-action-nightly-merge@v1.3.3
         with:
+          stable_branch: "main"
+          development_branch: "develop"
+          allow_ff: true
+          ff_only: true
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          pr: ${{ inputs.pr }}
-          production_branch: "main"
-          staging_branch: "develop"
