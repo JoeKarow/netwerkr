@@ -1,18 +1,24 @@
 name: Fast-Forward Merge
 on:
-  workflow_dispatch:
-    inputs:
-      pr:
-        description: "Pull Request #"
-        type: string
-        required: true
-  # pull_request_review:
-  #   types: [submitted]
-  #   branches:
-  #     - develop
+  # workflow_dispatch:
+  #   inputs:
+  #     pr:
+  #       description: "Pull Request #"
+  #       type: string
+  #       required: true
+  pull_request_review:
+    types: [submitted]
+    branches:
+      - develop
 
 jobs:
+  wait-for-checks:
+    name: Wait for check suites to finish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: jitterbit/await-check-suites@v1
   ff-sync:
+    needs: wait-for-checks
     name: Auto merge main -> develop sync using fast forward
     runs-on: ubuntu-latest
     steps:
