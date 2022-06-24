@@ -1,0 +1,28 @@
+name: Fast-Forward Merge
+on:
+  pull_request_review:
+    types: [submitted]
+    branches:
+      - develop
+  check_suite:
+    types: [completed]
+    branches:
+      - develop
+
+jobs:
+  nightly-merge:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Nightly Merge
+        uses: robotology/gh-action-nightly-merge@v1.3.3
+        with:
+          stable_branch: "main"
+          development_branch: "develop"
+          allow_ff: true
+          ff_only: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
