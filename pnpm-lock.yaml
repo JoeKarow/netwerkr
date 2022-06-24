@@ -42,33 +42,6 @@ importers:
       rimraf: 3.0.2
       turbo: 1.2.16
 
-  apps/docs:
-    specifiers:
-      '@joekarow/eslint-config-netwerkr': workspace:^1.0.0
-      '@joekarow/netwerkr-config': workspace:*
-      '@joekarow/netwerkr-ui': workspace:*
-      '@types/node': ^17.0.45
-      '@types/react': 18.0.14
-      eslint: 8.18.0
-      next: ^12.1.6
-      next-transpile-modules: 9.0.0
-      react: ^18.1.0
-      react-dom: ^18.1.0
-      typescript: ^4.7.3
-    dependencies:
-      '@joekarow/eslint-config-netwerkr': link:../../packages/eslint-config-netwerkr
-      '@joekarow/netwerkr-ui': link:../../packages/ui
-      next: 12.1.6_biqbaboplfbrettd7655fr4n2y
-      react: 18.2.0
-      react-dom: 18.2.0_react@18.2.0
-    devDependencies:
-      '@joekarow/netwerkr-config': link:../../packages/netwerkr-config
-      '@types/node': 17.0.45
-      '@types/react': 18.0.14
-      eslint: 8.18.0
-      next-transpile-modules: 9.0.0
-      typescript: 4.7.3
-
   apps/web:
     specifiers:
       '@joekarow/eslint-config-netwerkr': workspace:^1.0.0
