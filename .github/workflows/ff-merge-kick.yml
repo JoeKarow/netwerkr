@@ -15,12 +15,13 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: run-check
-      - uses: joekarow/can-pr-merge-action@main
-      - with:
+        uses: joekarow/can-pr-merge-action@main
+        with:
           pr: ${{ github.event.check_suite[pull_requests].[0] || github.event.pull_request_review.pull_request.number}}
     outputs:
       ok_to_merge: ${{steps.run-check.outputs.ok_to_merge }}
   ff-start:
+    name: "Kick merge workflow"
     needs: merge-check
     runs-on: ubuntu-latest
     steps:
