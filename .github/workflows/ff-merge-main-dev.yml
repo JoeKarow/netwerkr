@@ -1,13 +1,11 @@
 name: Fast-Forward Merge
 on:
-  # workflow_dispatch:
-  #   inputs:
-  #     pr:
-  #       description: "Pull Request #"
-  #       type: string
-  #       required: true
   pull_request_review:
     types: [submitted]
+    branches:
+      - develop
+  check_suite:
+    types: [completed]
     branches:
       - develop
 
