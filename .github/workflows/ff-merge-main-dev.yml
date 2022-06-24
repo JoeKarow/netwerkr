@@ -25,5 +25,7 @@ jobs:
           development_branch: "develop"
           allow_ff: true
           ff_only: true
+          push_token: "GH_PAT"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PAT: ${{secrets.GH_PAT}}
