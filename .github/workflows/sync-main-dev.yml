@@ -28,6 +28,7 @@ jobs:
         id: label
         uses: actions-ecosystem/action-add-labels@v1
         with:
-          labels: maintenance
+          labels: |
+            maintenance
+            ff-sync
           number: ${{ steps.pull.outputs.PULL_REQUEST_NUMBER }}
-          

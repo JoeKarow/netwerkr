@@ -1,0 +1,15 @@
+on:
+  pull_request_review:
+    types: [submitted]
+    branches:
+      - develop
+
+jobs:
+  ff-sync:
+    name: Auto merge main -> develop sync using fast forward
+    if: github.event.review.state == 'approved'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fast Forward PR
+        id: ff-pr
+        uses: endre-spotlab/fast-forward-js-action@2.1
