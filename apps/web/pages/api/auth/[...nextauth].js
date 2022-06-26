@@ -42,10 +42,20 @@ export default NextAuth( {
         },
         async signIn ( { user, account, profile } ) {
             if ( user.disabled ) return false
+            // if ( !user.profileId ) return `/dash/profile/`
             return true
 
         }
     },
+    events: {
+        // async createUser ( { user } ) {
+        //     user.profileCompleted = false;
+        //     console.log( 'create user called' )
+        //     console.table( user )
+        //     return user
+        // }
+    },
+
 
     debug: true,
 } )
