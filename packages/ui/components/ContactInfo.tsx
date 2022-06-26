@@ -1,5 +1,5 @@
 import { createStyles, Avatar, Text, Group } from '@mantine/core';
-import {RelatedContactModel} from '@joekarow/netwerkr-lib/prisma/zod'
+import {RelatedContactModel} from '../../../apps/web/prisma/zod'
 import * as z from 'zod'
 
 

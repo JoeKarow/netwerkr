@@ -2,13 +2,12 @@ import NextAuth from "next-auth"
 import TwitterProvider from 'next-auth/providers/twitter'
 import Auth0Provider from 'next-auth/providers/auth0'
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
-import prisma from '@joekarow/netwerkr-lib/prisma'
-
-
+// import { PrismaClient } from '@joekarow/netwerkr-lib/prisma'
+import prisma from '../../../prisma'
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
 
-
+// const prisma = new PrismaClient()
 
 
 export default NextAuth( {
@@ -21,7 +20,7 @@ export default NextAuth( {
             version: "2.0",
             authorization: {
                 params: {
-                    scope: 'tweet.read users.read list.read list.write'
+                    scope: 'tweet.read users.read list.read list.write offline.access'
                 }
             },
         } ),
