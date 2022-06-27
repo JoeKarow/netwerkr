@@ -4,10 +4,16 @@
             "name": "Next.js: app:web",
             "type": "node-terminal",
             "request": "launch",
-            "command": "pnpx turbo run dev --filter '!*docs'",
+            "command": "pnpx turbo run dev",
             // "cwd": "${workspaceFolder:✨ @joekarow/netwerkr}",
             "sourceMaps": true,
         },
+        {
+            "name": "Attach to Process",
+            "type": "node",
+            "request": "attach",
+            "processId": "${command:PickProcess}"
+        }
         {
             "type": "firefox",
             "request": "launch",

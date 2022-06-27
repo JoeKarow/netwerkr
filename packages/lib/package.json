@@ -6,7 +6,6 @@
   "main": "index.js",
   "scripts": {
     "lint": "eslint . --ext .ts --ext .js",
-    "dev": "vscode-generate-index-standalone ./{**,!node_modules}/*.{js*,ts*} -w ./{**,!node_modules}/",
     "test": "jest"
   },
   "prisma": {

@@ -135,30 +135,15 @@ importers:
 
   packages/lib:
     specifiers:
-      '@faker-js/faker': ^7.3.0
       '@joekarow/eslint-config-netwerkr': workspace:^1.0.0
       '@joekarow/netwerkr-config': workspace:^0.0.0
-      '@prisma/client': ^3.15.2
-      luxon: ^2.4.0
-      mongodb: ^4.7.0
       next: ^12.1.6
-      prisma: ^3.15.2
       vscode-generate-index-standalone: ^1.6.0
-      zod: ^3.17.3
-      zod-prisma: ^0.5.4
-    dependencies:
-      '@prisma/client': 3.15.2_prisma@3.15.2
-      mongodb: 4.7.0
     devDependencies:
-      '@faker-js/faker': 7.3.0
       '@joekarow/eslint-config-netwerkr': link:../eslint-config-netwerkr
       '@joekarow/netwerkr-config': link:../netwerkr-config
-      luxon: 2.4.0
       next: 12.1.6_biqbaboplfbrettd7655fr4n2y
-      prisma: 3.15.2
       vscode-generate-index-standalone: 1.6.0
-      zod: 3.17.3
-      zod-prisma: 0.5.4_prisma@3.15.2+zod@3.17.3
 
   packages/netwerkr-config:
     specifiers:
