@@ -1,11 +1,17 @@
 import { PrismaClient } from '@prisma/client';
-import * as trpc from '@trpc/server';
-import * as trpcNext from '@trpc/server/adapters/next';
-// import { NodeHTTPCreateContextFnOptions } from '@trpc/server/adapters/node-http';
-// import { IncomingMessage } from 'http';
-import { unstable_getServerSession  } from 'next-auth/next';
+import { inferAsyncReturnType } from '@trpc/server';
+import { CreateNextContextOptions } from '@trpc/server/adapters/next';
+import { getSession as getSessionNA, GetSessionParams } from 'next-auth/react';
+import { Session, unstable_getServerSession } from 'next-auth';
 import { authOptions } from 'pages/api/auth/[...nextauth]';
-import { getSession } from 'next-auth/react';
+
+const getSession = async (options): Promise<Session | null> => {
+  const session = await getSessionNA(options)
+  // const { req, res } = options
+  // const session = await unstable_getServerSession(req, res, authOptions)
+  return session as Session | null
+}
+
 
 
 const prisma = new PrismaClient({
@@ -19,14 +25,12 @@ const prisma = new PrismaClient({
  * @link https://trpc.io/docs/context
  */
 export const createContext = async (
-  opts?: trpcNext.CreateNextContextOptions
+  opts?: CreateNextContextOptions
 ) => {
   const req = opts?.req;
   const res = opts?.res;
-  // console.log('opts', opts)
-  const session = getSession()
-  // const session = await unstable_getServerSession(req, res, authOptions)
-  console.log('context session', session)
+  const session = await getSession({ req, res })
+  // console.log('context session', session)
   console.log('createContext for', session?.user?.name ?? 'unknown user');
   return {
     req,
@@ -36,4 +40,4 @@ export const createContext = async (
   };
 };
 
-export type Context = trpc.inferAsyncReturnType<typeof createContext>;
+export type Context = inferAsyncReturnType<typeof createContext>;

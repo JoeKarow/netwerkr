@@ -25,23 +25,23 @@ const query = Prisma.validator<Prisma.ContactInclude>()({
 
 
 
-export const contactRouter = createRouter()
-    .query('id',{
+export const contactRouter = createProtectedRouter()
+    .query('id', {
         input: z.object({
             id: z.string()
         }),
-        async resolve({input}) {
-            const {id} = input
+        async resolve({ input }) {
+            const { id } = input
             console.log('id to search:', id)
-            const data = await prisma.contact.findUnique( {
+            const data = await prisma.contact.findUnique({
                 where: {
                     id: id,
                 },
-                include: {...query}
-            } )
+                include: { ...query }
+            })
 
             if (!data) console.log(data)
-            return convertDateTime( data, [ 'createdAt', 'updatedAt', 'time' ])
+            return convertDateTime(data, ['createdAt', 'updatedAt', 'time'])
 
         }
     })

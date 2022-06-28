@@ -87,6 +87,7 @@ export default withTRPC<AppRouter>({
         }),
         httpBatchLink({
           url: `${getBaseUrl()}/api/trpc`,
+          // url: `/api/trpc`,
         }),
       ],
       /**

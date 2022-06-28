@@ -8,19 +8,20 @@ export function createRouter() {
   return trpc.router<Context>();
 }
 export function createProtectedRouter() {
-  return trpc
-    .router<Context>()
-    .middleware(( ctx, next ) => {
-      // console.log('middleware ctx', ctx)
-      if (!ctx.session) {
-        throw new trpc.TRPCError({ code: "UNAUTHORIZED" });
-      }
-      return next({
-        ctx: {
-          ...ctx,
-          // infers that `user` is non-nullable to downstream procedures
-          session: ctx.session,
-        },
-      });
+  return createRouter().middleware(({ ctx, next }) => {
+    // console.log('protected router context:')
+    // console.dir(ctx)
+
+    if (!ctx.session) {
+      throw new trpc.TRPCError({ code: "UNAUTHORIZED" });
+    }
+    return next({
+      ctx: {
+        ...ctx,
+        // infers that `user` and `session` are non-nullable to downstream procedures
+        session: ctx.session,
+        user: ctx.session.user,
+      },
     });
+  });
 }

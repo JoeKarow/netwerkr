@@ -3,13 +3,13 @@ import React from "react";
 import { DashLayout } from '@joekarow/netwerkr-ui/layout'
 import { ProfileGrid } from '@joekarow/netwerkr-ui/section'
 import { JsonView } from '@joekarow/netwerkr-ui/devtools'
-import { createSSGHelpers } from '@trpc/react/ssg';
-import superjson from 'superjson'
-import { appRouter } from "server/routers/_app";
 import { trpc } from "utils/trpc";
+import { GetServerSidePropsContext, InferGetServerSidePropsType } from "next";
+import { NextPageWithLayout } from "pages/_app";
+import {ssrInit} from "server/lib/ssr"
 
 
-const Profile = ( props ) => {
+const Profile = ( props: InferGetServerSidePropsType<typeof getServerSideProps> ) => {
     const { id } = props
     const { data } = trpc.useQuery( [ 'profile.id', { id } ] )
 
@@ -26,7 +26,7 @@ const Profile = ( props ) => {
 
 
 }
-Profile.getLayout = ( page ) => {
+Profile.getLayout = ( page: NextPageWithLayout ) => {
     return (
         <DashLayout>
             { page }
@@ -34,18 +34,14 @@ Profile.getLayout = ( page ) => {
     )
 }
 
-export const getServerSideProps = async ( context ) => {
-    const ssg = await createSSGHelpers( {
-        router: appRouter,
-        ctx: {},
-        transformer: superjson,
-    } );
-    const id = context.params?.uid
+export const getServerSideProps = async ( context: GetServerSidePropsContext ) => {
+    const ssr = await ssrInit(context)
+    const id = context.params?.uid as string
     console.log( 'ssg id', id )
-    await ssg.fetchQuery( 'profile.id', { id } )
+    await ssr.fetchQuery( 'profile.id', { id } )
     return {
         props: {
-            trpcState: ssg.dehydrate(),
+            trpcState: ssr.dehydrate(),
             id
         },
     }
