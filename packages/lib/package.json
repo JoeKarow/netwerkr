@@ -8,9 +8,6 @@
     "lint": "eslint . --ext .ts --ext .js",
     "test": "jest"
   },
-  "prisma": {
-    "seed": "node prisma/seed.js"
-  },
   "lint-staged": {
     "*.{ts,js}": "eslint"
   },

@@ -1,10 +1,13 @@
 
-const prisma = require( './index' )
+const { PrismaClient } = require( '@prisma/client' )
 const { twitterUrlBase, linkedInUrlBase } = require( './seed/socialMediaSetup' )
 const generateFakeContact = require( './seed/fakedata' )
 
+const prisma = new PrismaClient()
+
 const fakeContacts = 21
 
+const associatedUserId = "62b8d027d989e0e820ebfa52"
 
 const main = async () => {
     if ( !fakeContacts ) throw new Error( `variable 'fakeContacts' must be set` )
@@ -20,17 +23,11 @@ const main = async () => {
 
     for ( let i = 0; i < fakeContacts; i++ ) {
         console.info( `Generating fake contact ${ i + 1 } of ${ fakeContacts }` )
-        console.log( socialMediaIds )
         await prisma.Contact.create( {
-            data: generateFakeContact( socialMediaIds )
+            data: generateFakeContact( associatedUserId, socialMediaIds )
         } )
     }
-
-
-
-
 }
-
 
 main().catch( ( e ) => {
     console.error( e )

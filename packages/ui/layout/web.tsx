@@ -1,10 +1,9 @@
-import React from 'react'
+import React, { PropsWithChildren } from 'react'
 import { HeaderAction } from '../section'
 import { links } from './navLinks'
 import { AppShell, Container } from '@mantine/core'
 
-const fetcher = ( url ) => fetch( url ).then( ( res ) => res.json() )
-export const MainLayout = ( { children } ) => {
+export const MainLayout = ( { children }: PropsWithChildren ) => {
 
 
     return (
