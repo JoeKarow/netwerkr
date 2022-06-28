@@ -12,6 +12,8 @@ import getConfig from 'next/config';
 import { AppType } from 'next/dist/shared/lib/utils';
 import type { AppRouter } from 'server/routers/_app';
 import superjson from 'superjson';
+import { SSRContext } from 'utils/trpc';
+
 
 export type NextPageWithLayout = NextPage & {
   getLayout?: (page: ReactElement) => ReactNode
@@ -51,29 +53,27 @@ const { publicRuntimeConfig } = getConfig();
 
 const { APP_URL } = publicRuntimeConfig;
 
-App.getInitialProps = async ( ctx ) => {
-    const session = await getSession(ctx)
-  return {
-    pageProps: {
-      session,
-    },
-  };
-};
-function getEndingLink() {
-  if (typeof window === 'undefined') {
-    return httpBatchLink({
-      url: `${APP_URL}/api/trpc`,
-    });
+function getBaseUrl() {
+  if (typeof window !== 'undefined') {
+    return '';
   }
+  // reference for vercel.com
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+
+
+  // assume localhost
+  return `http://localhost:${process.env.PORT ?? 3000}`;
 }
 
+
 export default withTRPC<AppRouter>({
-  config({ ctx }) {
+  config({ctx}) {
     /**
      * If you want to use SSR, you need to use the server's full URL
      * @link https://trpc.io/docs/ssr
      */
-
     return {
       /**
        * @link https://trpc.io/docs/links
@@ -82,11 +82,12 @@ export default withTRPC<AppRouter>({
         // adds pretty logs to your console in development and logs errors in production
         loggerLink({
           enabled: (opts) =>
-            (process.env.NODE_ENV === 'development' &&
-              typeof window !== 'undefined') ||
+            process.env.NODE_ENV === 'development' ||
             (opts.direction === 'down' && opts.result instanceof Error),
         }),
-        getEndingLink(),
+        httpBatchLink({
+          url: `${getBaseUrl()}/api/trpc`,
+        }),
       ],
       /**
        * @link https://trpc.io/docs/data-transformers
@@ -95,21 +96,34 @@ export default withTRPC<AppRouter>({
       /**
        * @link https://react-query.tanstack.com/reference/QueryClient
        */
-      queryClientConfig: { defaultOptions: { queries: { staleTime: 60 } } },
-      headers: () => {
-        if (ctx?.req) {
-          // on ssr, forward client's headers to the server
-          return {
-            ...ctx.req.headers,
-            'x-ssr': '1',
-          };
-        }
-        return {};
-      },
+      // queryClientConfig: { defaultOptions: { queries: { staleTime: 60 } } },
     };
   },
   /**
    * @link https://trpc.io/docs/ssr
    */
   ssr: true,
+  /**
+   * Set headers or status code when doing SSR
+   */
+  responseMeta(opts) {
+    const ctx = opts.ctx as SSRContext;
+
+    if (ctx.status) {
+      // If HTTP status set, propagate that
+      return {
+        status: ctx.status,
+      };
+    }
+
+    const error = opts.clientErrors[0];
+    if (error) {
+      // Propagate http first error from API calls
+      return {
+        status: error.data?.httpStatus ?? 500,
+      };
+    }
+    // For app caching with SSR see https://trpc.io/docs/caching
+    return {};
+  },
 })(App);

@@ -7,3 +7,20 @@ import * as trpc from '@trpc/server';
 export function createRouter() {
   return trpc.router<Context>();
 }
+export function createProtectedRouter() {
+  return trpc
+    .router<Context>()
+    .middleware(( ctx, next ) => {
+      // console.log('middleware ctx', ctx)
+      if (!ctx.session) {
+        throw new trpc.TRPCError({ code: "UNAUTHORIZED" });
+      }
+      return next({
+        ctx: {
+          ...ctx,
+          // infers that `user` is non-nullable to downstream procedures
+          session: ctx.session,
+        },
+      });
+    });
+}

@@ -37,9 +37,6 @@ const fakeSocial = ( first, last, ids ) => {
         userId: faker.random.numeric( 7 ),
         displayName: `${ first } ${ last }`,
         username: faker.internet.userName( first, last ),
-        // service: {
-        //     connect: [ { SocialMediaServiceId: faker.helpers.arrayElement( ids ).id } ]
-        // },
         socialMediaServiceId: faker.helpers.arrayElement( ids ).id,
         protected: false,
         profileImg: faker.internet.avatar()
@@ -59,7 +56,7 @@ const fakeInteraction = ( max ) => {
 }
 
 
-const generateFakeContact = ( socialMediaIds ) => {
+const generateFakeContact = ( associatedUserId, socialMediaIds ) => {
     const contact = fakeContact()
     const email = fakeEmail( 3 )
     const phone = fakePhone( 3 )
@@ -70,7 +67,7 @@ const generateFakeContact = ( socialMediaIds ) => {
         socialMedia: {
             create: fakeSocial( contact.firstName, contact.lastName, socialMediaIds )
         },
-        associatedUserId: "62a5615ce93818b48983ac9b",
+        associatedUserId,
         email: {
             create: email
         },

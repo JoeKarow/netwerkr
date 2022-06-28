@@ -1,4 +1,4 @@
-import NextAuth from "next-auth"
+import NextAuth, {DefaultSession, NextAuthOptions} from "next-auth"
 import TwitterProvider from 'next-auth/providers/twitter'
 import Auth0Provider from 'next-auth/providers/auth0'
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
@@ -9,14 +9,19 @@ import prisma from '../../../prisma'
 
 // const prisma = new PrismaClient()
 
+interface UserProps extends DefaultSession {
 
-export default NextAuth( {
+        id?: string,
+        role?: string
+}
+
+export const authOptions: NextAuthOptions = {
     adapter: PrismaAdapter( prisma ),
     secret: process.env.NEXTAUTH_SECRET,
     providers: [
         TwitterProvider( {
-            clientId: process.env.TWITTER_ID,
-            clientSecret: process.env.TWITTER_SECRET,
+            clientId: process.env.TWITTER_ID as string,
+            clientSecret: process.env.TWITTER_SECRET as string,
             version: "2.0",
             authorization: {
                 params: {
@@ -25,8 +30,8 @@ export default NextAuth( {
             },
         } ),
         Auth0Provider( {
-            clientId: process.env.AUTH0_CLIENT_ID,
-            clientSecret: process.env.AUTH0_CLIENT_SECRET,
+            clientId: process.env.AUTH0_CLIENT_ID as string,
+            clientSecret: process.env.AUTH0_CLIENT_SECRET as string,
             issuer: process.env.AUTH0_ISSUER
         } )
     ],
@@ -36,7 +41,7 @@ export default NextAuth( {
     },
     callbacks: {
         async session ( { session, user } ) {
-            session.user.id = user.id
+            session.user.id = user.id 
             session.user.role = user.role
             return session
         },
@@ -58,5 +63,7 @@ export default NextAuth( {
 
 
     debug: true,
-} )
+}
+
+export default NextAuth( authOptions )
 

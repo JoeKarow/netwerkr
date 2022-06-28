@@ -28,8 +28,14 @@ export const appRouter = createRouter()
       return 'yay!';
     },
   })
+  /**
+   * Merge in contacts route
+   */
   .merge('profile.', contactRouter)
-//   .merge('post.', postRouter)
+
+
+
+  //   .merge('post.', postRouter)
 //   .subscription('randomNumber', {
 //     resolve() {
 //       return new Subscription<number>((emit) => {
