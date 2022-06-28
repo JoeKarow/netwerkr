@@ -1,41 +1,65 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
     "configurations": [
         {
-            "name": "Next.js: debug server-side",
+            "name": "Next.js: app:web",
             "type": "node-terminal",
             "request": "launch",
-            "command": "pnpm dev"
+            "command": "pnpx turbo run dev",
+            // "cwd": "${workspaceFolder:✨ @joekarow/netwerkr}",
+            "sourceMaps": true,
         },
         {
-            "name": "Next.js: debug client-side",
+            "name": "Attach to Process",
+            "type": "node",
+            "request": "attach",
+            "processId": "${command:PickProcess}"
+        }
+        {
+            "type": "firefox",
             "request": "launch",
-            "type": "chrome",
-            "runtimeExecutable": "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
-            // "runtimeArgs": ["--remote-debugging-port=9222"],
-            "port": 9222,
+            "reAttach": true,
+            "name": "Launch Firefox Dev",
             "url": "http://localhost:3000",
-            "webRoot": "${workspaceFolder}",
-            "outFiles": [
-                "${workspaceFolder}/**/*.js",
-                "!**/node_modules/**"
+            "webRoot": "${workspaceFolder:🚀 @joekarow/netwerkr-web}/",
+            "enableCRAWorkaround": true,
+            "skipFiles": [
+                "**/node_modules/**",
+                "<node_internals>/**/*.js"
+            ],
+            "showConsoleCallLocation": true,
+            "suggestPathMappingWizard": true,
+            "pathMappings": [
+                {
+                    "url": "webpack://_n_e/packages",
+                    "path": "${workspaceFolder}/packages"
+                }
             ]
         },
+        // {
+        //     "name": "Next.js: debug web",
+        //     "request": "launch",
+        //     "type": "chrome",
+        //     "runtimeExecutable": "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
+        //     "port": 9222,
+        //     "url": "http://localhost:3000",
+        //     "cwd": "${workspaceFolder:🚀 @joekarow/netwerkr-web}",
+        //     "webRoot": "${workspaceFolder:🚀 @joekarow/netwerkr-web}/",
+        //     "sourceMaps": true,
+        //     "resolveSourceMapLocations": [
+        //         "${webRoot}",
+        //         "${workspaceFolder}",
+        //         "!node_modules"
+        //     ]
+        // },
+    ],
+    "compounds": [
         {
-            "name": "Next.js: debug full stack",
-            "type": "node-terminal",
-            "request": "launch",
-            "command": "pnpm run dev",
-            "outputCapture": "std",
-            // "console": "integratedTerminal",
-            "serverReadyAction": {
-                "pattern": "started server on .+, url: (https?://.+)",
-                "action": "startDebugging",
-                "name": "Next.js: debug client-side",
-            }
+            "name": "Debug netwerkr w/ Firefox Dev",
+            "configurations": [
+                "Next.js: app:web",
+                "Launch Firefox Dev"
+            ],
+            "stopAll": true
         }
     ]
 }

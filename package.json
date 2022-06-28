@@ -1,6 +1,6 @@
 {
   "name": "@joekarow/netwerkr",
-  "version": "0.0.0",
+  "version": "0.0.0-development",
   "private": true,
   "workspaces": [
     "apps/*",
@@ -17,6 +17,7 @@
     "db": "turbo run db",
     "db:push": "turbo run db:push",
     "db:generate": "turbo run db:generate",
+    "db:seed": "turbo run db:seed",
     "db:studio": "turbo run db:studio",
     "test": "turbo run test"
   },
@@ -28,6 +29,9 @@
     "@joekarow/netwerkr-config": "workspace:^0.0.0",
     "commitizen": "^4.2.4",
     "cz-git": "^1.3.5",
+    "eslint": "^8.18.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-next": "^0.0.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.2",
     "prettier": "latest",
@@ -36,7 +40,7 @@
   },
   "engines": {
     "pnpm": ">=7.1.7",
-    "node": ">=14.0.0"
+    "node": ">=16.0.0"
   },
   "packageManager": "pnpm@7.3.0",
   "config": {
@@ -57,5 +61,9 @@
   },
   "dependencies": {
     "@joekarow/eslint-config-netwerkr": "workspace:^1.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JoeKarow/netwerkr.git"
   }
 }

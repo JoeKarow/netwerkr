@@ -5,7 +5,8 @@
   "private": true,
   "main": "index.js",
   "scripts": {
-    "lint": "eslint . --ext .ts --ext .js"
+    "lint": "eslint . --ext .ts --ext .js",
+    "test": "jest"
   },
   "lint-staged": {
     "*.{ts,js}": "eslint"
@@ -13,12 +14,11 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "mongodb": "^4.7.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@joekarow/eslint-config-netwerkr": "workspace:^1.0.0",
     "@joekarow/netwerkr-config": "workspace:^0.0.0",
-    "next": "^12.1.6"
+    "next": "^12.1.6",
+    "vscode-generate-index-standalone": "^1.6.0"
   }
 }
