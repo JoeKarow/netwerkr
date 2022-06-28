@@ -14,11 +14,10 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "dependencies": {},
   "devDependencies": {
     "@joekarow/eslint-config-netwerkr": "workspace:^1.0.0",
     "@joekarow/netwerkr-config": "workspace:^0.0.0",
-    "next": "^12.1.6",
+    "next": "^12.2.0",
     "vscode-generate-index-standalone": "^1.6.0"
   }
 }
