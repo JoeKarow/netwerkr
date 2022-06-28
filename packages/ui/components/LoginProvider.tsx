@@ -26,11 +26,11 @@ const providers = fetchProviders()
  * It takes a list of providers, and returns a list of buttons
  * @returns A list of buttons
  */
-function providerButtons ( list ) {
+function providerButtons ( list: any ) {
     if ( list === null ) {
         return <p>Loading...</p>
     }
-    const Icons = {
+    const Icons: any = {
         twitter: BrandTwitter,
         auth0: Key
     }

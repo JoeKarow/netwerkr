@@ -51,7 +51,7 @@ const useStyles = createStyles( ( theme ) => ( {
 
 export function NavbarNested () {
     const { classes } = useStyles();
-    const links = data.links.map( ( item ) => <LinksGroup { ...item } key={ item.label } /> );
+    const links = data.links.map( ( item: any ) => <LinksGroup { ...item } key={ item.label } /> );
 
     return (
         <Navbar width={ { sm: 300 } } p="md" className={ classes.navbar }>
