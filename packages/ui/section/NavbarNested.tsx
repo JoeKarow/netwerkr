@@ -15,9 +15,9 @@ import { navbarNested as data } from '../mockdata'
 
 //TODO: pass in authenticated user data (name, avatar)
 
-const useStyles = createStyles( ( theme ) => ( {
+const useStyles = createStyles((theme) => ({
     navbar: {
-        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[ 6 ] : theme.white,
+        backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[6] : theme.white,
         paddingBottom: 0,
     },
 
@@ -27,7 +27,7 @@ const useStyles = createStyles( ( theme ) => ( {
         marginLeft: -theme.spacing.md,
         marginRight: -theme.spacing.md,
         color: theme.colorScheme === 'dark' ? theme.white : theme.black,
-        borderBottom: `1px solid ${ theme.colorScheme === 'dark' ? theme.colors.dark[ 4 ] : theme.colors.gray[ 3 ]
+        borderBottom: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
             }`,
     },
 
@@ -44,19 +44,19 @@ const useStyles = createStyles( ( theme ) => ( {
     footer: {
         marginLeft: -theme.spacing.md,
         marginRight: -theme.spacing.md,
-        borderTop: `1px solid ${ theme.colorScheme === 'dark' ? theme.colors.dark[ 4 ] : theme.colors.gray[ 3 ]
+        borderTop: `1px solid ${theme.colorScheme === 'dark' ? theme.colors.dark[4] : theme.colors.gray[3]
             }`,
     },
-} ) );
+}));
 
-export function NavbarNested () {
+export function NavbarNested() {
     const { classes } = useStyles();
-    const links = data.links.map( ( item: any ) => <LinksGroup { ...item } key={ item.label } /> );
+    const links = data.links.map((item: any) => <LinksGroup {...item} key={item.label} />);
 
     return (
-        <Navbar width={ { sm: 300 } } p="md" className={ classes.navbar }>
-            <Navbar.Section grow className={ classes.links } component={ ScrollArea }>
-                <div className={ classes.linksInner }>{ links }</div>
+        <Navbar width={{ sm: 300 }} p="md" className={classes.navbar}>
+            <Navbar.Section grow className={classes.links} component={ScrollArea}>
+                <div className={classes.linksInner}>{links}</div>
             </Navbar.Section>
 
             {/* <Navbar.Section className={ classes.footer }>
