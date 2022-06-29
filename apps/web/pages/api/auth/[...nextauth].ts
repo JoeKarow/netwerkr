@@ -1,25 +1,16 @@
-import NextAuth, {DefaultSession, NextAuthOptions} from "next-auth"
+import NextAuth, { DefaultSession, NextAuthOptions } from "next-auth"
 import TwitterProvider from 'next-auth/providers/twitter'
 import Auth0Provider from 'next-auth/providers/auth0'
 import { PrismaAdapter } from "@next-auth/prisma-adapter"
-// import { PrismaClient } from '@joekarow/netwerkr-lib/prisma'
-import prisma from '../../../prisma'
+import prisma from 'prisma/'
 // For more information on each option (and a full list of options) go to
 // https://next-auth.js.org/configuration/options
 
-// const prisma = new PrismaClient()
-
-interface UserProps extends DefaultSession {
-
-        id?: string,
-        role?: string
-}
-
 export const authOptions: NextAuthOptions = {
-    adapter: PrismaAdapter( prisma ),
+    adapter: PrismaAdapter(prisma),
     secret: process.env.NEXTAUTH_SECRET,
     providers: [
-        TwitterProvider( {
+        TwitterProvider({
             clientId: process.env.TWITTER_ID as string,
             clientSecret: process.env.TWITTER_SECRET as string,
             version: "2.0",
@@ -28,25 +19,25 @@ export const authOptions: NextAuthOptions = {
                     scope: 'tweet.read users.read list.read list.write offline.access'
                 }
             },
-        } ),
-        Auth0Provider( {
+        }),
+        Auth0Provider({
             clientId: process.env.AUTH0_CLIENT_ID as string,
             clientSecret: process.env.AUTH0_CLIENT_SECRET as string,
             issuer: process.env.AUTH0_ISSUER
-        } )
+        })
     ],
     session: {
         maxAge: 7 * 24 * 60 * 60, // 7 days
         updateAge: 24 * 60 * 60 // 24 hours
     },
     callbacks: {
-        async session ( { session, user } ) {
-            session.user.id = user.id 
+        async session({ session, user }) {
+            session.user.id = user.id
             session.user.role = user.role
             return session
         },
-        async signIn ( { user, account, profile } ) {
-            if ( user.disabled ) return false
+        async signIn({ user, account, profile }) {
+            if (user.disabled) return false
             // if ( !user.profileId ) return `/dash/profile/`
             return true
 
@@ -65,5 +56,5 @@ export const authOptions: NextAuthOptions = {
     debug: true,
 }
 
-export default NextAuth( authOptions )
+export default NextAuth(authOptions)
 
