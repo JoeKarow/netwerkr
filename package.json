@@ -10,6 +10,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
+    "dev:ui": "turbo run dev storybook --parallel",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md,jsx,js}\"",
     "fresh": "rimraf './**/node_modules' && pnpm install",
@@ -19,7 +20,8 @@
     "db:generate": "turbo run db:generate",
     "db:seed": "turbo run db:seed",
     "db:studio": "turbo run db:studio",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "storybook": "turbo run storybook"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",

@@ -1,15 +1,17 @@
 import Head from 'next/head';
-import { MantineProvider } from '@joekarow/netwerkr-ui/mantine/core'
+import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@joekarow/netwerkr-ui/mantine/core'
 import { SessionProvider, getSession } from 'next-auth/react'
-import type { Context, ReactElement, ReactNode } from 'react'
-import type { NextPage } from 'next'
+import { useState } from 'react';
+import { getCookie, setCookies } from 'cookies-next';
+import { NotificationsProvider } from '@joekarow/netwerkr-ui/mantine/notifications'
+import type { ReactElement, ReactNode } from 'react'
+import type { NextPage, GetServerSidePropsContext } from 'next'
 import type { AppProps } from 'next/app'
 
 import { httpBatchLink } from '@trpc/client/links/httpBatchLink';
 import { loggerLink } from '@trpc/client/links/loggerLink';
 import { withTRPC } from '@trpc/next';
 import getConfig from 'next/config';
-import { AppType } from 'next/dist/shared/lib/utils';
 import type { AppRouter } from 'server/routers/_app';
 import superjson from 'superjson';
 import { SSRContext } from 'utils/trpc';
@@ -23,35 +25,48 @@ type AppPropsWithLayout = AppProps & {
   Component: NextPageWithLayout
 }
 
-const App =  ( { Component, pageProps: { session, ...pageProps } }: AppPropsWithLayout ) => {
-    // console.log( 'app props', pageProps )
-    // console.log( 'session', session )
-    // const { session, ...pageProps } = props
-    const getLayout = Component.getLayout || ( ( page ) => page )
-    return (
-            <SessionProvider session={ session }>
-                <Head>
-                    <title>netwerkr</title>
-                    <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
-                </Head>
-                <MantineProvider
-                    withGlobalStyles
-                    withNormalizeCSS
-                    theme={ {
-                        /** Put your mantine theme override here */
-                        colorScheme: 'light'
-                    } }
-                >
-                    { getLayout( <Component { ...pageProps } /> ) }
-                </MantineProvider>
-            </SessionProvider>
+const App = (props: AppPropsWithLayout & { colorScheme: ColorScheme }) => {
+  //{ Component, pageProps: { session, ...pageProps } }
+  const { Component, pageProps } = props
+  const { session } = pageProps
+  const getLayout = Component.getLayout || ((page) => page)
+  const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme)
+  const toggleColorScheme = (value?: ColorScheme) => {
+    const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
+    setColorScheme(nextColorScheme);
+    setCookies('mantine-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
+  };
 
-    );
+
+  return (
+    <SessionProvider session={session}>
+      <Head>
+        <title>netwerkr</title>
+        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+      </Head>
+      <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+        <MantineProvider
+          withGlobalStyles
+          withNormalizeCSS
+          theme={{
+            /** Put your mantine theme override here */
+            colorScheme: 'light'
+          }}
+        >
+          <NotificationsProvider>
+            {getLayout(<Component {...pageProps} />)}
+          </NotificationsProvider>
+        </MantineProvider>
+      </ColorSchemeProvider>
+    </SessionProvider>
+
+  );
 }
 
-const { publicRuntimeConfig } = getConfig();
+App.getInitialProps = ({ ctx }: { ctx: GetServerSidePropsContext }) => ({
+  colorScheme: getCookie('mantine-color-scheme', ctx) || 'light',
+});
 
-const { APP_URL } = publicRuntimeConfig;
 
 function getBaseUrl() {
   if (typeof window !== 'undefined') {
@@ -61,15 +76,12 @@ function getBaseUrl() {
   if (process.env.VERCEL_URL) {
     return `https://${process.env.VERCEL_URL}`;
   }
-
-
   // assume localhost
   return `http://localhost:${process.env.PORT ?? 3000}`;
 }
 
-
 export default withTRPC<AppRouter>({
-  config({ctx}) {
+  config({ ctx }) {
     /**
      * If you want to use SSR, you need to use the server's full URL
      * @link https://trpc.io/docs/ssr
