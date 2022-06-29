@@ -21,7 +21,8 @@
     "db:seed": "turbo run db:seed",
     "db:studio": "turbo run db:studio",
     "test": "turbo run test",
-    "storybook": "turbo run storybook"
+    "storybook": "turbo run storybook",
+    "lint-staged-run": "lint-staged"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",

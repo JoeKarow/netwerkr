@@ -35,3 +35,7 @@ yarn-error.log*
 .turbo
 
 *.code-workspace
+
+# trpc-prisma-output
+apps/web/prisma/shield/*
+apps/web/prisma/trpc-shield/*

@@ -8,13 +8,16 @@ generator zod {
   imports  = "./zod-prisma"
 }
 
+generator trpc {
+  provider       = "prisma-trpc-generator"
+  output         = "./trpc-shield"
+  withMiddleware = true
+  withShield     = true
+}
+
 datasource db {
   provider = "mongodb"
   url      = env("MONGODB_CONN")
-}
-
-model netwerkr {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
 }
 
 model Account {
