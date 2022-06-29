@@ -1,0 +1,4 @@
+ignore-failures:
+  # programming language is needed because dependency names can overlap between languages
+  javascript:
+    - rimraf
