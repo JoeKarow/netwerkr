@@ -10,6 +10,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --parallel",
+    "dev:ui": "turbo run dev storybook --parallel",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md,jsx,js}\"",
     "fresh": "rimraf './**/node_modules' && pnpm install",
@@ -19,7 +20,9 @@
     "db:generate": "turbo run db:generate",
     "db:seed": "turbo run db:seed",
     "db:studio": "turbo run db:studio",
-    "test": "turbo run test"
+    "test": "turbo run test",
+    "storybook": "turbo run storybook",
+    "lint-staged-run": "lint-staged"
   },
   "devDependencies": {
     "@commitlint/cli": "^17.0.3",
@@ -31,7 +34,6 @@
     "cz-git": "^1.3.8",
     "eslint": "^8.18.0",
     "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-next": "^0.0.0",
     "husky": "^8.0.1",
     "lint-staged": "^13.0.2",
     "prettier": "latest",

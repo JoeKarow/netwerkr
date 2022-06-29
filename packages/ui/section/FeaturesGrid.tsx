@@ -71,7 +71,7 @@ interface FeaturesGridProps {
 export function FeaturesGrid({ title, description, data }: FeaturesGridProps) {
     const { classes } = useStyles();
     const theme = useMantineTheme();
-    const features = data.map((feature, index) => <Feature {...feature} key={index} />);
+    const features = data?.map((feature, index) => <Feature {...feature} key={index} />);
 
     return (
         <Container className={classes.wrapper}>

@@ -18,9 +18,10 @@ import {
     ChevronDown,
 } from 'tabler-icons-react';
 import { useSession } from 'next-auth/react'
-import { useProviders } from '../hooks'
+// import { useProviders } from '../hooks'
 import { signIn, signOut } from 'next-auth/react';
 import { randomId } from '@mantine/hooks';
+import { BrandTwitter } from 'tabler-icons-react';
 
 
 
@@ -67,12 +68,12 @@ export function UserButton() {
     const [userMenuOpened, setUserMenuOpened] = useState(false);
     const { data: session, status } = useSession()
     const loginCallback = { callbackUrl: '/dash' }
-    const loginProviders = useProviders().map((provider: LoginProvider) => {
-        const randId = randomId()
-        return (<Menu.Item key={randId} icon={provider.icon} onClick={() => signIn(provider.name.toLowerCase(), loginCallback)}>
-            {provider.name}
-        </Menu.Item>)
-    })
+    // const loginProviders = useProviders().map((provider: LoginProvider) => {
+    //     const randId = randomId()
+    //     return (<Menu.Item key={randId} icon={provider.icon} onClick={() => signIn(provider.name.toLowerCase(), loginCallback)}>
+    //         {provider.name}
+    //     </Menu.Item>)
+    // })
     if (status !== 'authenticated') {
         return (
             <Menu
@@ -95,11 +96,14 @@ export function UserButton() {
                     </UnstyledButton>
                 }
             >
-                {loginProviders}
+                <Menu.Item icon={<BrandTwitter size={18}/>} onClick={() => signIn('twitter', loginCallback)}>Twitter</Menu.Item>
             </Menu>
         )
     }
-
+    // if (session) {
+    //     session.user.image ? session.user.image : session.user.image = 'http://example.com'
+    //     session.user.name ? session.user.name : session.user.name = 'User User'
+    // }
     return (
         <Menu
             size={260}
@@ -115,7 +119,7 @@ export function UserButton() {
                     <Group spacing={7}>
                         <Avatar src={session.user.image} alt={session.user.name} radius="xl" size={20} />
                         <Text weight={500} size="sm" sx={{ lineHeight: 1 }} mr={3}>
-                            {session.user.name}
+                            {session?.user?.name}
                         </Text>
                         <ChevronDown size={12} />
                     </Group>
