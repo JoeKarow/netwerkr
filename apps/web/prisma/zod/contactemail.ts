@@ -1,20 +1,21 @@
-import * as z from "zod"
-import * as imports from "../zod-prisma"
-import { EmailLabel } from "@prisma/client"
-import { CompleteContact, RelatedContactModel } from "./index"
+import * as z from 'zod'
+import * as imports from '../zod-prisma'
+import { EmailLabel } from '@prisma/client'
+import { CompleteContact, RelatedContactModel } from './index'
 
 export const ContactEmailModel = z.object({
-  id: z.string(),
-  email: z.string(),
-  primary: z.boolean().nullish(),
-  label: z.nativeEnum(EmailLabel),
-  createdAt: z.date().nullish(),
-  updatedAt: z.date().nullish(),
-  contactId: z.string(),
+	id: z.string(),
+	email: z.string(),
+	primary: z.boolean().nullish(),
+	label: z.nativeEnum(EmailLabel),
+	createdAt: z.date().nullish(),
+	updatedAt: z.date().nullish(),
+	contactId: z.string(),
 })
 
-export interface CompleteContactEmail extends z.infer<typeof ContactEmailModel> {
-  contact: CompleteContact
+export interface CompleteContactEmail
+	extends z.infer<typeof ContactEmailModel> {
+	contact: CompleteContact
 }
 
 /**
@@ -22,6 +23,9 @@ export interface CompleteContactEmail extends z.infer<typeof ContactEmailModel> 
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedContactEmailModel: z.ZodSchema<CompleteContactEmail> = z.lazy(() => ContactEmailModel.extend({
-  contact: RelatedContactModel,
-}))
+export const RelatedContactEmailModel: z.ZodSchema<CompleteContactEmail> =
+	z.lazy(() =>
+		ContactEmailModel.extend({
+			contact: RelatedContactModel,
+		})
+	)

@@ -1,11 +1,5 @@
 {
-  "extends": "@joekarow/netwerkr-config/tsconfig/nextjs.json",
-  "include": [
-    "."
-  ],
-  "exclude": [
-    "dist",
-    "build",
-    "node_modules"
-  ]
+	"extends": "@joekarow/netwerkr-config/tsconfig/nextjs.json",
+	"include": ["."],
+	"exclude": ["dist", "build", "node_modules"]
 }

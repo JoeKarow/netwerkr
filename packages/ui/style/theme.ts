@@ -1,8 +1,7 @@
-import { MantineTheme } from "@mantine/core"
+import { MantineTheme } from '@mantine/core'
 
 const theme: MantineTheme = {
-    colorScheme: 'light'
+	colorScheme: 'light',
 }
-
 
 export default theme

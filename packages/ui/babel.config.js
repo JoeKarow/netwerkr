@@ -1,20 +1,18 @@
-module.exports = function ( api ) {
-  api.cache( true );
+module.exports = function (api) {
+	api.cache(true)
 
-  const presets = [
-    "next/babel"
-  ];
-  const plugins = [
-    // [
-    //   "@simbathesailor/babel-plugin-use-what-changed",
-    //   {
-    //     active: process.env.NODE_ENV === "development", // boolean
-    //   },
-    // ],
-  ];
+	const presets = ['next/babel']
+	const plugins = [
+		// [
+		//   "@simbathesailor/babel-plugin-use-what-changed",
+		//   {
+		//     active: process.env.NODE_ENV === "development", // boolean
+		//   },
+		// ],
+	]
 
-  return {
-    presets,
-    plugins,
-  };
-};
+	return {
+		presets,
+		plugins,
+	}
+}
