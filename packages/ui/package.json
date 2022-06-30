@@ -5,7 +5,7 @@
 	"types": "./index.tsx",
 	"license": "MIT",
 	"scripts": {
-		"lint": "eslint **/*.{ts*,js,jsx}",
+		"lint": "eslint . --ext .ts,.tsx,.js,.jsx",
 		"test": "jest",
 		"storybook": "start-storybook -p 6006",
 		"build-storybook": "build-storybook"
