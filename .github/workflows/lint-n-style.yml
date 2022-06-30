@@ -44,4 +44,4 @@ jobs:
       #     prettier_options: --ignore-unknown
       #     only_changed: true
       - name: ESLint
-        run: pnpx turbo lint
+        run: pnpx turbo run lint
