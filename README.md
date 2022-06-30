@@ -23,12 +23,13 @@
 <br />
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/8931af71fb844e5e88482f367de04589)](https://www.codacy.com/gh/JoeKarow/netwerkr/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=JoeKarow/netwerkr&amp;utm_campaign=Badge_Grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/8931af71fb844e5e88482f367de04589)](https://www.codacy.com/gh/JoeKarow/netwerkr/dashboard?utm_source=github.com&utm_medium=referral&utm_content=JoeKarow/netwerkr&utm_campaign=Badge_Grade)
 
 [![Pull Requests welcome](https://img.shields.io/badge/PRs-welcome-ff69b4.svg?style=flat-square)](https://github.com/JoeKarow/netwerkr/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22)
 [![code with love by JoeKarow](https://img.shields.io/badge/%3C%2F%3E%20with%20%E2%99%A5%20by-JoeKarow-ff1414.svg?style=flat-square)](https://github.com/JoeKarow)
 
 <a href="https://www.buymeacoffee.com/JoeKarow" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png" alt="Buy Me A Coffee" style="height: 60px !important;width: 217px !important;" ></a>
+
 </div>
 
 <details open="open">
@@ -65,8 +66,8 @@ netwerkr seeks to help keep track of all of those amazing new connections.
 
 > Screenshots coming soon..
 
-|                               Home Page                               |                               Login Page                               |
-| :-------------------------------------------------------------------: | :--------------------------------------------------------------------: |
+|                               Home Page                                |                               Login Page                                |
+| :--------------------------------------------------------------------: | :---------------------------------------------------------------------: |
 | <img src="docs/images/screenshot.webp" title="Home Page" width="100%"> | <img src="docs/images/screenshot.webp" title="Login Page" width="100%"> |
 
 </details>
@@ -86,9 +87,9 @@ netwerkr seeks to help keep track of all of those amazing new connections.
 
 ### Installation
 
-  ```bash
+```bash
 pnpm install
-  ```
+```
 
 ## Usage
 

@@ -1,11 +1,13 @@
 ---
 name: Feature Request
 about: Suggest an idea for this project
-title: "feat: "
-labels: "enhancement"
-assignees: ""
+title: 'feat: '
+labels: 'enhancement'
+assignees: ''
 ---
+
 <!-- markdownlint-disable MD036 -->
+
 ## Feature Request
 
 **Describe the Feature Request**

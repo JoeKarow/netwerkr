@@ -1,9 +1,7 @@
 {
-  "extends": [
-    "github>JoeKarow/renovate-config",
-    "github>whitesource/merge-confidence:beta"
-  ],
-  "baseBranches": [
-    "develop"
-  ]
+	"extends": [
+		"github>JoeKarow/renovate-config",
+		"github>whitesource/merge-confidence:beta"
+	],
+	"baseBranches": ["develop"]
 }

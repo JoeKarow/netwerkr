@@ -1,4 +1,4 @@
 module.exports = {
-  root: true,
-  extends: [ "@joekarow/eslint-config-netwerkr" ],
-};
+	root: true,
+	extends: ['@joekarow/eslint-config-netwerkr'],
+}
