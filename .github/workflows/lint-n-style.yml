@@ -1,11 +1,11 @@
-name: Run prettier & eslint
+name: Run ESLint
 on:
   pull_request:
   push:
 
 jobs:
-  prettier-eslint:
-    name: Run prettier & eslint
+  eslint:
+    name: Run ESLint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -38,10 +38,10 @@ jobs:
             ${{ runner.os }}-pnpm-store-
       - name: Install dependencies
         run: pnpm install
-      - name: Prettier
-        uses: creyD/prettier_action@v4.2
-        with:
-          prettier_options: --ignore-unknown
-          only_changed: true
+      # - name: Prettier
+      #   uses: creyD/prettier_action@v4.2
+      #   with:
+      #     prettier_options: --ignore-unknown
+      #     only_changed: true
       - name: ESLint
-        run: pnpm lint
+        run: pnpx turbo lint
