@@ -1,15 +1,16 @@
-import * as z from "zod"
-import * as imports from "../zod-prisma"
-import { CompleteInteractions, RelatedInteractionsModel } from "./index"
+import * as z from 'zod'
+import * as imports from '../zod-prisma'
+import { CompleteInteractions, RelatedInteractionsModel } from './index'
 
 export const ConversationModel = z.object({
-  id: z.string(),
-  twitterConvoId: z.string().nullish(),
-  interactionsId: z.string().nullish(),
+	id: z.string(),
+	twitterConvoId: z.string().nullish(),
+	interactionsId: z.string().nullish(),
 })
 
-export interface CompleteConversation extends z.infer<typeof ConversationModel> {
-  Interactions?: CompleteInteractions | null
+export interface CompleteConversation
+	extends z.infer<typeof ConversationModel> {
+	Interactions?: CompleteInteractions | null
 }
 
 /**
@@ -17,6 +18,9 @@ export interface CompleteConversation extends z.infer<typeof ConversationModel> 
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedConversationModel: z.ZodSchema<CompleteConversation> = z.lazy(() => ConversationModel.extend({
-  Interactions: RelatedInteractionsModel.nullish(),
-}))
+export const RelatedConversationModel: z.ZodSchema<CompleteConversation> =
+	z.lazy(() =>
+		ConversationModel.extend({
+			Interactions: RelatedInteractionsModel.nullish(),
+		})
+	)

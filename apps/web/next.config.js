@@ -1,5 +1,5 @@
-const withTM = require( "next-transpile-modules" )( [ "@joekarow/netwerkr-ui" ] );
+const withTM = require('next-transpile-modules')(['@joekarow/netwerkr-ui'])
 
-module.exports = withTM( {
-  reactStrictMode: true,
-} );
+module.exports = withTM({
+	reactStrictMode: true,
+})

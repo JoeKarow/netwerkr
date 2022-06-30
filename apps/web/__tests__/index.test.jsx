@@ -14,9 +14,8 @@
 // }
 // )
 
-describe('testing test in web', () =>{
-    it('is just a placeholder test to check config', () =>{
-        expect(1).toBe(1)
-    })
-}
-)
+describe('testing test in web', () => {
+	it('is just a placeholder test to check config', () => {
+		expect(1).toBe(1)
+	})
+})

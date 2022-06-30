@@ -1,45 +1,38 @@
 {
-  "$schema": "https://turborepo.org/schema.json",
-  "baseBranch": "origin/main",
-  "pipeline": {
-    "build": {
-      "dependsOn": [
-        "^build"
-      ],
-      "outputs": [
-        "dist/**",
-        ".next/**"
-      ]
-    },
-    "lint": {
-      "outputs": []
-    },
-    "dev": {
-      "cache": false
-    },
-    "db": {
-      "outputs": []
-    },
-    "db:generate": {
-      "outputs": []
-    },
-    "db:push": {
-      "outputs": []
-    },
-    "db:seed": {
-      "outputs": []
-    },
-    "db:studio": {
-      "outputs": []
-    },
-    "test": {
-      "outputs": []
-    },
-    "storybook": {
-      "outputs": []
-    }
-  },
-  "globalDependencies": [
-    "@joekarow/netwerkr-config/.env2"
-  ]
+	"$schema": "https://turborepo.org/schema.json",
+	"baseBranch": "origin/main",
+	"pipeline": {
+		"build": {
+			"dependsOn": ["^build"],
+			"outputs": ["dist/**", ".next/**"]
+		},
+		"lint": {
+			"outputs": []
+		},
+		"dev": {
+			"cache": false
+		},
+		"db": {
+			"outputs": []
+		},
+		"db:generate": {
+			"outputs": []
+		},
+		"db:push": {
+			"outputs": []
+		},
+		"db:seed": {
+			"outputs": []
+		},
+		"db:studio": {
+			"outputs": []
+		},
+		"test": {
+			"outputs": []
+		},
+		"storybook": {
+			"outputs": []
+		}
+	},
+	"globalDependencies": ["@joekarow/netwerkr-config/.env2"]
 }

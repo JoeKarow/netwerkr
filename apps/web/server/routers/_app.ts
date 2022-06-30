@@ -1,10 +1,10 @@
 /**
  * This file contains the root router of your tRPC-backend
  */
-import { createRouter } from '../createRouter';
+import { createRouter } from '../createRouter'
 // import { postRouter } from './post';
-import superjson from 'superjson';
-import { contactRouter } from './contact';
+import superjson from 'superjson'
+import { contactRouter } from './contact'
 
 /**
  * Create your application's root router
@@ -13,29 +13,27 @@ import { contactRouter } from './contact';
  * @link https://trpc.io/docs/router
  */
 export const appRouter = createRouter()
-  /**
-   * Add data transformers
-   * @link https://trpc.io/docs/data-transformers
-   */
-  .transformer(superjson)
-  /**
-   * Optionally do custom error (type safe!) formatting
-   * @link https://trpc.io/docs/error-formatting
-   */
-  // .formatError(({ shape, error }) => { })
-  .query('healthz', {
-    resolve() {
-      return 'yay!';
-    },
-  })
-  /**
-   * Merge in contacts route
-   */
-  .merge('profile.', contactRouter)
+	/**
+	 * Add data transformers
+	 * @link https://trpc.io/docs/data-transformers
+	 */
+	.transformer(superjson)
+	/**
+	 * Optionally do custom error (type safe!) formatting
+	 * @link https://trpc.io/docs/error-formatting
+	 */
+	// .formatError(({ shape, error }) => { })
+	.query('healthz', {
+		resolve() {
+			return 'yay!'
+		},
+	})
+	/**
+	 * Merge in contacts route
+	 */
+	.merge('profile.', contactRouter)
 
-
-
-  //   .merge('post.', postRouter)
+//   .merge('post.', postRouter)
 //   .subscription('randomNumber', {
 //     resolve() {
 //       return new Subscription<number>((emit) => {
@@ -49,4 +47,4 @@ export const appRouter = createRouter()
 //     },
 //   });
 
-export type AppRouter = typeof appRouter;
+export type AppRouter = typeof appRouter

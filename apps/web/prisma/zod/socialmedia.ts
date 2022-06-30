@@ -1,23 +1,28 @@
-import * as z from "zod"
-import * as imports from "../zod-prisma"
-import { CompleteContact, RelatedContactModel, CompleteSocialMediaService, RelatedSocialMediaServiceModel } from "./index"
+import * as z from 'zod'
+import * as imports from '../zod-prisma'
+import {
+	CompleteContact,
+	RelatedContactModel,
+	CompleteSocialMediaService,
+	RelatedSocialMediaServiceModel,
+} from './index'
 
 export const SocialMediaModel = z.object({
-  id: z.string(),
-  userId: z.string(),
-  displayName: z.string(),
-  username: z.string(),
-  protected: z.boolean(),
-  profileImg: z.string().nullish(),
-  createdAt: z.date().nullish(),
-  updatedAt: z.date().nullish(),
-  contactId: z.string(),
-  socialMediaServiceId: z.string(),
+	id: z.string(),
+	userId: z.string(),
+	displayName: z.string(),
+	username: z.string(),
+	protected: z.boolean(),
+	profileImg: z.string().nullish(),
+	createdAt: z.date().nullish(),
+	updatedAt: z.date().nullish(),
+	contactId: z.string(),
+	socialMediaServiceId: z.string(),
 })
 
 export interface CompleteSocialMedia extends z.infer<typeof SocialMediaModel> {
-  contact: CompleteContact
-  service: CompleteSocialMediaService
+	contact: CompleteContact
+	service: CompleteSocialMediaService
 }
 
 /**
@@ -25,7 +30,10 @@ export interface CompleteSocialMedia extends z.infer<typeof SocialMediaModel> {
  *
  * NOTE: Lazy required in case of potential circular dependencies within schema
  */
-export const RelatedSocialMediaModel: z.ZodSchema<CompleteSocialMedia> = z.lazy(() => SocialMediaModel.extend({
-  contact: RelatedContactModel,
-  service: RelatedSocialMediaServiceModel,
-}))
+export const RelatedSocialMediaModel: z.ZodSchema<CompleteSocialMedia> = z.lazy(
+	() =>
+		SocialMediaModel.extend({
+			contact: RelatedContactModel,
+			service: RelatedSocialMediaServiceModel,
+		})
+)

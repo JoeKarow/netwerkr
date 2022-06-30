@@ -1,28 +1,28 @@
-import { createReactQueryHooks } from '@trpc/react';
-import type { inferProcedureInput, inferProcedureOutput } from '@trpc/server';
-import { AppRouter } from 'server/routers/_app';
-import { NextPageContext } from 'next';
+import { createReactQueryHooks } from '@trpc/react'
+import type { inferProcedureInput, inferProcedureOutput } from '@trpc/server'
+import { AppRouter } from 'server/routers/_app'
+import { NextPageContext } from 'next'
 
 /**
  * Extend `NextPageContext` with meta data that can be picked up by `responseMeta()` when server-side rendering
  */
 export interface SSRContext extends NextPageContext {
-  /**
-   * Set HTTP Status code
-   * @usage
-   * const utils = trpc.useContext();
-   * if (utils.ssrContext) {
-   *   utils.ssrContext.status = 404;
-   * }
-   */
-  status?: number;
+	/**
+	 * Set HTTP Status code
+	 * @usage
+	 * const utils = trpc.useContext();
+	 * if (utils.ssrContext) {
+	 *   utils.ssrContext.status = 404;
+	 * }
+	 */
+	status?: number
 }
 
 /**
  * A set of strongly-typed React hooks from your `AppRouter` type signature with `createReactQueryHooks`.
  * @link https://trpc.io/docs/react#3-create-trpc-hooks
  */
-export const trpc = createReactQueryHooks<AppRouter, SSRContext>();
+export const trpc = createReactQueryHooks<AppRouter, SSRContext>()
 
 // export const transformer = superjson;
 /**
@@ -30,17 +30,17 @@ export const trpc = createReactQueryHooks<AppRouter, SSRContext>();
  * @example type HelloOutput = inferQueryOutput<'hello'>
  */
 export type inferQueryOutput<
-  TRouteKey extends keyof AppRouter['_def']['queries'],
-> = inferProcedureOutput<AppRouter['_def']['queries'][TRouteKey]>;
+	TRouteKey extends keyof AppRouter['_def']['queries']
+> = inferProcedureOutput<AppRouter['_def']['queries'][TRouteKey]>
 
 export type inferQueryInput<
-  TRouteKey extends keyof AppRouter['_def']['queries'],
-> = inferProcedureInput<AppRouter['_def']['queries'][TRouteKey]>;
+	TRouteKey extends keyof AppRouter['_def']['queries']
+> = inferProcedureInput<AppRouter['_def']['queries'][TRouteKey]>
 
 export type inferMutationOutput<
-  TRouteKey extends keyof AppRouter['_def']['mutations'],
-> = inferProcedureOutput<AppRouter['_def']['mutations'][TRouteKey]>;
+	TRouteKey extends keyof AppRouter['_def']['mutations']
+> = inferProcedureOutput<AppRouter['_def']['mutations'][TRouteKey]>
 
 export type inferMutationInput<
-  TRouteKey extends keyof AppRouter['_def']['mutations'],
-> = inferProcedureInput<AppRouter['_def']['mutations'][TRouteKey]>;
+	TRouteKey extends keyof AppRouter['_def']['mutations']
+> = inferProcedureInput<AppRouter['_def']['mutations'][TRouteKey]>
