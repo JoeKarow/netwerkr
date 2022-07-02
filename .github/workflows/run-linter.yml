@@ -26,7 +26,7 @@ jobs:
           cache: ${{ steps.pkgman.outputs.package_manager }}
       - name: Install package manager globally
         if: ${{steps.pkgman.outputs.package_manager != 'npm' }}
-        run: npm -g install ${{ steps.pkgman.outputs.package_manager }}
+        run: 'npm -g install ${{ steps.pkgman.outputs.package_manager }}'
       - name: Install dependencies
         if: ${{ success() }}
         uses: jaid/action-npm-install@v1.2.4
