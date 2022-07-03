@@ -47,7 +47,7 @@
 		"pnpm": ">=7.1.7",
 		"node": ">=16.0.0"
 	},
-	"packageManager": "pnpm@7.4.1",
+	"packageManager": "pnpm@7.5.0",
 	"config": {
 		"commitizen": {
 			"path": "node_modules/cz-git"
