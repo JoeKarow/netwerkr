@@ -4,11 +4,23 @@ on:
   push:
 
 jobs:
+  get_sha:
+    runs-on: ubuntu-latest
+    name: Workflow checks
+    steps:
+      - if: ${{ github.event == 'push' }}
+        id: push
+        run: echo "::set-output name=sha::${{github.sha}}"
+      - if: ${{ github.event == 'pull_request'}}
+        id: pr
+        run: echo "::set-output name=sha::${{github.event.pull_request.head.sha}}"
+    outputs:
+      sha: ${{steps.push.outputs.sha || steps.pr.outputs.sha}}
   lint:
     name: Run Linter
     runs-on: ubuntu-latest
     concurrency:
-      group: ${{ github.ref }}
+      group: ${{ github.workflow }}-${{ needs.get_sha.outputs.sha }}
       cancel-in-progress: true
     steps:
       - name: Checkout code
