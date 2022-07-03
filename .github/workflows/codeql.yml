@@ -23,8 +23,9 @@ jobs:
       sha: ${{steps.push.outputs.sha || steps.pr.outputs.sha}}
 
   codeql:
+    needs: get_sha
     concurrency:
-      group: ${{ github.workflow }}-${{ jobs.get_sha.outputs.sha }}
+      group: ${{ github.workflow }}-${{ needs.get_sha.outputs.sha }}
     name: 🏭 Scanning
     runs-on: ubuntu-latest
     steps:
