@@ -68,7 +68,7 @@ importers:
       jest-environment-jsdom: ^28.1.1
       luxon: ^2.4.0
       mongodb: ^4.7.0
-      msw: ^0.42.1
+      msw: ^0.43.0
       next: ^12.2.0
       next-auth: ^4.7.0
       next-transpile-modules: 9.0.0
@@ -117,7 +117,7 @@ importers:
       jest: 28.1.1_@types+node@17.0.45
       jest-environment-jsdom: 28.1.1
       luxon: 2.4.0
-      msw: 0.42.3_typescript@4.7.4
+      msw: 0.43.0_typescript@4.7.4
       next-transpile-modules: 9.0.0
       prisma: 3.15.2
       prisma-trpc-generator: 0.1.12_prisma@3.15.2
@@ -13100,8 +13100,8 @@ packages:
     resolution: {integrity: sha512-6FlzubTLZG3J2a/NVCAleEhjzq5oxgHyaCU9yYXvcLsvoVaHJq/s5xXI6/XXP6tz7R9xAOtHnSO/tXtF3WRTlA==}
     dev: true
 
-  /msw/0.42.3_typescript@4.7.4:
-    resolution: {integrity: sha512-zrKBIGCDsNUCZLd3DLSeUtRruZ0riwJgORg9/bSDw3D0PTI8XUGAK3nC0LJA9g0rChGuKaWK/SwObA8wpFrz4g==}
+  /msw/0.43.0_typescript@4.7.4:
+    resolution: {integrity: sha512-XJylZP0qW3D5WUGWh9FFefJEl3MGG4y1I+/8a833d0eedm6B+GaPm6wPVZNcnlS2YVTagvEgShVJ7ZtY66tTRQ==}
     engines: {node: '>=14'}
     hasBin: true
     requiresBuild: true
