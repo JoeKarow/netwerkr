@@ -76,7 +76,6 @@ netwerkr seeks to help keep track of all of those amazing new connections.
 
 - [Next.js](https://nextjs.org/)
 - [Mantine UI](https://mantine.dev/)
-- [Turborepo](https://turborepo.org/)
 
 ## Getting Started
 
