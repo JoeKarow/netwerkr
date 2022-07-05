@@ -1,21 +1,9 @@
 /** @type {import('cz-git').UserConfig} */
-const fs = require('fs')
-const path = require('path')
-
-/**
- *  @param {string[]} packages
- *  @param {string[]} apps
- *  @param {string[]} design
- */
-const packages = fs.readdirSync(path.resolve(__dirname, 'packages'))
-const apps = fs.readdirSync(path.resolve(__dirname, 'apps'))
-const design = fs.readdirSync(path.resolve(__dirname, 'design'))
 
 module.exports = {
 	extends: ['@commitlint/config-conventional'],
 	rules: {
 		// @see: https://commitlint.js.org/#/reference-rules
-		'scope-enum': [2, 'always', ['global', ...apps, ...packages, ...design]],
 	},
 	prompt: {
 		types: [
@@ -65,6 +53,15 @@ module.exports = {
 				name: 'revert:   ⏪️  Reverts a previous commit',
 				emoji: ':rewind:',
 			},
+		],
+		scopes: [
+			{ value: 'app', name: 'app:       Overall function' },
+			{ value: 'ui', name: 'ui:        UI/Layout/Components' },
+			{ value: 'api', name: 'api:       API Changes' },
+			{ value: 'db', name: 'db:        Database' },
+			{ value: 'build', name: 'build:     Build System/Workflows' },
+			{ value: 'deps', name: 'deps:      Dependencies' },
+			{ value: 'conf', name: 'config:    Config changes' },
 		],
 		useEmoji: true,
 		// scopes: ['base', ...apps, ...packages],

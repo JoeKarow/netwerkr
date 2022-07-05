@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"iridium.npm.packageManager": "pnpm",
+		"cSpell.words": ["netwerkr"],
+		"npm.packageManager": "pnpm",
+		"eslint.packageManager": "pnpm",
+		"prisma.fileWatcher": true,
+		"createTests.defaultLocationForTestFiles": "project root",
+		"createTests.customLocationForTestFiles": "",
+		"createTests.testDirectoryName": "__tests__",
+		"explorer.fileNesting.enabled": false,
+		"explorer.excludeGitIgnore": false,
+		"jest.autoRun": "off"
+	}
+}

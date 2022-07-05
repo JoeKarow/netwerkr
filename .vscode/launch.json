@@ -1,11 +1,10 @@
 {
 	"configurations": [
 		{
-			"name": "Next.js: app:web",
+			"name": "Next.js",
 			"type": "node-terminal",
 			"request": "launch",
-			"command": "pnpx turbo run dev",
-			// "cwd": "${workspaceFolder:✨ @joekarow/netwerkr}",
+			"command": "pnpm dev",
 			"sourceMaps": true
 		},
 		{
@@ -20,39 +19,23 @@
 			"reAttach": true,
 			"name": "Launch Firefox Dev",
 			"url": "http://localhost:3000",
-			"webRoot": "${workspaceFolder:🚀 @joekarow/netwerkr-web}/",
+			// "webRoot": "${workspaceFolder:🚀 @joekarow/netwerkr-web}/",
 			"enableCRAWorkaround": true,
 			"skipFiles": ["**/node_modules/**", "<node_internals>/**/*.js"],
 			"showConsoleCallLocation": true,
 			"suggestPathMappingWizard": true,
 			"pathMappings": [
 				{
-					"url": "webpack://_n_e/packages",
-					"path": "${workspaceFolder}/packages"
+					// "url": "webpack://_n_e/packages",
+					// "path": "${workspaceFolder}/packages"
 				}
 			]
 		}
-		// {
-		//     "name": "Next.js: debug web",
-		//     "request": "launch",
-		//     "type": "chrome",
-		//     "runtimeExecutable": "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
-		//     "port": 9222,
-		//     "url": "http://localhost:3000",
-		//     "cwd": "${workspaceFolder:🚀 @joekarow/netwerkr-web}",
-		//     "webRoot": "${workspaceFolder:🚀 @joekarow/netwerkr-web}/",
-		//     "sourceMaps": true,
-		//     "resolveSourceMapLocations": [
-		//         "${webRoot}",
-		//         "${workspaceFolder}",
-		//         "!node_modules"
-		//     ]
-		// },
 	],
 	"compounds": [
 		{
 			"name": "Debug netwerkr w/ Firefox Dev",
-			"configurations": ["Next.js: app:web", "Launch Firefox Dev"],
+			"configurations": ["Next.js", "Launch Firefox Dev"],
 			"stopAll": true
 		}
 	]
