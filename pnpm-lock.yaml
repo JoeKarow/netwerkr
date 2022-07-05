@@ -23,7 +23,7 @@ specifiers:
   '@types/luxon': ^2.3.2
   '@types/node': 18.0.0
   '@types/react': 18.0.14
-  '@types/react-dom': 18.0.5
+  '@types/react-dom': 18.0.6
   commitizen: ^4.2.4
   cookies-next: ^2.1.1
   cz-git: ^1.3.9
@@ -84,7 +84,7 @@ devDependencies:
   '@types/luxon': 2.3.2
   '@types/node': 18.0.0
   '@types/react': 18.0.14
-  '@types/react-dom': 18.0.5
+  '@types/react-dom': 18.0.6
   commitizen: 4.2.4
   cz-git: 1.3.9
   eslint: 8.18.0
@@ -1240,8 +1240,8 @@ packages:
       parchment: 1.1.4
     dev: false
 
-  /@types/react-dom/18.0.5:
-    resolution: {integrity: sha512-OWPWTUrY/NIrjsAPkAk1wW9LZeIjSvkXRhclsFO8CZcZGCOg2G0YZy4ft+rOyYxy8B7ui5iZzi9OkDebZ7/QSA==}
+  /@types/react-dom/18.0.6:
+    resolution: {integrity: sha512-/5OFZgfIPSwy+YuIBP/FgJnQnsxhZhjjrnxudMddeblOouIodEQ75X14Rr4wGSG/bknL+Omy9iWlLo1u/9GzAA==}
     dependencies:
       '@types/react': 18.0.14
     dev: true
