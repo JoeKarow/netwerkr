@@ -67,9 +67,11 @@
 		"husky": "^8.0.1",
 		"lint-staged": "^13.0.3",
 		"luxon": "^2.4.0",
+		"mongodb": "^4.7.0",
 		"prisma": "^3",
 		"tabler-icons-react": "^1.52.0",
 		"trpc-shield": "^0.1.1",
+		"ts-node": "^10.8.2",
 		"typescript": "^4.7.4"
 	},
 	"lint-staged": {
@@ -96,5 +98,8 @@
 		"commitizen": {
 			"path": "node_modules/cz-git"
 		}
+	},
+	"prisma": {
+		"seed": "ts-node prisma/seed.ts"
 	}
 }
