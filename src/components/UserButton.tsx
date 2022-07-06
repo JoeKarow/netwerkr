@@ -22,6 +22,7 @@ import { useSession } from 'next-auth/react'
 import { signIn, signOut } from 'next-auth/react'
 import { randomId } from '@mantine/hooks'
 import { BrandTwitter } from 'tabler-icons-react'
+import { Session } from 'next-auth'
 
 //TODO: Change menu items
 
@@ -122,8 +123,8 @@ export function UserButton() {
 				>
 					<Group spacing={7}>
 						<Avatar
-							src={session.user.image}
-							alt={session.user.name}
+							src={session?.user?.image}
+							alt={session?.user?.name!}
 							radius='xl'
 							size={20}
 						/>

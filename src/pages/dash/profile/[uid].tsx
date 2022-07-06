@@ -5,11 +5,11 @@ import { ProfileGrid } from 'section'
 import { JsonView } from 'components/devtools'
 import { trpc } from 'utils/trpc'
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next'
-import { NextPageWithLayout } from 'pages/_app'
+import { NextPageWithLayout } from 'next'
 import { ssrInit } from 'utils/ssrInit'
 
-const Profile = (
-	props: InferGetServerSidePropsType<typeof getServerSideProps>
+const Profile: NextPageWithLayout = (
+	props //: InferGetServerSidePropsType<typeof getServerSideProps>
 ) => {
 	const { id } = props
 	const { data } = trpc.useQuery(['profile.id', { id }])
@@ -22,7 +22,7 @@ const Profile = (
 		</>
 	)
 }
-Profile.getLayout = (page: NextPageWithLayout) => {
+Profile.getLayout = page => {
 	return <DashLayout>{page}</DashLayout>
 }
 

@@ -65,7 +65,22 @@ const useStyles = createStyles(theme => ({
 //     links: { link: string; label: string; links: { link: string; label: string }[] }[];
 // }
 
-export function HeaderAction({ links }) {
+type Links = {
+	link: string
+	label: string
+	links: [
+		{
+			link: string
+			label: string
+		}
+	]
+}
+
+type Props = {
+	links: Links[]
+}
+
+export function HeaderAction({ links }: Props) {
 	const { classes } = useStyles()
 	const [opened, toggleOpened] = useBooleanToggle(false)
 	const items = links.map(link => {

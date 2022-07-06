@@ -4,8 +4,9 @@ import { DashLayout } from 'layout'
 import { ProfileGrid } from 'section'
 import { JsonView } from 'components/devtools'
 // import { getProfile } from "@/db/getProfile";
+import type { NextPageWithLayout } from 'next'
 
-const Profile = props => {
+const Profile: NextPageWithLayout = props => {
 	const { data } = props
 	// const { data: session } = useSession()
 	// console.log( data )

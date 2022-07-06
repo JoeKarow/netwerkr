@@ -1,12 +1,9 @@
 // src/pages/_app.tsx
 import { withTRPC } from '@trpc/next'
 import type { AppRouter } from '../server/router'
-import type { AppType } from 'next/dist/shared/lib/utils'
 import superjson from 'superjson'
 
 import { SessionProvider } from 'next-auth/react'
-
-import '../styles/globals.css'
 
 import Head from 'next/head'
 import { useState } from 'react'
@@ -17,27 +14,30 @@ import {
 	ColorSchemeProvider,
 } from '@mantine/core'
 import { NotificationsProvider } from '@mantine/notifications'
-import type { ReactElement, ReactNode } from 'react'
-import type { NextPage, GetServerSidePropsContext } from 'next'
-import type { AppProps } from 'next/app'
+import { globalTheme } from 'styles/theme'
+import { AppContext, AppInitialProps, AppLayoutProps } from 'next/app'
+import type { ReactNode } from 'react'
+import type { NextComponentType } from 'next'
+import type { Session } from 'next-auth'
 
 import { ReactQueryDevtools } from 'react-query/devtools'
 import { QueryClientProvider, QueryClient } from 'react-query'
 
-export type NextPageWithLayout = NextPage & {
-	getLayout?: (page: ReactElement) => ReactNode
-}
-
-type AppPropsWithLayout = AppProps & {
-	Component: NextPageWithLayout
+type AppLayoutPropsWithColorScheme = AppLayoutProps & {
+	colorScheme: ColorScheme
+	session: Session
 }
 
 const queryClient = new QueryClient()
 
-const MyApp = (props: AppPropsWithLayout & { colorScheme: ColorScheme }) => {
+const MyApp: NextComponentType<
+	AppContext,
+	AppInitialProps,
+	AppLayoutPropsWithColorScheme
+> = props => {
 	const { Component, pageProps } = props
 	const { session } = pageProps
-	const getLayout = Component.getLayout || (page => page)
+	const getLayout = Component.getLayout || ((page: ReactNode) => page)
 	const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme)
 	const toggleColorScheme = (value?: ColorScheme) => {
 		const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark')
@@ -63,10 +63,7 @@ const MyApp = (props: AppPropsWithLayout & { colorScheme: ColorScheme }) => {
 					<MantineProvider
 						withGlobalStyles
 						withNormalizeCSS
-						theme={{
-							/** Put your mantine theme override here */
-							colorScheme: 'light',
-						}}
+						theme={globalTheme}
 					>
 						<NotificationsProvider>
 							{getLayout(<Component {...pageProps} />)}
