@@ -2,11 +2,11 @@ generator client {
   provider = "prisma-client-js"
 }
 
-generator zod {
-  provider = "zod-prisma"
-  output   = "./zod"
-  imports  = "./zod-prisma"
-}
+// generator zod {
+//   provider = "zod-prisma"
+//   output   = "./zod"
+//   imports  = "./zod-prisma"
+// }
 
 generator trpc {
   provider       = "prisma-trpc-generator"
