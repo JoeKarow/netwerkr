@@ -8,6 +8,8 @@ import type { AppProps } from 'next/app'
 import { PropsWithChildren } from 'react'
 import { DefaultSession } from 'next-auth'
 
+declare module '*.jpg'
+
 declare module 'next' {
 	type NextLayoutComponentType<P = {}> = NextComponentType<
 		NextPageContext,
