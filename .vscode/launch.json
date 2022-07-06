@@ -13,6 +13,7 @@
 			"request": "attach",
 			"processId": "${command:PickProcess}"
 		},
+
 		{
 			"type": "firefox",
 			"request": "launch",
@@ -30,12 +31,27 @@
 					// "path": "${workspaceFolder}/packages"
 				}
 			]
+		},
+		{
+			"name": "Launch Brave",
+			"request": "launch",
+			"type": "chrome",
+			"runtimeExecutable": "/Applications/Brave Browser.app/Contents/MacOS/Brave Browser",
+			"runtimeArgs": ["--user-data-dir=/Users/joe/.brave-dev-profile"],
+			"port": 9222,
+			"url": "http://localhost:3000",
+			"userDataDir": true
 		}
 	],
 	"compounds": [
 		{
 			"name": "Debug netwerkr w/ Firefox Dev",
 			"configurations": ["Next.js", "Launch Firefox Dev"],
+			"stopAll": true
+		},
+		{
+			"name": "Debug netwerkr w/ Brave",
+			"configurations": ["Next.js", "Launch Brave"],
 			"stopAll": true
 		}
 	]

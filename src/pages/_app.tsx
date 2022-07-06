@@ -21,6 +21,9 @@ import type { ReactElement, ReactNode } from 'react'
 import type { NextPage, GetServerSidePropsContext } from 'next'
 import type { AppProps } from 'next/app'
 
+import { ReactQueryDevtools } from 'react-query/devtools'
+import { QueryClientProvider, QueryClient } from 'react-query'
+
 export type NextPageWithLayout = NextPage & {
 	getLayout?: (page: ReactElement) => ReactNode
 }
@@ -28,6 +31,8 @@ export type NextPageWithLayout = NextPage & {
 type AppPropsWithLayout = AppProps & {
 	Component: NextPageWithLayout
 }
+
+const queryClient = new QueryClient()
 
 const MyApp = (props: AppPropsWithLayout & { colorScheme: ColorScheme }) => {
 	const { Component, pageProps } = props
@@ -42,32 +47,35 @@ const MyApp = (props: AppPropsWithLayout & { colorScheme: ColorScheme }) => {
 		})
 	}
 	return (
-		<SessionProvider session={session}>
-			<Head>
-				<title>netwerkr</title>
-				<meta
-					name='viewport'
-					content='minimum-scale=1, initial-scale=1, width=device-width'
-				/>
-			</Head>
-			<ColorSchemeProvider
-				colorScheme={colorScheme}
-				toggleColorScheme={toggleColorScheme}
-			>
-				<MantineProvider
-					withGlobalStyles
-					withNormalizeCSS
-					theme={{
-						/** Put your mantine theme override here */
-						colorScheme: 'light',
-					}}
+		<QueryClientProvider client={queryClient}>
+			<SessionProvider session={session}>
+				<Head>
+					<title>netwerkr</title>
+					<meta
+						name='viewport'
+						content='minimum-scale=1, initial-scale=1, width=device-width'
+					/>
+				</Head>
+				<ColorSchemeProvider
+					colorScheme={colorScheme}
+					toggleColorScheme={toggleColorScheme}
 				>
-					<NotificationsProvider>
-						{getLayout(<Component {...pageProps} />)}
-					</NotificationsProvider>
-				</MantineProvider>
-			</ColorSchemeProvider>
-		</SessionProvider>
+					<MantineProvider
+						withGlobalStyles
+						withNormalizeCSS
+						theme={{
+							/** Put your mantine theme override here */
+							colorScheme: 'light',
+						}}
+					>
+						<NotificationsProvider>
+							{getLayout(<Component {...pageProps} />)}
+						</NotificationsProvider>
+					</MantineProvider>
+				</ColorSchemeProvider>
+			</SessionProvider>
+			<ReactQueryDevtools initialIsOpen={false} />
+		</QueryClientProvider>
 	)
 }
 
