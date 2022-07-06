@@ -123,8 +123,8 @@ export function UserButton() {
 				>
 					<Group spacing={7}>
 						<Avatar
-							src={session?.user?.image}
-							alt={session?.user?.name!}
+							src={session.user?.image}
+							alt={session.user?.name!}
 							radius='xl'
 							size={20}
 						/>
