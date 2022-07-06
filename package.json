@@ -14,7 +14,7 @@
 		"lint": "next lint",
 		"db": "",
 		"db:push": "prisma db push",
-		"db:generate": "prisma generate",
+		"db:generate": "prisma generate && prettier --write ./prisma/ --ignore-unknown",
 		"db:seed": "prisma db seed",
 		"db:studio": "prisma studio",
 		"format": "prettier --write --ignore-unknown .",
