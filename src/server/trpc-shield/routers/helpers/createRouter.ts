@@ -2,7 +2,7 @@ import * as trpc from '@trpc/server'
 import { permissions } from '/Users/joe/GitHub/netwerkr/prisma/shield/shield'
 
 // make sure to change this according to your Context path
-import { Context } from '../../../../src/context'
+import { Context } from 'server/router/context'
 
 export function createRouter() {
 	return trpc.router<Context>()
