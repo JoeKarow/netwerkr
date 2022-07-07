@@ -1,5 +1,5 @@
 import * as trpc from '@trpc/server'
-import { permissions } from '/Users/joe/GitHub/netwerkr/prisma/shield/shield'
+import { permissions } from 'server/shield'
 
 // make sure to change this according to your Context path
 import { Context } from 'server/router/context'
