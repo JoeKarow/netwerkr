@@ -87,7 +87,7 @@ type Links = {
  * Props is an object that has a property called links that is an array of Links.
  * @property {Links[]} links - Links[]
  */
-type Props = {
+interface Props {
 	links: Links[]
 }
 
