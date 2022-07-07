@@ -10,7 +10,7 @@ interface Provider {
 	name: string
 }
 interface ProviderResponse {
-	[key: any]: Provider
+	[key: string]: Provider
 }
 type DataI = {
 	[key: string]: {
