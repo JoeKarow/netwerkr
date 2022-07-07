@@ -20,13 +20,13 @@ export const ContactScalarWhereWithAggregatesInputObjectSchema = z.object({
 		])
 		?.optional(),
 	photo: z
-		.union([StringWithAggregatesFilterObjectSchema, z.string()])
+		.union([
+			StringNullableWithAggregatesFilterObjectSchema,
+			z.string().nullable(),
+		])
 		?.optional(),
 	onTwitterList: z
 		.union([BoolWithAggregatesFilterObjectSchema, z.boolean()])
-		?.optional(),
-	associatedUserId: z
-		.union([StringWithAggregatesFilterObjectSchema, z.string()])
 		?.optional(),
 	createdAt: z
 		.union([
@@ -34,10 +34,10 @@ export const ContactScalarWhereWithAggregatesInputObjectSchema = z.object({
 			z.date().nullable(),
 		])
 		?.optional(),
-	updatedAt: z
+	associatedUserId: z
 		.union([
-			DateTimeNullableWithAggregatesFilterObjectSchema,
-			z.date().nullable(),
+			StringNullableWithAggregatesFilterObjectSchema,
+			z.string().nullable(),
 		])
 		?.optional(),
 })

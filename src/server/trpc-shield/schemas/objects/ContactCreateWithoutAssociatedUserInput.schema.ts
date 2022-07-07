@@ -1,26 +1,43 @@
 import { z } from 'zod'
-import { ContactEmailCreateNestedManyWithoutContactInputObjectSchema } from './ContactEmailCreateNestedManyWithoutContactInput.schema'
-import { ContactPhoneCreateNestedManyWithoutContactInputObjectSchema } from './ContactPhoneCreateNestedManyWithoutContactInput.schema'
-import { SocialMediaCreateNestedManyWithoutContactInputObjectSchema } from './SocialMediaCreateNestedManyWithoutContactInput.schema'
-import { InteractionsCreateNestedManyWithoutContactInputObjectSchema } from './InteractionsCreateNestedManyWithoutContactInput.schema'
-import { UserCreateNestedOneWithoutProfileInputObjectSchema } from './UserCreateNestedOneWithoutProfileInput.schema'
+import { EmailNullableCreateEnvelopeInputObjectSchema } from './EmailNullableCreateEnvelopeInput.schema'
+import { EmailCreateInputObjectSchema } from './EmailCreateInput.schema'
+import { PhoneNullableCreateEnvelopeInputObjectSchema } from './PhoneNullableCreateEnvelopeInput.schema'
+import { PhoneCreateInputObjectSchema } from './PhoneCreateInput.schema'
+import { SocialMediaListCreateEnvelopeInputObjectSchema } from './SocialMediaListCreateEnvelopeInput.schema'
+import { SocialMediaCreateInputObjectSchema } from './SocialMediaCreateInput.schema'
+import { InteractionsNullableCreateEnvelopeInputObjectSchema } from './InteractionsNullableCreateEnvelopeInput.schema'
+import { InteractionsCreateInputObjectSchema } from './InteractionsCreateInput.schema'
 
 export const ContactCreateWithoutAssociatedUserInputObjectSchema = z.object({
 	id: z.string()?.optional(),
 	firstName: z.string()?.optional().nullable(),
 	lastName: z.string()?.optional().nullable(),
-	email:
-		ContactEmailCreateNestedManyWithoutContactInputObjectSchema?.optional(),
-	phone:
-		ContactPhoneCreateNestedManyWithoutContactInputObjectSchema?.optional(),
-	photo: z.string(),
-	socialMedia:
-		SocialMediaCreateNestedManyWithoutContactInputObjectSchema?.optional(),
-	interactions:
-		InteractionsCreateNestedManyWithoutContactInputObjectSchema?.optional(),
-	onTwitterList: z.boolean(),
-	profileForUser:
-		UserCreateNestedOneWithoutProfileInputObjectSchema?.optional(),
+	email: z
+		.union([
+			EmailNullableCreateEnvelopeInputObjectSchema,
+			EmailCreateInputObjectSchema.nullable(),
+		])
+		?.optional(),
+	phone: z
+		.union([
+			PhoneNullableCreateEnvelopeInputObjectSchema,
+			PhoneCreateInputObjectSchema.nullable(),
+		])
+		?.optional(),
+	photo: z.string()?.optional().nullable(),
+	socialMedia: z
+		.union([
+			SocialMediaListCreateEnvelopeInputObjectSchema,
+			SocialMediaCreateInputObjectSchema,
+			z.array(SocialMediaCreateInputObjectSchema),
+		])
+		?.optional(),
+	interactions: z
+		.union([
+			InteractionsNullableCreateEnvelopeInputObjectSchema,
+			InteractionsCreateInputObjectSchema.nullable(),
+		])
+		?.optional(),
+	onTwitterList: z.boolean()?.optional(),
 	createdAt: z.date()?.optional().nullable(),
-	updatedAt: z.date()?.optional().nullable(),
 })

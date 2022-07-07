@@ -48,12 +48,6 @@ export const UserScalarWhereWithAggregatesInputObjectSchema = z.object({
 			z.boolean().nullable(),
 		])
 		?.optional(),
-	profileId: z
-		.union([
-			StringNullableWithAggregatesFilterObjectSchema,
-			z.string().nullable(),
-		])
-		?.optional(),
 	createdAt: z
 		.union([
 			DateTimeNullableWithAggregatesFilterObjectSchema,

@@ -6,7 +6,6 @@ export const ContactScalarFieldEnumSchema = z.enum([
 	'lastName',
 	'photo',
 	'onTwitterList',
-	'associatedUserId',
 	'createdAt',
-	'updatedAt',
+	'associatedUserId',
 ])

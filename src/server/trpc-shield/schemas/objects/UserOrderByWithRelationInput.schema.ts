@@ -3,7 +3,7 @@ import { SortOrderSchema } from '../enums/SortOrder.schema'
 import { AccountOrderByRelationAggregateInputObjectSchema } from './AccountOrderByRelationAggregateInput.schema'
 import { SessionOrderByRelationAggregateInputObjectSchema } from './SessionOrderByRelationAggregateInput.schema'
 import { ContactOrderByRelationAggregateInputObjectSchema } from './ContactOrderByRelationAggregateInput.schema'
-import { ContactOrderByWithRelationInputObjectSchema } from './ContactOrderByWithRelationInput.schema'
+import { ProfileOrderByCompositeAggregateInputObjectSchema } from './ProfileOrderByCompositeAggregateInput.schema'
 
 export const UserOrderByWithRelationInputObjectSchema = z.object({
 	id: SortOrderSchema?.optional(),
@@ -17,8 +17,7 @@ export const UserOrderByWithRelationInputObjectSchema = z.object({
 	accounts: AccountOrderByRelationAggregateInputObjectSchema?.optional(),
 	sessions: SessionOrderByRelationAggregateInputObjectSchema?.optional(),
 	contacts: ContactOrderByRelationAggregateInputObjectSchema?.optional(),
-	profile: ContactOrderByWithRelationInputObjectSchema?.optional(),
-	profileId: SortOrderSchema?.optional(),
+	profile: ProfileOrderByCompositeAggregateInputObjectSchema?.optional(),
 	createdAt: SortOrderSchema?.optional(),
 	updatedAt: SortOrderSchema?.optional(),
 })

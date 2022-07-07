@@ -6,6 +6,8 @@ import { EnumRoleFieldUpdateOperationsInputObjectSchema } from './EnumRoleFieldU
 import { NullableBoolFieldUpdateOperationsInputObjectSchema } from './NullableBoolFieldUpdateOperationsInput.schema'
 import { SessionUncheckedUpdateManyWithoutUserInputObjectSchema } from './SessionUncheckedUpdateManyWithoutUserInput.schema'
 import { ContactUncheckedUpdateManyWithoutAssociatedUserInputObjectSchema } from './ContactUncheckedUpdateManyWithoutAssociatedUserInput.schema'
+import { ProfileListUpdateEnvelopeInputObjectSchema } from './ProfileListUpdateEnvelopeInput.schema'
+import { ProfileCreateInputObjectSchema } from './ProfileCreateInput.schema'
 
 export const UserUncheckedUpdateWithoutAccountsInputObjectSchema = z.object({
 	name: z
@@ -50,10 +52,11 @@ export const UserUncheckedUpdateWithoutAccountsInputObjectSchema = z.object({
 	sessions: SessionUncheckedUpdateManyWithoutUserInputObjectSchema?.optional(),
 	contacts:
 		ContactUncheckedUpdateManyWithoutAssociatedUserInputObjectSchema?.optional(),
-	profileId: z
+	profile: z
 		.union([
-			z.string(),
-			NullableStringFieldUpdateOperationsInputObjectSchema.nullable(),
+			ProfileListUpdateEnvelopeInputObjectSchema,
+			ProfileCreateInputObjectSchema,
+			z.array(ProfileCreateInputObjectSchema),
 		])
 		?.optional(),
 	createdAt: z

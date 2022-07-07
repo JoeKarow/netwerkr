@@ -13,13 +13,14 @@ export const ContactScalarWhereInputObjectSchema = z.object({
 	lastName: z
 		.union([StringNullableFilterObjectSchema, z.string().nullable()])
 		?.optional(),
-	photo: z.union([StringFilterObjectSchema, z.string()])?.optional(),
+	photo: z
+		.union([StringNullableFilterObjectSchema, z.string().nullable()])
+		?.optional(),
 	onTwitterList: z.union([BoolFilterObjectSchema, z.boolean()])?.optional(),
-	associatedUserId: z.union([StringFilterObjectSchema, z.string()])?.optional(),
 	createdAt: z
 		.union([DateTimeNullableFilterObjectSchema, z.date().nullable()])
 		?.optional(),
-	updatedAt: z
-		.union([DateTimeNullableFilterObjectSchema, z.date().nullable()])
+	associatedUserId: z
+		.union([StringNullableFilterObjectSchema, z.string().nullable()])
 		?.optional(),
 })

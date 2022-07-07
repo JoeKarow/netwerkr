@@ -1,27 +1,44 @@
 import { z } from 'zod'
-import { ContactEmailUncheckedCreateNestedManyWithoutContactInputObjectSchema } from './ContactEmailUncheckedCreateNestedManyWithoutContactInput.schema'
-import { ContactPhoneUncheckedCreateNestedManyWithoutContactInputObjectSchema } from './ContactPhoneUncheckedCreateNestedManyWithoutContactInput.schema'
-import { SocialMediaUncheckedCreateNestedManyWithoutContactInputObjectSchema } from './SocialMediaUncheckedCreateNestedManyWithoutContactInput.schema'
-import { InteractionsUncheckedCreateNestedManyWithoutContactInputObjectSchema } from './InteractionsUncheckedCreateNestedManyWithoutContactInput.schema'
-import { UserUncheckedCreateNestedOneWithoutProfileInputObjectSchema } from './UserUncheckedCreateNestedOneWithoutProfileInput.schema'
+import { EmailNullableCreateEnvelopeInputObjectSchema } from './EmailNullableCreateEnvelopeInput.schema'
+import { EmailCreateInputObjectSchema } from './EmailCreateInput.schema'
+import { PhoneNullableCreateEnvelopeInputObjectSchema } from './PhoneNullableCreateEnvelopeInput.schema'
+import { PhoneCreateInputObjectSchema } from './PhoneCreateInput.schema'
+import { SocialMediaListCreateEnvelopeInputObjectSchema } from './SocialMediaListCreateEnvelopeInput.schema'
+import { SocialMediaCreateInputObjectSchema } from './SocialMediaCreateInput.schema'
+import { InteractionsNullableCreateEnvelopeInputObjectSchema } from './InteractionsNullableCreateEnvelopeInput.schema'
+import { InteractionsCreateInputObjectSchema } from './InteractionsCreateInput.schema'
 
 export const ContactUncheckedCreateWithoutAssociatedUserInputObjectSchema =
 	z.object({
 		id: z.string()?.optional(),
 		firstName: z.string()?.optional().nullable(),
 		lastName: z.string()?.optional().nullable(),
-		email:
-			ContactEmailUncheckedCreateNestedManyWithoutContactInputObjectSchema?.optional(),
-		phone:
-			ContactPhoneUncheckedCreateNestedManyWithoutContactInputObjectSchema?.optional(),
-		photo: z.string(),
-		socialMedia:
-			SocialMediaUncheckedCreateNestedManyWithoutContactInputObjectSchema?.optional(),
-		interactions:
-			InteractionsUncheckedCreateNestedManyWithoutContactInputObjectSchema?.optional(),
-		onTwitterList: z.boolean(),
-		profileForUser:
-			UserUncheckedCreateNestedOneWithoutProfileInputObjectSchema?.optional(),
+		email: z
+			.union([
+				EmailNullableCreateEnvelopeInputObjectSchema,
+				EmailCreateInputObjectSchema.nullable(),
+			])
+			?.optional(),
+		phone: z
+			.union([
+				PhoneNullableCreateEnvelopeInputObjectSchema,
+				PhoneCreateInputObjectSchema.nullable(),
+			])
+			?.optional(),
+		photo: z.string()?.optional().nullable(),
+		socialMedia: z
+			.union([
+				SocialMediaListCreateEnvelopeInputObjectSchema,
+				SocialMediaCreateInputObjectSchema,
+				z.array(SocialMediaCreateInputObjectSchema),
+			])
+			?.optional(),
+		interactions: z
+			.union([
+				InteractionsNullableCreateEnvelopeInputObjectSchema,
+				InteractionsCreateInputObjectSchema.nullable(),
+			])
+			?.optional(),
+		onTwitterList: z.boolean()?.optional(),
 		createdAt: z.date()?.optional().nullable(),
-		updatedAt: z.date()?.optional().nullable(),
 	})

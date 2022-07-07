@@ -7,7 +7,8 @@ import { NullableBoolFieldUpdateOperationsInputObjectSchema } from './NullableBo
 import { AccountUpdateManyWithoutUserInputObjectSchema } from './AccountUpdateManyWithoutUserInput.schema'
 import { SessionUpdateManyWithoutUserInputObjectSchema } from './SessionUpdateManyWithoutUserInput.schema'
 import { ContactUpdateManyWithoutAssociatedUserInputObjectSchema } from './ContactUpdateManyWithoutAssociatedUserInput.schema'
-import { ContactUpdateOneWithoutProfileForUserInputObjectSchema } from './ContactUpdateOneWithoutProfileForUserInput.schema'
+import { ProfileListUpdateEnvelopeInputObjectSchema } from './ProfileListUpdateEnvelopeInput.schema'
+import { ProfileCreateInputObjectSchema } from './ProfileCreateInput.schema'
 
 export const UserUpdateInputObjectSchema = z.object({
 	name: z
@@ -52,7 +53,13 @@ export const UserUpdateInputObjectSchema = z.object({
 	accounts: AccountUpdateManyWithoutUserInputObjectSchema?.optional(),
 	sessions: SessionUpdateManyWithoutUserInputObjectSchema?.optional(),
 	contacts: ContactUpdateManyWithoutAssociatedUserInputObjectSchema?.optional(),
-	profile: ContactUpdateOneWithoutProfileForUserInputObjectSchema?.optional(),
+	profile: z
+		.union([
+			ProfileListUpdateEnvelopeInputObjectSchema,
+			ProfileCreateInputObjectSchema,
+			z.array(ProfileCreateInputObjectSchema),
+		])
+		?.optional(),
 	createdAt: z
 		.union([
 			z.date(),

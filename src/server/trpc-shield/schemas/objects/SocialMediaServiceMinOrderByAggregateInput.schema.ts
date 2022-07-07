@@ -5,4 +5,6 @@ export const SocialMediaServiceMinOrderByAggregateInputObjectSchema = z.object({
 	id: SortOrderSchema?.optional(),
 	name: SortOrderSchema?.optional(),
 	urlbase: SortOrderSchema?.optional(),
+	createdAt: SortOrderSchema?.optional(),
+	updatedAt: SortOrderSchema?.optional(),
 })

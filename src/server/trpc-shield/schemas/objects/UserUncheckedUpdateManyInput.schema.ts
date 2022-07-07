@@ -4,6 +4,8 @@ import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './Nullab
 import { RoleSchema } from '../enums/Role.schema'
 import { EnumRoleFieldUpdateOperationsInputObjectSchema } from './EnumRoleFieldUpdateOperationsInput.schema'
 import { NullableBoolFieldUpdateOperationsInputObjectSchema } from './NullableBoolFieldUpdateOperationsInput.schema'
+import { ProfileListUpdateEnvelopeInputObjectSchema } from './ProfileListUpdateEnvelopeInput.schema'
+import { ProfileCreateInputObjectSchema } from './ProfileCreateInput.schema'
 
 export const UserUncheckedUpdateManyInputObjectSchema = z.object({
 	name: z
@@ -45,10 +47,11 @@ export const UserUncheckedUpdateManyInputObjectSchema = z.object({
 			NullableBoolFieldUpdateOperationsInputObjectSchema.nullable(),
 		])
 		?.optional(),
-	profileId: z
+	profile: z
 		.union([
-			z.string(),
-			NullableStringFieldUpdateOperationsInputObjectSchema.nullable(),
+			ProfileListUpdateEnvelopeInputObjectSchema,
+			ProfileCreateInputObjectSchema,
+			z.array(ProfileCreateInputObjectSchema),
 		])
 		?.optional(),
 	createdAt: z

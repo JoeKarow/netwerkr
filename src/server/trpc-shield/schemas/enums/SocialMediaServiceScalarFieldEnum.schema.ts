@@ -4,4 +4,6 @@ export const SocialMediaServiceScalarFieldEnumSchema = z.enum([
 	'id',
 	'name',
 	'urlbase',
+	'createdAt',
+	'updatedAt',
 ])

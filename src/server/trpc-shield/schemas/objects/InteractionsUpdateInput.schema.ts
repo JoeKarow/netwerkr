@@ -1,25 +1,20 @@
 import { z } from 'zod'
-import { ContactUpdateOneRequiredWithoutInteractionsInputObjectSchema } from './ContactUpdateOneRequiredWithoutInteractionsInput.schema'
 import { InteractionSourceSchema } from '../enums/InteractionSource.schema'
 import { EnumInteractionSourceFieldUpdateOperationsInputObjectSchema } from './EnumInteractionSourceFieldUpdateOperationsInput.schema'
-import { SocialMediaServiceUpdateOneWithoutInteractionsInputObjectSchema } from './SocialMediaServiceUpdateOneWithoutInteractionsInput.schema'
 import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema'
 import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
 import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema'
-import { ConversationUpdateManyWithoutInteractionsInputObjectSchema } from './ConversationUpdateManyWithoutInteractionsInput.schema'
+import { ConversationListUpdateEnvelopeInputObjectSchema } from './ConversationListUpdateEnvelopeInput.schema'
+import { ConversationCreateInputObjectSchema } from './ConversationCreateInput.schema'
 import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema'
 
 export const InteractionsUpdateInputObjectSchema = z.object({
-	Contact:
-		ContactUpdateOneRequiredWithoutInteractionsInputObjectSchema?.optional(),
 	source: z
 		.union([
 			InteractionSourceSchema,
 			EnumInteractionSourceFieldUpdateOperationsInputObjectSchema,
 		])
 		?.optional(),
-	sourceSocial:
-		SocialMediaServiceUpdateOneWithoutInteractionsInputObjectSchema?.optional(),
 	time: z
 		.union([z.date(), DateTimeFieldUpdateOperationsInputObjectSchema])
 		?.optional(),
@@ -32,15 +27,14 @@ export const InteractionsUpdateInputObjectSchema = z.object({
 			NullableStringFieldUpdateOperationsInputObjectSchema.nullable(),
 		])
 		?.optional(),
-	conversationId:
-		ConversationUpdateManyWithoutInteractionsInputObjectSchema?.optional(),
-	createdAt: z
+	conversation: z
 		.union([
-			z.date(),
-			NullableDateTimeFieldUpdateOperationsInputObjectSchema.nullable(),
+			ConversationListUpdateEnvelopeInputObjectSchema,
+			ConversationCreateInputObjectSchema,
+			z.array(ConversationCreateInputObjectSchema),
 		])
 		?.optional(),
-	updatedAt: z
+	createdAt: z
 		.union([
 			z.date(),
 			NullableDateTimeFieldUpdateOperationsInputObjectSchema.nullable(),

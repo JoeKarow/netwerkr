@@ -9,6 +9,8 @@ export const SocialMediaServiceOrderByWithAggregationInputObjectSchema =
 		id: SortOrderSchema?.optional(),
 		name: SortOrderSchema?.optional(),
 		urlbase: SortOrderSchema?.optional(),
+		createdAt: SortOrderSchema?.optional(),
+		updatedAt: SortOrderSchema?.optional(),
 		_count:
 			SocialMediaServiceCountOrderByAggregateInputObjectSchema?.optional(),
 		_max: SocialMediaServiceMaxOrderByAggregateInputObjectSchema?.optional(),

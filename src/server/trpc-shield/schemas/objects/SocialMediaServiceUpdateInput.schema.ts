@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
-import { InteractionsUpdateManyWithoutSourceSocialInputObjectSchema } from './InteractionsUpdateManyWithoutSourceSocialInput.schema'
-import { SocialMediaUpdateManyWithoutServiceInputObjectSchema } from './SocialMediaUpdateManyWithoutServiceInput.schema'
+import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema'
+import { DateTimeFieldUpdateOperationsInputObjectSchema } from './DateTimeFieldUpdateOperationsInput.schema'
 
 export const SocialMediaServiceUpdateInputObjectSchema = z.object({
 	name: z
@@ -10,7 +10,13 @@ export const SocialMediaServiceUpdateInputObjectSchema = z.object({
 	urlbase: z
 		.union([z.string(), StringFieldUpdateOperationsInputObjectSchema])
 		?.optional(),
-	Interactions:
-		InteractionsUpdateManyWithoutSourceSocialInputObjectSchema?.optional(),
-	SocialMedia: SocialMediaUpdateManyWithoutServiceInputObjectSchema?.optional(),
+	createdAt: z
+		.union([
+			z.date(),
+			NullableDateTimeFieldUpdateOperationsInputObjectSchema.nullable(),
+		])
+		?.optional(),
+	updatedAt: z
+		.union([z.date(), DateTimeFieldUpdateOperationsInputObjectSchema])
+		?.optional(),
 })

@@ -1,16 +1,10 @@
 import { z } from 'zod'
-import { ContactUpdateOneRequiredWithoutSocialMediaInputObjectSchema } from './ContactUpdateOneRequiredWithoutSocialMediaInput.schema'
-import { SocialMediaServiceUpdateOneRequiredWithoutSocialMediaInputObjectSchema } from './SocialMediaServiceUpdateOneRequiredWithoutSocialMediaInput.schema'
 import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
 import { BoolFieldUpdateOperationsInputObjectSchema } from './BoolFieldUpdateOperationsInput.schema'
 import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema'
 import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema'
 
 export const SocialMediaUpdateInputObjectSchema = z.object({
-	contact:
-		ContactUpdateOneRequiredWithoutSocialMediaInputObjectSchema?.optional(),
-	service:
-		SocialMediaServiceUpdateOneRequiredWithoutSocialMediaInputObjectSchema?.optional(),
 	userId: z
 		.union([z.string(), StringFieldUpdateOperationsInputObjectSchema])
 		?.optional(),
@@ -30,12 +24,6 @@ export const SocialMediaUpdateInputObjectSchema = z.object({
 		])
 		?.optional(),
 	createdAt: z
-		.union([
-			z.date(),
-			NullableDateTimeFieldUpdateOperationsInputObjectSchema.nullable(),
-		])
-		?.optional(),
-	updatedAt: z
 		.union([
 			z.date(),
 			NullableDateTimeFieldUpdateOperationsInputObjectSchema.nullable(),

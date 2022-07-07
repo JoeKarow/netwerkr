@@ -1,12 +1,14 @@
 import { z } from 'zod'
 import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema'
-import { ContactEmailUncheckedUpdateManyWithoutContactInputObjectSchema } from './ContactEmailUncheckedUpdateManyWithoutContactInput.schema'
-import { ContactPhoneUncheckedUpdateManyWithoutContactInputObjectSchema } from './ContactPhoneUncheckedUpdateManyWithoutContactInput.schema'
-import { StringFieldUpdateOperationsInputObjectSchema } from './StringFieldUpdateOperationsInput.schema'
-import { SocialMediaUncheckedUpdateManyWithoutContactInputObjectSchema } from './SocialMediaUncheckedUpdateManyWithoutContactInput.schema'
-import { InteractionsUncheckedUpdateManyWithoutContactInputObjectSchema } from './InteractionsUncheckedUpdateManyWithoutContactInput.schema'
+import { EmailNullableUpdateEnvelopeInputObjectSchema } from './EmailNullableUpdateEnvelopeInput.schema'
+import { EmailCreateInputObjectSchema } from './EmailCreateInput.schema'
+import { PhoneNullableUpdateEnvelopeInputObjectSchema } from './PhoneNullableUpdateEnvelopeInput.schema'
+import { PhoneCreateInputObjectSchema } from './PhoneCreateInput.schema'
+import { SocialMediaListUpdateEnvelopeInputObjectSchema } from './SocialMediaListUpdateEnvelopeInput.schema'
+import { SocialMediaCreateInputObjectSchema } from './SocialMediaCreateInput.schema'
+import { InteractionsNullableUpdateEnvelopeInputObjectSchema } from './InteractionsNullableUpdateEnvelopeInput.schema'
+import { InteractionsCreateInputObjectSchema } from './InteractionsCreateInput.schema'
 import { BoolFieldUpdateOperationsInputObjectSchema } from './BoolFieldUpdateOperationsInput.schema'
-import { UserUncheckedUpdateOneWithoutProfileInputObjectSchema } from './UserUncheckedUpdateOneWithoutProfileInput.schema'
 import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema'
 
 export const ContactUncheckedUpdateInputObjectSchema = z.object({
@@ -22,35 +24,50 @@ export const ContactUncheckedUpdateInputObjectSchema = z.object({
 			NullableStringFieldUpdateOperationsInputObjectSchema.nullable(),
 		])
 		?.optional(),
-	email:
-		ContactEmailUncheckedUpdateManyWithoutContactInputObjectSchema?.optional(),
-	phone:
-		ContactPhoneUncheckedUpdateManyWithoutContactInputObjectSchema?.optional(),
-	photo: z
-		.union([z.string(), StringFieldUpdateOperationsInputObjectSchema])
+	email: z
+		.union([
+			EmailNullableUpdateEnvelopeInputObjectSchema,
+			EmailCreateInputObjectSchema.nullable(),
+		])
 		?.optional(),
-	socialMedia:
-		SocialMediaUncheckedUpdateManyWithoutContactInputObjectSchema?.optional(),
-	interactions:
-		InteractionsUncheckedUpdateManyWithoutContactInputObjectSchema?.optional(),
+	phone: z
+		.union([
+			PhoneNullableUpdateEnvelopeInputObjectSchema,
+			PhoneCreateInputObjectSchema.nullable(),
+		])
+		?.optional(),
+	photo: z
+		.union([
+			z.string(),
+			NullableStringFieldUpdateOperationsInputObjectSchema.nullable(),
+		])
+		?.optional(),
+	socialMedia: z
+		.union([
+			SocialMediaListUpdateEnvelopeInputObjectSchema,
+			SocialMediaCreateInputObjectSchema,
+			z.array(SocialMediaCreateInputObjectSchema),
+		])
+		?.optional(),
+	interactions: z
+		.union([
+			InteractionsNullableUpdateEnvelopeInputObjectSchema,
+			InteractionsCreateInputObjectSchema.nullable(),
+		])
+		?.optional(),
 	onTwitterList: z
 		.union([z.boolean(), BoolFieldUpdateOperationsInputObjectSchema])
 		?.optional(),
-	associatedUserId: z
-		.union([z.string(), StringFieldUpdateOperationsInputObjectSchema])
-		?.optional(),
-	profileForUser:
-		UserUncheckedUpdateOneWithoutProfileInputObjectSchema?.optional(),
 	createdAt: z
 		.union([
 			z.date(),
 			NullableDateTimeFieldUpdateOperationsInputObjectSchema.nullable(),
 		])
 		?.optional(),
-	updatedAt: z
+	associatedUserId: z
 		.union([
-			z.date(),
-			NullableDateTimeFieldUpdateOperationsInputObjectSchema.nullable(),
+			z.string(),
+			NullableStringFieldUpdateOperationsInputObjectSchema.nullable(),
 		])
 		?.optional(),
 })

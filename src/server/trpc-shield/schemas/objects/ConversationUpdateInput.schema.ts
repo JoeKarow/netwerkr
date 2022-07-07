@@ -1,6 +1,5 @@
 import { z } from 'zod'
 import { NullableStringFieldUpdateOperationsInputObjectSchema } from './NullableStringFieldUpdateOperationsInput.schema'
-import { InteractionsUpdateOneWithoutConversationIdInputObjectSchema } from './InteractionsUpdateOneWithoutConversationIdInput.schema'
 
 export const ConversationUpdateInputObjectSchema = z.object({
 	twitterConvoId: z
@@ -9,6 +8,4 @@ export const ConversationUpdateInputObjectSchema = z.object({
 			NullableStringFieldUpdateOperationsInputObjectSchema.nullable(),
 		])
 		?.optional(),
-	Interactions:
-		InteractionsUpdateOneWithoutConversationIdInputObjectSchema?.optional(),
 })

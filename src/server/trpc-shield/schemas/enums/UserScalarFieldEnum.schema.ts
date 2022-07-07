@@ -9,7 +9,6 @@ export const UserScalarFieldEnumSchema = z.enum([
 	'twitterList',
 	'role',
 	'disabled',
-	'profileId',
 	'createdAt',
 	'updatedAt',
 ])

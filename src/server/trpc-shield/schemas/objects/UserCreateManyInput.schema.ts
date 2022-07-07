@@ -1,5 +1,7 @@
 import { z } from 'zod'
 import { RoleSchema } from '../enums/Role.schema'
+import { ProfileListCreateEnvelopeInputObjectSchema } from './ProfileListCreateEnvelopeInput.schema'
+import { ProfileCreateInputObjectSchema } from './ProfileCreateInput.schema'
 
 export const UserCreateManyInputObjectSchema = z.object({
 	id: z.string()?.optional(),
@@ -10,7 +12,13 @@ export const UserCreateManyInputObjectSchema = z.object({
 	twitterList: z.string()?.optional().nullable(),
 	role: RoleSchema?.optional(),
 	disabled: z.boolean()?.optional().nullable(),
-	profileId: z.string()?.optional().nullable(),
+	profile: z
+		.union([
+			ProfileListCreateEnvelopeInputObjectSchema,
+			ProfileCreateInputObjectSchema,
+			z.array(ProfileCreateInputObjectSchema),
+		])
+		?.optional(),
 	createdAt: z.date()?.optional().nullable(),
 	updatedAt: z.date()?.optional().nullable(),
 })

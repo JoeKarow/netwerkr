@@ -7,7 +7,6 @@ export const ContactMinOrderByAggregateInputObjectSchema = z.object({
 	lastName: SortOrderSchema?.optional(),
 	photo: SortOrderSchema?.optional(),
 	onTwitterList: SortOrderSchema?.optional(),
-	associatedUserId: SortOrderSchema?.optional(),
 	createdAt: SortOrderSchema?.optional(),
-	updatedAt: SortOrderSchema?.optional(),
+	associatedUserId: SortOrderSchema?.optional(),
 })

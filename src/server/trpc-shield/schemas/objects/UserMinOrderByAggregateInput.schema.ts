@@ -10,7 +10,6 @@ export const UserMinOrderByAggregateInputObjectSchema = z.object({
 	twitterList: SortOrderSchema?.optional(),
 	role: SortOrderSchema?.optional(),
 	disabled: SortOrderSchema?.optional(),
-	profileId: SortOrderSchema?.optional(),
 	createdAt: SortOrderSchema?.optional(),
 	updatedAt: SortOrderSchema?.optional(),
 })

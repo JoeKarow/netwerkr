@@ -8,8 +8,8 @@ import { BoolNullableFilterObjectSchema } from './BoolNullableFilter.schema'
 import { AccountListRelationFilterObjectSchema } from './AccountListRelationFilter.schema'
 import { SessionListRelationFilterObjectSchema } from './SessionListRelationFilter.schema'
 import { ContactListRelationFilterObjectSchema } from './ContactListRelationFilter.schema'
-import { ContactRelationFilterObjectSchema } from './ContactRelationFilter.schema'
-import { ContactWhereInputObjectSchema } from './ContactWhereInput.schema'
+import { ProfileCompositeListFilterObjectSchema } from './ProfileCompositeListFilter.schema'
+import { ProfileObjectEqualityInputObjectSchema } from './ProfileObjectEqualityInput.schema'
 
 ///@ts-ignore
 export const UserWhereInputObjectSchema = z.object({
@@ -38,12 +38,9 @@ export const UserWhereInputObjectSchema = z.object({
 	contacts: ContactListRelationFilterObjectSchema?.optional(),
 	profile: z
 		.union([
-			ContactRelationFilterObjectSchema,
-			ContactWhereInputObjectSchema.nullable(),
+			ProfileCompositeListFilterObjectSchema,
+			z.array(ProfileObjectEqualityInputObjectSchema),
 		])
-		?.optional(),
-	profileId: z
-		.union([StringNullableFilterObjectSchema, z.string().nullable()])
 		?.optional(),
 	createdAt: z
 		.union([DateTimeNullableFilterObjectSchema, z.date().nullable()])

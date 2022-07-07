@@ -2,6 +2,8 @@ import { z } from 'zod'
 import { RoleSchema } from '../enums/Role.schema'
 import { AccountUncheckedCreateNestedManyWithoutUserInputObjectSchema } from './AccountUncheckedCreateNestedManyWithoutUserInput.schema'
 import { SessionUncheckedCreateNestedManyWithoutUserInputObjectSchema } from './SessionUncheckedCreateNestedManyWithoutUserInput.schema'
+import { ProfileListCreateEnvelopeInputObjectSchema } from './ProfileListCreateEnvelopeInput.schema'
+import { ProfileCreateInputObjectSchema } from './ProfileCreateInput.schema'
 
 export const UserUncheckedCreateWithoutContactsInputObjectSchema = z.object({
 	id: z.string()?.optional(),
@@ -16,7 +18,13 @@ export const UserUncheckedCreateWithoutContactsInputObjectSchema = z.object({
 		AccountUncheckedCreateNestedManyWithoutUserInputObjectSchema?.optional(),
 	sessions:
 		SessionUncheckedCreateNestedManyWithoutUserInputObjectSchema?.optional(),
-	profileId: z.string()?.optional().nullable(),
+	profile: z
+		.union([
+			ProfileListCreateEnvelopeInputObjectSchema,
+			ProfileCreateInputObjectSchema,
+			z.array(ProfileCreateInputObjectSchema),
+		])
+		?.optional(),
 	createdAt: z.date()?.optional().nullable(),
 	updatedAt: z.date()?.optional().nullable(),
 })

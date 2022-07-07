@@ -3,7 +3,8 @@ import { RoleSchema } from '../enums/Role.schema'
 import { AccountCreateNestedManyWithoutUserInputObjectSchema } from './AccountCreateNestedManyWithoutUserInput.schema'
 import { SessionCreateNestedManyWithoutUserInputObjectSchema } from './SessionCreateNestedManyWithoutUserInput.schema'
 import { ContactCreateNestedManyWithoutAssociatedUserInputObjectSchema } from './ContactCreateNestedManyWithoutAssociatedUserInput.schema'
-import { ContactCreateNestedOneWithoutProfileForUserInputObjectSchema } from './ContactCreateNestedOneWithoutProfileForUserInput.schema'
+import { ProfileListCreateEnvelopeInputObjectSchema } from './ProfileListCreateEnvelopeInput.schema'
+import { ProfileCreateInputObjectSchema } from './ProfileCreateInput.schema'
 
 export const UserCreateInputObjectSchema = z.object({
 	id: z.string()?.optional(),
@@ -18,8 +19,13 @@ export const UserCreateInputObjectSchema = z.object({
 	sessions: SessionCreateNestedManyWithoutUserInputObjectSchema?.optional(),
 	contacts:
 		ContactCreateNestedManyWithoutAssociatedUserInputObjectSchema?.optional(),
-	profile:
-		ContactCreateNestedOneWithoutProfileForUserInputObjectSchema?.optional(),
+	profile: z
+		.union([
+			ProfileListCreateEnvelopeInputObjectSchema,
+			ProfileCreateInputObjectSchema,
+			z.array(ProfileCreateInputObjectSchema),
+		])
+		?.optional(),
 	createdAt: z.date()?.optional().nullable(),
 	updatedAt: z.date()?.optional().nullable(),
 })
