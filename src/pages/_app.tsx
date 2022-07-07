@@ -77,6 +77,7 @@ const MyApp: NextComponentType<
 }
 
 const getBaseUrl = () => {
+	/* It's a way to get the base url for the app. */
 	if (typeof window !== 'undefined') {
 		return ''
 	}
