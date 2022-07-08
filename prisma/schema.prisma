@@ -2,17 +2,19 @@ generator client {
   provider = "prisma-client-js"
 }
 
-generator zod {
-  provider = "prisma-zod-generator"
-  output   = "./zod"
-}
+// generator zod {
+//   provider      = "zod-prisma"
+//   output        = "./zod"
+//   relationModel = true
 
-generator trpc {
-  provider       = "prisma-trpc-generator"
-  output         = "./trpc-generated"
-  withMiddleware = true
-  withShield     = true
-}
+// }
+
+// generator trpc {
+//   provider       = "prisma-trpc-generator"
+//   output         = "./trpc-generated"
+//   withMiddleware = true
+//   withShield     = true
+// }
 
 datasource db {
   provider = "mongodb"
@@ -21,7 +23,6 @@ datasource db {
 
 model Account {
   id                String    @id @default(auto()) @map("_id") @db.ObjectId
-  userId            String    @db.ObjectId
   type              String
   provider          String
   providerAccountId String
@@ -33,6 +34,7 @@ model Account {
   id_token          String?
   session_state     String?
   user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId            String    @unique @db.ObjectId
   createdAt         DateTime? @default(now())
   updatedAt         DateTime? @updatedAt
 
@@ -42,9 +44,9 @@ model Account {
 model Session {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   sessionToken String   @unique
-  userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String   @db.ObjectId
 }
 
 model User {
