@@ -1,7 +1,6 @@
 import { faker } from '@faker-js/faker'
 
-import { Prisma } from '@prisma/client'
-import { EmailLabel, PhoneLabel, InteractionSource } from '@prisma/client'
+import { Prisma, PrismaClient } from '@prisma/client'
 
 // SocialMediaCreateWithoutContactInput
 
@@ -34,11 +33,7 @@ const fakeEmail = (max: number) => {
 	for (let i = 0; i < faker.mersenne.rand(1, max); i++) {
 		result.push({
 			email: faker.internet.email(),
-			label: faker.helpers.arrayElement([
-				'Home',
-				'Work',
-				'Other',
-			]) as EmailLabel,
+			label: faker.helpers.arrayElement(['Home', 'Work', 'Other']),
 		})
 	}
 	return result
@@ -54,12 +49,7 @@ const fakePhone = (max: number) => {
 	for (let i = 0; i < faker.mersenne.rand(1, max); i++) {
 		result.push({
 			number: faker.phone.number('###-###-####'),
-			label: faker.helpers.arrayElement([
-				'Home',
-				'Work',
-				'Mobile',
-				'Other',
-			]) as PhoneLabel,
+			label: faker.helpers.arrayElement(['Home', 'Work', 'Mobile', 'Other']),
 		})
 	}
 	return result
@@ -74,19 +64,13 @@ const fakePhone = (max: number) => {
  * social media to a service
  * @returns A SocialMediaCreateWithoutContactInput object
  */
-const fakeSocial = (
-	first: string,
-	last: string,
-	ids: string[]
-): Prisma.SocialMediaCreateWithoutContactInput => {
+const fakeSocial = (first: string, last: string, ids: string[]) => {
 	const serviceId = faker.helpers.arrayElement(ids)
 	return {
 		userId: faker.random.numeric(7),
 		displayName: `${first} ${last}`,
 		username: faker.internet.userName(first, last),
-		service: {
-			connect: { id: serviceId },
-		},
+		service: serviceId,
 		protected: false,
 		profileImg: faker.internet.avatar(),
 	}
@@ -100,7 +84,7 @@ const fakeSocial = (
  * 	time: a random date in the past
  * 	content: a random sentence
  */
-const fakeInteraction = (max: number) => {
+const fakeInteraction = (max: number, socialMediaIds: string[]) => {
 	const result = []
 	for (let i = 0; i < faker.mersenne.rand(1, max); i++) {
 		result.push({
@@ -112,14 +96,15 @@ const fakeInteraction = (max: number) => {
 				'Email',
 				'DM',
 				'InPerson',
-			]) as InteractionSource,
+			]),
 			time: faker.date.past(),
 			content: faker.lorem.sentences(),
+			sourceSocial: faker.helpers.arrayElement(socialMediaIds),
 		})
 	}
 	return result
 }
-type FakeContactProps = {
+interface FakeContactProps {
 	associatedId: string
 	socialMediaIds: string[]
 }
@@ -133,27 +118,31 @@ type FakeContactProps = {
 export const generateFakeContact = ({
 	associatedId,
 	socialMediaIds,
-}: FakeContactProps): Prisma.ContactUncheckedCreateInput => {
+}: FakeContactProps) => {
 	const contact = fakeContact()
-	const email = fakeEmail(3)
-	const phone = fakePhone(3)
-	const interaction = fakeInteraction(15)
+	const email = fakeEmail(3) as Prisma.EmailListCreateEnvelopeInput
+	const phone = fakePhone(3) as Prisma.PhoneListCreateEnvelopeInput
+	const interactions = fakeInteraction(
+		15,
+		socialMediaIds
+	) as Prisma.InteractionsListCreateEnvelopeInput
+	const socialMedia = fakeSocial(
+		contact.firstName,
+		contact.lastName,
+		socialMediaIds
+	) as Prisma.SocialMediaListCreateEnvelopeInput
 
 	return {
 		...contact,
-		socialMedia: {
-			create: fakeSocial(contact.firstName, contact.lastName, socialMediaIds),
+		associatedUser: {
+			connect: {
+				id: associatedId,
+			},
 		},
-		associatedUserId: associatedId,
-		email: {
-			create: email,
-		},
-		phone: {
-			create: phone,
-		},
-		interactions: {
-			create: interaction,
-		},
+		socialMedia,
+		email,
+		phone,
+		interactions,
 	}
 	// console.log( result[ i ] )
 }

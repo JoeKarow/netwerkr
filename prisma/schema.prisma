@@ -9,7 +9,7 @@ generator zod {
 
 generator trpc {
   provider       = "prisma-trpc-generator"
-  output         = "./trpc-shield"
+  output         = "./trpc-generated"
   withMiddleware = true
   withShield     = true
 }
@@ -71,25 +71,25 @@ enum Role {
 }
 
 model Contact {
-  id               String        @id @default(auto()) @map("_id") @db.ObjectId
+  id               String         @id @default(auto()) @map("_id") @db.ObjectId
   firstName        String?
   lastName         String?
-  email            Email?
-  phone            Phone?
+  email            Email[]
+  phone            Phone[]
   photo            String?
   socialMedia      SocialMedia[]
-  interactions     Interactions?
-  onTwitterList    Boolean       @default(false)
-  createdAt        DateTime?     @default(now())
-  associatedUser   User?         @relation(fields: [associatedUserId], references: [id])
-  associatedUserId String?       @db.ObjectId
+  interactions     Interactions[]
+  onTwitterList    Boolean        @default(false)
+  createdAt        DateTime?      @default(now())
+  associatedUser   User?          @relation(fields: [associatedUserId], references: [id])
+  associatedUserId String?        @db.ObjectId
 }
 
 type Profile {
   firstName   String
   lastName    String
   email       Email[]
-  phone       Phone?
+  phone       Phone[]
   photo       String?
   socialMedia SocialMedia[]
   createdAt   DateTime?     @default(now())
@@ -123,7 +123,7 @@ enum PhoneLabel {
 }
 
 type SocialMedia {
-  service     Json
+  service     String    @db.ObjectId
   userId      String
   displayName String
   username    String
@@ -142,7 +142,7 @@ model SocialMediaService {
 
 type Interactions {
   source       InteractionSource
-  sourceSocial Json
+  sourceSocial String            @db.ObjectId
   time         DateTime
   content      String
   extPostId    String?
