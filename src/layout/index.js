@@ -1,4 +1,4 @@
 // @index('./*.{js*,ts*}', f => `export * from '${f.path}'`)
-export * from './dash'
+export * from './DashLayout'
 export * from './navLinks'
-export * from './web'
+export * from './MainLayout'

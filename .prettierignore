@@ -1,3 +1,7 @@
 .github/
 pnpm-lock.yaml
 .next/
+prisma/shield/
+prisma/trpc-shield/
+prisma/zod
+node_modules/

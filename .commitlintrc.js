@@ -62,6 +62,7 @@ module.exports = {
 			{ value: 'build', name: 'build:     Build System/Workflows' },
 			{ value: 'deps', name: 'deps:      Dependencies' },
 			{ value: 'conf', name: 'config:    Config changes' },
+			{ value: 'types', name: 'types:    TypeScript Typings' },
 		],
 		useEmoji: true,
 		// scopes: ['base', ...apps, ...packages],

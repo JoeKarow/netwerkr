@@ -9,9 +9,9 @@ import {
 	Adjustments,
 	Lock,
 } from 'tabler-icons-react'
-import { LinksGroup } from '../components'
+import { LinksGroup } from '~/components'
 
-import { navbarNested as data } from '../mockdata'
+import { navbarNested as data } from '~/mockdata'
 
 //TODO: pass in authenticated user data (name, avatar)
 

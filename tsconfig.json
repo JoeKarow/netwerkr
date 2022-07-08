@@ -5,6 +5,7 @@
 		"allowJs": true,
 		"skipLibCheck": true,
 		"strict": true,
+		"strictNullChecks": true,
 		"forceConsistentCasingInFileNames": true,
 		"noEmit": true,
 		"esModuleInterop": true,
@@ -15,19 +16,20 @@
 		"jsx": "preserve",
 		"incremental": true,
 		"noUncheckedIndexedAccess": true,
-		"baseUrl": "src",
+		"baseUrl": ".",
 		"paths": {
-			"@db/*": ["../prisma/*"]
-			// "@/*": ["src/*"]
+			"@/*": ["."],
+			"~/*": ["src/*"]
 		}
 	},
 	"include": [
 		"next-env.d.ts",
 		"**/*.ts",
 		"**/*.tsx",
-		"**/*.js",
-		"**/*.jsx",
-		"src"
+		"./*.js",
+		"./src/**/*.jsx",
+		"./src/**/*.js",
+		".eslintrc.js"
 	],
-	"exclude": ["node_modules"]
+	"exclude": ["node_modules", ".next"]
 }

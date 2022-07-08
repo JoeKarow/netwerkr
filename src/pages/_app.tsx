@@ -1,38 +1,44 @@
 // src/pages/_app.tsx
-import { withTRPC } from '@trpc/next'
-import type { AppRouter } from '../server/router'
-import type { AppType } from 'next/dist/shared/lib/utils'
-import superjson from 'superjson'
+// import { withTRPC } from '@trpc/next'
+// import { loggerLink } from '@trpc/client/links/loggerLink'
+// import { httpBatchLink } from '@trpc/client/links/httpBatchLink'
+// import type { AppRouter } from '~/server/router'
+// import superjson from 'superjson'
+
+import { trpc } from '~/utils/trpc'
 
 import { SessionProvider } from 'next-auth/react'
 
-import '../styles/globals.css'
-
 import Head from 'next/head'
 import { useState } from 'react'
-import { getCookie, setCookies } from 'cookies-next'
+import { setCookies } from 'cookies-next'
 import {
 	MantineProvider,
 	ColorScheme,
 	ColorSchemeProvider,
 } from '@mantine/core'
 import { NotificationsProvider } from '@mantine/notifications'
-import type { ReactElement, ReactNode } from 'react'
-import type { NextPage, GetServerSidePropsContext } from 'next'
-import type { AppProps } from 'next/app'
+import { globalTheme } from '~/styles/theme'
+import { AppContext, AppInitialProps, AppLayoutProps } from 'next/app'
+import type { ReactNode } from 'react'
+import type { NextComponentType } from 'next'
+import type { Session } from 'next-auth'
 
-export type NextPageWithLayout = NextPage & {
-	getLayout?: (page: ReactElement) => ReactNode
+import { ReactQueryDevtools } from 'react-query/devtools'
+
+type AppLayoutPropsWithColorScheme = AppLayoutProps & {
+	colorScheme: ColorScheme
+	session: Session
 }
 
-type AppPropsWithLayout = AppProps & {
-	Component: NextPageWithLayout
-}
-
-const MyApp = (props: AppPropsWithLayout & { colorScheme: ColorScheme }) => {
+const MyApp: NextComponentType<
+	AppContext,
+	AppInitialProps,
+	AppLayoutPropsWithColorScheme
+> = props => {
 	const { Component, pageProps } = props
 	const { session } = pageProps
-	const getLayout = Component.getLayout || (page => page)
+	const getLayout = Component.getLayout || ((page: ReactNode) => page)
 	const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme)
 	const toggleColorScheme = (value?: ColorScheme) => {
 		const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark')
@@ -41,6 +47,7 @@ const MyApp = (props: AppPropsWithLayout & { colorScheme: ColorScheme }) => {
 			maxAge: 60 * 60 * 24 * 30,
 		})
 	}
+
 	return (
 		<SessionProvider session={session}>
 			<Head>
@@ -54,16 +61,10 @@ const MyApp = (props: AppPropsWithLayout & { colorScheme: ColorScheme }) => {
 				colorScheme={colorScheme}
 				toggleColorScheme={toggleColorScheme}
 			>
-				<MantineProvider
-					withGlobalStyles
-					withNormalizeCSS
-					theme={{
-						/** Put your mantine theme override here */
-						colorScheme: 'light',
-					}}
-				>
+				<MantineProvider withGlobalStyles withNormalizeCSS theme={globalTheme}>
 					<NotificationsProvider>
 						{getLayout(<Component {...pageProps} />)}
+						<ReactQueryDevtools initialIsOpen={false} />
 					</NotificationsProvider>
 				</MantineProvider>
 			</ColorSchemeProvider>
@@ -71,35 +72,4 @@ const MyApp = (props: AppPropsWithLayout & { colorScheme: ColorScheme }) => {
 	)
 }
 
-const getBaseUrl = () => {
-	if (typeof window !== 'undefined') {
-		return ''
-	}
-	if (process.browser) return '' // Browser should use current path
-	if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}` // SSR should use vercel url
-
-	return `http://localhost:${process.env.PORT ?? 3000}` // dev SSR should use localhost
-}
-
-export default withTRPC<AppRouter>({
-	config({ ctx }) {
-		/**
-		 * If you want to use SSR, you need to use the server's full URL
-		 * @link https://trpc.io/docs/ssr
-		 */
-		const url = `${getBaseUrl()}/api/trpc`
-
-		return {
-			url,
-			transformer: superjson,
-			/**
-			 * @link https://react-query.tanstack.com/reference/QueryClient
-			 */
-			// queryClientConfig: { defaultOptions: { queries: { staleTime: 60 } } },
-		}
-	},
-	/**
-	 * @link https://trpc.io/docs/ssr
-	 */
-	ssr: false,
-})(MyApp)
+export default trpc.withTRPC(MyApp)

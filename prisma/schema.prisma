@@ -2,18 +2,19 @@ generator client {
   provider = "prisma-client-js"
 }
 
-generator zod {
-  provider = "zod-prisma"
-  output   = "./zod"
-  imports  = "./zod-prisma"
-}
+// generator zod {
+//   provider      = "zod-prisma"
+//   output        = "./zod"
+//   relationModel = true
 
-generator trpc {
-  provider       = "prisma-trpc-generator"
-  output         = "./trpc-shield"
-  withMiddleware = true
-  withShield     = true
-}
+// }
+
+// generator trpc {
+//   provider       = "prisma-trpc-generator"
+//   output         = "./trpc-generated"
+//   withMiddleware = true
+//   withShield     = true
+// }
 
 datasource db {
   provider = "mongodb"
@@ -22,7 +23,6 @@ datasource db {
 
 model Account {
   id                String    @id @default(auto()) @map("_id") @db.ObjectId
-  userId            String    @db.ObjectId
   type              String
   provider          String
   providerAccountId String
@@ -34,6 +34,7 @@ model Account {
   id_token          String?
   session_state     String?
   user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId            String    @unique @db.ObjectId
   createdAt         DateTime? @default(now())
   updatedAt         DateTime? @updatedAt
 
@@ -43,9 +44,9 @@ model Account {
 model Session {
   id           String   @id @default(auto()) @map("_id") @db.ObjectId
   sessionToken String   @unique
-  userId       String
   expires      DateTime
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String   @db.ObjectId
 }
 
 model User {
@@ -59,9 +60,8 @@ model User {
   disabled      Boolean?
   accounts      Account[]
   sessions      Session[]
-  contacts      Contact[] @relation("contactCollection")
-  profile       Contact?  @relation("userProfile", fields: [profileId], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  profileId     String?   @unique @db.ObjectId
+  contacts      Contact[]
+  profile       Profile[]
   createdAt     DateTime? @default(now())
   updatedAt     DateTime? @updatedAt
 
@@ -73,34 +73,35 @@ enum Role {
 }
 
 model Contact {
-  id            String         @id @default(auto()) @map("_id") @db.ObjectId /// @zod.refine(imports.mongoId)
-  firstName     String?
-  lastName      String?
-  email         ContactEmail[]
-  phone         ContactPhone[]
-  photo         String
-  socialMedia   SocialMedia[]
-  interactions  Interactions[]
-  onTwitterList Boolean
-
-  associatedUser   User      @relation("contactCollection", fields: [associatedUserId], references: [id], onDelete: Cascade)
-  associatedUserId String    @db.ObjectId
-  profileForUser   User?     @relation("userProfile")
-  createdAt        DateTime? @default(now())
-  updatedAt        DateTime? @updatedAt
+  id               String         @id @default(auto()) @map("_id") @db.ObjectId
+  firstName        String?
+  lastName         String?
+  email            Email[]
+  phone            Phone[]
+  photo            String?
+  socialMedia      SocialMedia[]
+  interactions     Interactions[]
+  onTwitterList    Boolean        @default(false)
+  createdAt        DateTime?      @default(now())
+  associatedUser   User?          @relation(fields: [associatedUserId], references: [id])
+  associatedUserId String?        @db.ObjectId
 }
 
-model ContactEmail {
-  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+type Profile {
+  firstName   String
+  lastName    String
+  email       Email[]
+  phone       Phone[]
+  photo       String?
+  socialMedia SocialMedia[]
+  createdAt   DateTime?     @default(now())
+}
+
+type Email {
   email     String
   primary   Boolean?
   label     EmailLabel @default(Home)
-  contact   Contact    @relation(fields: [contactId], references: [id], onDelete: Cascade, onUpdate: Cascade)
   createdAt DateTime?  @default(now())
-  updatedAt DateTime?  @updatedAt
-
-  contactId String @db.ObjectId
-  @@unique([email, contactId])
 }
 
 enum EmailLabel {
@@ -109,15 +110,11 @@ enum EmailLabel {
   Other
 }
 
-model ContactPhone {
-  id        String     @id @default(auto()) @map("_id") @db.ObjectId
+type Phone {
   number    String
   label     PhoneLabel
   primary   Boolean?
-  contact   Contact    @relation(fields: [contactId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  contactId String     @db.ObjectId
   createdAt DateTime?  @default(now())
-  updatedAt DateTime?  @updatedAt
 }
 
 enum PhoneLabel {
@@ -127,47 +124,32 @@ enum PhoneLabel {
   Other
 }
 
-model SocialMedia {
-  id          String             @id @default(auto()) @map("_id") @db.ObjectId
-  contact     Contact            @relation(fields: [contactId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  service     SocialMediaService @relation(fields: [socialMediaServiceId], references: [id])
+type SocialMedia {
+  service     String    @db.ObjectId
   userId      String
   displayName String
   username    String
   protected   Boolean
   profileImg  String?
-  createdAt   DateTime?          @default(now())
-  updatedAt   DateTime?          @updatedAt
-
-
-  contactId            String @db.ObjectId
-  socialMediaServiceId String @db.ObjectId
+  createdAt   DateTime? @default(now())
 }
 
 model SocialMediaService {
-  id      String @id @default(auto()) @map("_id") @db.ObjectId
-  name    String @unique
-  urlbase String
-
-
-  Interactions Interactions[]
-  SocialMedia  SocialMedia[]
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  name      String    @unique
+  urlbase   String
+  createdAt DateTime? @default(now())
+  updatedAt DateTime  @updatedAt
 }
 
-model Interactions {
-  id             String              @id @default(auto()) @map("_id") @db.ObjectId
-  Contact        Contact             @relation(fields: [contactId], references: [id], onDelete: Cascade)
-  contactId      String              @db.ObjectId
-  source         InteractionSource
-  sourceSocial   SocialMediaService? @relation(fields: [socialMediaServiceId], references: [id])
-  time           DateTime
-  content        String
-  extPostId      String?
-  conversationId Conversation[]
-  createdAt      DateTime?           @default(now())
-  updatedAt      DateTime?           @updatedAt
-
-  socialMediaServiceId String? @db.ObjectId
+type Interactions {
+  source       InteractionSource
+  sourceSocial String            @db.ObjectId
+  time         DateTime
+  content      String
+  extPostId    String?
+  conversation Conversation[]
+  createdAt    DateTime?         @default(now())
 }
 
 enum InteractionSource {
@@ -180,11 +162,6 @@ enum InteractionSource {
   InPerson
 }
 
-model Conversation {
-  id             String  @id @default(auto()) @map("_id") @db.ObjectId
+type Conversation {
   twitterConvoId String?
-
-
-  Interactions   Interactions? @relation(fields: [interactionsId], references: [id], onDelete: Cascade)
-  interactionsId String?       @db.ObjectId
 }

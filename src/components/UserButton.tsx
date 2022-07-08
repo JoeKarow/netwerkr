@@ -7,7 +7,7 @@ import {
 	createStyles,
 	Menu,
 } from '@mantine/core'
-import { NextLink } from '@mantine/next'
+// import { NextLink } from '@mantine/next'
 import {
 	Logout,
 	Heart,
@@ -20,8 +20,9 @@ import {
 import { useSession } from 'next-auth/react'
 // import { useProviders } from '../hooks'
 import { signIn, signOut } from 'next-auth/react'
-import { randomId } from '@mantine/hooks'
+// import { randomId } from '@mantine/hooks'
 import { BrandTwitter } from 'tabler-icons-react'
+// import { Session } from 'next-auth'
 
 //TODO: Change menu items
 
@@ -55,10 +56,10 @@ export interface UserButton {
 	}
 }
 
-interface LoginProvider {
-	name: String
-	icon: JSX.Element
-}
+// interface LoginProvider {
+// 	name: string
+// 	icon: JSX.Element
+// }
 
 export function UserButton() {
 	const { classes, cx, theme } = useStyles()
@@ -123,7 +124,7 @@ export function UserButton() {
 					<Group spacing={7}>
 						<Avatar
 							src={session.user.image}
-							alt={session.user.name}
+							alt={session.user.name || ''}
 							radius='xl'
 							size={20}
 						/>
