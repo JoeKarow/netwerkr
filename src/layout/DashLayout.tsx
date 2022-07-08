@@ -1,5 +1,5 @@
 import React, { FC, PropsWithChildren } from 'react'
-import { NavbarNested, HeaderUser } from '../section'
+import { NavbarNested, HeaderUser } from '~/section'
 import { AppShell, Container } from '@mantine/core'
 
 export const DashLayout: FC<PropsWithChildren> = ({ children }) => {

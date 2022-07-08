@@ -2,7 +2,7 @@
 import { withTRPC } from '@trpc/next'
 import { loggerLink } from '@trpc/client/links/loggerLink'
 import { httpBatchLink } from '@trpc/client/links/httpBatchLink'
-import type { AppRouter } from 'server/router'
+import type { AppRouter } from '~/server/router'
 import superjson from 'superjson'
 
 import { SessionProvider } from 'next-auth/react'
@@ -16,7 +16,7 @@ import {
 	ColorSchemeProvider,
 } from '@mantine/core'
 import { NotificationsProvider } from '@mantine/notifications'
-import { globalTheme } from 'styles/theme'
+import { globalTheme } from '~/styles/theme'
 import { AppContext, AppInitialProps, AppLayoutProps } from 'next/app'
 import type { ReactNode } from 'react'
 import type { NextComponentType } from 'next'

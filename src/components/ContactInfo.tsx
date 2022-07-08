@@ -1,5 +1,7 @@
 import { createStyles, Avatar, Text, Group } from '@mantine/core'
-import { RelatedContactModel } from '@db/zod'
+
+// TODO: Update zod model
+// import { RelatedContactModel } from '@db/zod'
 import * as z from 'zod'
 
 type Contact = z.infer<typeof RelatedContactModel>

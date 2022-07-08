@@ -1,8 +1,8 @@
 import React from 'react'
 import { useSession } from 'next-auth/react'
-import { DashLayout } from 'layout'
-import { ProfileGrid } from 'section'
-import { JsonView } from 'components/devtools'
+import { DashLayout } from '~/layout'
+import { ProfileGrid } from '~/section'
+import { JsonView } from '~/components/devtools'
 // import { getProfile } from "@/db/getProfile";
 import type { NextPageWithLayout } from 'next'
 

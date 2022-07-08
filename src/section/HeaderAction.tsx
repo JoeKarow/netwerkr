@@ -11,7 +11,7 @@ import {
 } from '@mantine/core'
 import { useBooleanToggle } from '@mantine/hooks'
 import { ChevronDown, User } from 'tabler-icons-react'
-import { UserButton } from '../components'
+import { UserButton } from '~/components'
 
 const HEADER_HEIGHT = 60
 
