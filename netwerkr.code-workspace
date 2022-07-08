@@ -5,18 +5,19 @@
 		}
 	],
 	"settings": {
-		"iridium.npm.packageManager": "pnpm",
-		"cSpell.words": ["netwerkr"],
-		"npm.packageManager": "pnpm",
-		"eslint.packageManager": "pnpm",
-		"prisma.fileWatcher": true,
-		"createTests.defaultLocationForTestFiles": "project root",
 		"createTests.customLocationForTestFiles": "",
+		"createTests.defaultLocationForTestFiles": "project root",
 		"createTests.testDirectoryName": "__tests__",
-		"explorer.fileNesting.enabled": false,
-		"explorer.excludeGitIgnore": false,
-		"jest.autoRun": "off",
+		"cSpell.words": ["netwerkr"],
+		"docwriter.progress.trackFunctions": true,
 		"docwriter.progress.trackTypes": true,
-		"docwriter.progress.trackFunctions": true
+		"eslint.lintTask.enable": false,
+		"explorer.excludeGitIgnore": false,
+		"explorer.fileNesting.enabled": false,
+		"iridium.npm.packageManager": "pnpm",
+		"jest.autoRun": "off",
+		"npm.packageManager": "pnpm",
+		"prisma.fileWatcher": true,
+		"typescript.tsdk": "node_modules/typescript/lib"
 	}
 }
