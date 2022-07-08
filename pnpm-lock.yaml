@@ -34,10 +34,7 @@ specifiers:
   husky: ^8.0.1
   lint-staged: ^13.0.3
   luxon: ^2.4.0
-<<<<<<< HEAD
   mongodb: ^4.7.0
-=======
->>>>>>> develop
   next: ^12.2.1
   next-auth: ^4.9.0
   prisma: ^3
@@ -1191,10 +1188,6 @@ packages:
     resolution: {integrity: sha512-KuwNhp3eza+Rhu8IFI5HUXRP0LIhqH5cAjubUvGXXthh4YYBuP2ntwEX+Cz8GJoZUHlKo247wPWOfA9LYEq4cw==}
     dependencies:
       '@types/node': 18.0.3
-<<<<<<< HEAD
-=======
-    dev: false
->>>>>>> develop
 
   /@types/debug/4.1.7:
     resolution: {integrity: sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==}
@@ -1601,8 +1594,8 @@ packages:
       unload: 2.2.0
     dev: false
 
-  /bson/4.6.4:
-    resolution: {integrity: sha512-TdQ3FzguAu5HKPPlr0kYQCyrYUYh8tFM+CMTpxjNzVzxeiJY00Rtuj3LXLHSgiGvmaWlZ8PE+4KyM2thqE38pQ==}
+  /bson/4.6.5:
+    resolution: {integrity: sha512-uqrgcjyOaZsHfz7ea8zLRCLe1u+QGUSzMZmvXqO24CDW7DWoW1qiN9folSwa7hSneTSgM2ykDIzF5kcQQ8cwNw==}
     engines: {node: '>=6.9.0'}
     dependencies:
       buffer: 5.7.1
@@ -3753,7 +3746,7 @@ packages:
     resolution: {integrity: sha512-HhVar6hsUeMAVlIbwQwWtV36iyjKd9qdhY+s4wcU8K6TOj4Q331iiMy+FoPuxEntDIijTYWivwFJkLv8q/ZgvA==}
     engines: {node: '>=12.9.0'}
     dependencies:
-      bson: 4.6.4
+      bson: 4.6.5
       denque: 2.0.1
       mongodb-connection-string-url: 2.5.2
       socks: 2.6.2
