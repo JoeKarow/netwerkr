@@ -22,7 +22,7 @@ import {
 	SwitchHorizontal,
 	ChevronDown,
 } from 'tabler-icons-react'
-import { UserButton } from '../components'
+import { UserButton } from '~/components'
 
 const useStyles = createStyles(theme => ({
 	header: {

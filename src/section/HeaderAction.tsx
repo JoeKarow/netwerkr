@@ -11,7 +11,7 @@ import {
 } from '@mantine/core'
 import { useBooleanToggle } from '@mantine/hooks'
 import { ChevronDown, User } from 'tabler-icons-react'
-import { UserButton } from '../components'
+import { UserButton } from '~/components'
 
 const HEADER_HEIGHT = 60
 
@@ -65,6 +65,13 @@ const useStyles = createStyles(theme => ({
 //     links: { link: string; label: string; links: { link: string; label: string }[] }[];
 // }
 
+/**
+ * Links is an object with a link, label, and links property. The links property is an array of objects
+ * with a link and label property.
+ * @property {string} link - The link to the page
+ * @property {string} label - The label for the link.
+ * @property links - This is the array of links that will be displayed in the navigation bar.
+ */
 type Links = {
 	link: string
 	label: string
@@ -76,7 +83,11 @@ type Links = {
 	]
 }
 
-type Props = {
+/**
+ * Props is an object that has a property called links that is an array of Links.
+ * @property {Links[]} links - Links[]
+ */
+interface Props {
 	links: Links[]
 }
 

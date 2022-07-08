@@ -1,5 +1,5 @@
 import React, { FC, PropsWithChildren } from 'react'
-import { HeaderAction } from '../section'
+import { HeaderAction } from '~/section'
 import { links } from './navLinks'
 import { AppShell, Container } from '@mantine/core'
 
