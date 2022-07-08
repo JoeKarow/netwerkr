@@ -1,13 +1,15 @@
 // src/pages/_app.tsx
 import { withTRPC } from '@trpc/next'
-import type { AppRouter } from '../server/router'
+import { loggerLink } from '@trpc/client/links/loggerLink'
+import { httpBatchLink } from '@trpc/client/links/httpBatchLink'
+import type { AppRouter } from 'server/router'
 import superjson from 'superjson'
 
 import { SessionProvider } from 'next-auth/react'
 
 import Head from 'next/head'
 import { useState } from 'react'
-import { getCookie, setCookies } from 'cookies-next'
+import { setCookies } from 'cookies-next'
 import {
 	MantineProvider,
 	ColorScheme,
@@ -21,14 +23,11 @@ import type { NextComponentType } from 'next'
 import type { Session } from 'next-auth'
 
 import { ReactQueryDevtools } from 'react-query/devtools'
-import { QueryClientProvider, QueryClient } from 'react-query'
 
 type AppLayoutPropsWithColorScheme = AppLayoutProps & {
 	colorScheme: ColorScheme
 	session: Session
 }
-
-const queryClient = new QueryClient()
 
 const MyApp: NextComponentType<
 	AppContext,
@@ -46,33 +45,28 @@ const MyApp: NextComponentType<
 			maxAge: 60 * 60 * 24 * 30,
 		})
 	}
+
 	return (
-		<QueryClientProvider client={queryClient}>
-			<SessionProvider session={session}>
-				<Head>
-					<title>netwerkr</title>
-					<meta
-						name='viewport'
-						content='minimum-scale=1, initial-scale=1, width=device-width'
-					/>
-				</Head>
-				<ColorSchemeProvider
-					colorScheme={colorScheme}
-					toggleColorScheme={toggleColorScheme}
-				>
-					<MantineProvider
-						withGlobalStyles
-						withNormalizeCSS
-						theme={globalTheme}
-					>
-						<NotificationsProvider>
-							{getLayout(<Component {...pageProps} />)}
-						</NotificationsProvider>
-					</MantineProvider>
-				</ColorSchemeProvider>
-			</SessionProvider>
-			<ReactQueryDevtools initialIsOpen={false} />
-		</QueryClientProvider>
+		<SessionProvider session={session}>
+			<Head>
+				<title>netwerkr</title>
+				<meta
+					name='viewport'
+					content='minimum-scale=1, initial-scale=1, width=device-width'
+				/>
+			</Head>
+			<ColorSchemeProvider
+				colorScheme={colorScheme}
+				toggleColorScheme={toggleColorScheme}
+			>
+				<MantineProvider withGlobalStyles withNormalizeCSS theme={globalTheme}>
+					<NotificationsProvider>
+						{getLayout(<Component {...pageProps} />)}
+						<ReactQueryDevtools initialIsOpen={false} />
+					</NotificationsProvider>
+				</MantineProvider>
+			</ColorSchemeProvider>
+		</SessionProvider>
 	)
 }
 
@@ -81,7 +75,7 @@ const getBaseUrl = () => {
 	if (typeof window !== 'undefined') {
 		return ''
 	}
-	if (process.browser) return '' // Browser should use current path
+	// if (typeof window === 'object') return '' // Browser should use current path
 	if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}` // SSR should use vercel url
 
 	return `http://localhost:${process.env.PORT ?? 3000}` // dev SSR should use localhost
@@ -93,10 +87,20 @@ export default withTRPC<AppRouter>({
 		 * If you want to use SSR, you need to use the server's full URL
 		 * @link https://trpc.io/docs/ssr
 		 */
-		const url = `${getBaseUrl()}/api/trpc`
-
+		// console.log('ctx', ctx)
+		console.log({ url: `${getBaseUrl()}/api/trpc` })
 		return {
-			url,
+			links: [
+				loggerLink({
+					enabled: opts =>
+						(process.env.NODE_ENV === 'development' &&
+							typeof window !== 'undefined') ||
+						(opts.direction === 'down' && opts.result instanceof Error),
+				}),
+				httpBatchLink({ url: `${getBaseUrl()}/api/trpc` }),
+			],
+
+			// url,
 			transformer: superjson,
 			/**
 			 * @link https://react-query.tanstack.com/reference/QueryClient
@@ -107,5 +111,4 @@ export default withTRPC<AppRouter>({
 	/**
 	 * @link https://trpc.io/docs/ssr
 	 */
-	ssr: false,
 })(MyApp)
