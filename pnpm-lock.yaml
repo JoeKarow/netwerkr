@@ -34,7 +34,10 @@ specifiers:
   husky: ^8.0.1
   lint-staged: ^13.0.3
   luxon: ^2.4.0
+<<<<<<< HEAD
   mongodb: ^4.7.0
+=======
+>>>>>>> develop
   next: ^12.2.1
   next-auth: ^4.9.0
   prisma: ^3
@@ -1188,6 +1191,10 @@ packages:
     resolution: {integrity: sha512-KuwNhp3eza+Rhu8IFI5HUXRP0LIhqH5cAjubUvGXXthh4YYBuP2ntwEX+Cz8GJoZUHlKo247wPWOfA9LYEq4cw==}
     dependencies:
       '@types/node': 18.0.3
+<<<<<<< HEAD
+=======
+    dev: false
+>>>>>>> develop
 
   /@types/debug/4.1.7:
     resolution: {integrity: sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==}
