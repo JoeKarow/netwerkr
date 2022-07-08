@@ -14,7 +14,7 @@
 		"lint": "next lint",
 		"db": "",
 		"db:push": "prisma db push",
-		"db:generate": "prisma generate && prettier --write ./prisma/ --ignore-unknown",
+		"db:generate": "prisma generate",
 		"db:seed": "prisma db seed",
 		"db:studio": "prisma studio",
 		"format": "prettier --write --ignore-unknown .",
@@ -47,6 +47,7 @@
 		"react-dom": "^18.2.0",
 		"react-query": "^3.39.1",
 		"superjson": "^1.9.1",
+		"trpc-shield": "^0.1.1",
 		"zod": "^3.17.3",
 		"zod-prisma": "^0.5.4"
 	},
@@ -69,8 +70,8 @@
 		"luxon": "^2.4.0",
 		"mongodb": "^4.7.0",
 		"prisma": "^3",
+		"prisma-zod-generator": "^0.1.4",
 		"tabler-icons-react": "^1.52.0",
-		"trpc-shield": "^0.1.1",
 		"ts-node": "^10.8.2",
 		"typescript": "^4.7.4"
 	},

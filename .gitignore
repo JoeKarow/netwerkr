@@ -36,7 +36,8 @@ yarn-error.log*
 *.tsbuildinfo
 
 # misc
-prisma/shield/*
-prisma/trpc-shield/*
+prisma/shield
+prisma/trpc-shield
+prisma/zod
 next-env.d.ts
 .env
