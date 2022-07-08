@@ -3,17 +3,13 @@
 import { PrismaClient } from '@prisma/client'
 import * as trpc from '@trpc/server'
 import * as trpcNext from '@trpc/server/adapters/next'
-import { IncomingMessage, ServerResponse } from 'http'
-// import { NextApiRequest, NextApiResponse } from 'next'
 import {
 	unstable_getServerSession as getServerSession,
 	Session,
 } from 'next-auth'
-
 import { authOptions as nextAuthOptions } from '~/pages/api/auth/[...nextauth]'
 import { prisma } from '~/server/prisma'
 
-// import { permissions } from '~/server/shield'
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 interface CreateContextOptions {
 	session: Session | null
@@ -38,7 +34,3 @@ export const createContext = async (
 
 	return await createContextInner({ session, prisma })
 }
-
-// export function createProtectedRouter() {
-// 	return trpc.router<Context>().middleware(permissions)
-// }

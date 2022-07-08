@@ -85,6 +85,8 @@ export const trpc = setupTRPC<AppRouter, SSRContext>({
 	responseMeta(opts) {
 		const ctx = opts.ctx as SSRContext
 
+		// NOTE: Does session context need to be added in here?
+
 		if (ctx.status) {
 			// If HTTP status set, propagate that
 			return {

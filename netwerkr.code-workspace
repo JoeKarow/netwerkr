@@ -18,6 +18,7 @@
 		"jest.autoRun": "off",
 		"npm.packageManager": "pnpm",
 		"prisma.fileWatcher": true,
-		"typescript.tsdk": "node_modules/typescript/lib"
+		"typescript.tsdk": "node_modules/typescript/lib",
+		"todo-tree.filtering.useBuiltInExcludes": "search excludes"
 	}
 }
