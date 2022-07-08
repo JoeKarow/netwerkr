@@ -1,5 +1,9 @@
 import { z } from 'zod'
-import { UserCreateNestedOneWithoutAccountsInputObjectSchema } from './UserCreateNestedOneWithoutAccountsInput.schema'
+import { byID } from '../connect'
+
+const ConnectUser = z.object({
+	connect: byID,
+})
 
 export const AccountCreateInputObjectSchema = z.object({
 	id: z.string()?.optional(),
@@ -13,7 +17,5 @@ export const AccountCreateInputObjectSchema = z.object({
 	scope: z.string()?.optional().nullable(),
 	id_token: z.string()?.optional().nullable(),
 	session_state: z.string()?.optional().nullable(),
-	user: UserCreateNestedOneWithoutAccountsInputObjectSchema,
-	createdAt: z.date()?.optional().nullable(),
-	updatedAt: z.date()?.optional().nullable(),
+	user: ConnectUser,
 })

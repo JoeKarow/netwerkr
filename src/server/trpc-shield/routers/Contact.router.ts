@@ -128,19 +128,3 @@ export const contactsRouter = createRouter()
 			return groupByContact
 		},
 	})
-
-	.undefined('findContactRaw', {
-		input: undefined,
-		async resolve({ ctx, input }) {
-			const findContactRaw = await ctx.prisma.contact.findRaw(input)
-			return findContactRaw
-		},
-	})
-
-	.undefined('aggregateContactRaw', {
-		input: undefined,
-		async resolve({ ctx, input }) {
-			const aggregateContactRaw = await ctx.prisma.contact.aggregateRaw(input)
-			return aggregateContactRaw
-		},
-	})

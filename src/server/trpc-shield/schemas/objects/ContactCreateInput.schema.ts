@@ -8,9 +8,9 @@ import { SocialMediaCreateInputObjectSchema } from './SocialMediaCreateInput.sch
 import { InteractionsNullableCreateEnvelopeInputObjectSchema } from './InteractionsNullableCreateEnvelopeInput.schema'
 import { InteractionsCreateInputObjectSchema } from './InteractionsCreateInput.schema'
 import { UserCreateNestedOneWithoutContactsInputObjectSchema } from './UserCreateNestedOneWithoutContactsInput.schema'
+import { ConnectByID, ConnectBy, ConvertBSON } from '../connect'
 
 export const ContactCreateInputObjectSchema = z.object({
-	id: z.string()?.optional(),
 	firstName: z.string()?.optional().nullable(),
 	lastName: z.string()?.optional().nullable(),
 	email: z
@@ -26,21 +26,13 @@ export const ContactCreateInputObjectSchema = z.object({
 		])
 		?.optional(),
 	photo: z.string()?.optional().nullable(),
-	socialMedia: z
-		.union([
-			SocialMediaListCreateEnvelopeInputObjectSchema,
-			SocialMediaCreateInputObjectSchema,
-			z.array(SocialMediaCreateInputObjectSchema),
-		])
-		?.optional(),
-	interactions: z
-		.union([
-			InteractionsNullableCreateEnvelopeInputObjectSchema,
-			InteractionsCreateInputObjectSchema.nullable(),
-		])
-		?.optional(),
+	// socialMedia: ConvertBSON(z.string()?.optional().nullable()),
+	// interactions: z
+	// 	.union([
+	// 		InteractionsNullableCreateEnvelopeInputObjectSchema,
+	// 		InteractionsCreateInputObjectSchema.nullable(),
+	// 	])
+	// 	?.optional(),
 	onTwitterList: z.boolean()?.optional(),
-	createdAt: z.date()?.optional().nullable(),
-	associatedUser:
-		UserCreateNestedOneWithoutContactsInputObjectSchema?.optional(),
+	associatedUser: ConnectByID,
 })

@@ -17,7 +17,7 @@ export const socialMediaServicesRouter = createRouter()
 		input: SocialMediaServiceFindUniqueSchema,
 		async resolve({ ctx, input }) {
 			const findUniqueSocialMediaService =
-				await ctx.prisma.socialmediaservice.findUnique({ where: input.where })
+				await ctx.prisma.socialMediaService.findUnique({ where: input.where })
 			return findUniqueSocialMediaService
 		},
 	})
@@ -26,7 +26,7 @@ export const socialMediaServicesRouter = createRouter()
 		input: SocialMediaServiceFindFirstSchema,
 		async resolve({ ctx, input }) {
 			const findFirstSocialMediaService =
-				await ctx.prisma.socialmediaservice.findFirst(input)
+				await ctx.prisma.socialMediaService.findFirst(input)
 			return findFirstSocialMediaService
 		},
 	})
@@ -35,7 +35,7 @@ export const socialMediaServicesRouter = createRouter()
 		input: SocialMediaServiceFindManySchema,
 		async resolve({ ctx, input }) {
 			const findManySocialMediaService =
-				await ctx.prisma.socialmediaservice.findMany(input)
+				await ctx.prisma.socialMediaService.findMany(input)
 			return findManySocialMediaService
 		},
 	})
@@ -44,7 +44,7 @@ export const socialMediaServicesRouter = createRouter()
 		input: SocialMediaServiceCreateSchema,
 		async resolve({ ctx, input }) {
 			const createOneSocialMediaService =
-				await ctx.prisma.socialmediaservice.create({ data: input.data })
+				await ctx.prisma.socialMediaService.create({ data: input.data })
 			return createOneSocialMediaService
 		},
 	})
@@ -53,7 +53,7 @@ export const socialMediaServicesRouter = createRouter()
 		input: SocialMediaServiceCreateSchema,
 		async resolve({ ctx, input }) {
 			const createManySocialMediaService =
-				await ctx.prisma.socialmediaservice.createMany(input)
+				await ctx.prisma.socialMediaService.createMany(input)
 			return createManySocialMediaService
 		},
 	})
@@ -62,7 +62,7 @@ export const socialMediaServicesRouter = createRouter()
 		input: SocialMediaServiceDeleteOneSchema,
 		async resolve({ ctx, input }) {
 			const deleteOneSocialMediaService =
-				await ctx.prisma.socialmediaservice.delete({ where: input.where })
+				await ctx.prisma.socialMediaService.delete({ where: input.where })
 			return deleteOneSocialMediaService
 		},
 	})
@@ -71,7 +71,7 @@ export const socialMediaServicesRouter = createRouter()
 		input: SocialMediaServiceUpdateOneSchema,
 		async resolve({ ctx, input }) {
 			const updateOneSocialMediaService =
-				await ctx.prisma.socialmediaservice.update({
+				await ctx.prisma.socialMediaService.update({
 					where: input.where,
 					data: input.data,
 				})
@@ -83,7 +83,7 @@ export const socialMediaServicesRouter = createRouter()
 		input: SocialMediaServiceDeleteManySchema,
 		async resolve({ ctx, input }) {
 			const deleteManySocialMediaService =
-				await ctx.prisma.socialmediaservice.deleteMany(input)
+				await ctx.prisma.socialMediaService.deleteMany(input)
 			return deleteManySocialMediaService
 		},
 	})
@@ -92,7 +92,7 @@ export const socialMediaServicesRouter = createRouter()
 		input: SocialMediaServiceUpdateManySchema,
 		async resolve({ ctx, input }) {
 			const updateManySocialMediaService =
-				await ctx.prisma.socialmediaservice.updateMany(input)
+				await ctx.prisma.socialMediaService.updateMany(input)
 			return updateManySocialMediaService
 		},
 	})
@@ -101,7 +101,7 @@ export const socialMediaServicesRouter = createRouter()
 		input: SocialMediaServiceUpsertSchema,
 		async resolve({ ctx, input }) {
 			const upsertOneSocialMediaService =
-				await ctx.prisma.socialmediaservice.upsert({
+				await ctx.prisma.socialMediaService.upsert({
 					where: input.where,
 					create: input.create,
 					update: input.update,
@@ -114,7 +114,7 @@ export const socialMediaServicesRouter = createRouter()
 		input: SocialMediaServiceAggregateSchema,
 		async resolve({ ctx, input }) {
 			const aggregateSocialMediaService =
-				await ctx.prisma.socialmediaservice.aggregate(input)
+				await ctx.prisma.socialMediaService.aggregate(input)
 			return aggregateSocialMediaService
 		},
 	})
@@ -123,7 +123,7 @@ export const socialMediaServicesRouter = createRouter()
 		input: SocialMediaServiceGroupBySchema,
 		async resolve({ ctx, input }) {
 			const groupBySocialMediaService =
-				await ctx.prisma.socialmediaservice.groupBy({
+				await ctx.prisma.socialMediaService.groupBy({
 					where: input.where,
 					orderBy: input.orderBy,
 					by: input.by,
@@ -132,23 +132,5 @@ export const socialMediaServicesRouter = createRouter()
 					skip: input.skip,
 				})
 			return groupBySocialMediaService
-		},
-	})
-
-	.undefined('findSocialMediaServiceRaw', {
-		input: undefined,
-		async resolve({ ctx, input }) {
-			const findSocialMediaServiceRaw =
-				await ctx.prisma.socialmediaservice.findRaw(input)
-			return findSocialMediaServiceRaw
-		},
-	})
-
-	.undefined('aggregateSocialMediaServiceRaw', {
-		input: undefined,
-		async resolve({ ctx, input }) {
-			const aggregateSocialMediaServiceRaw =
-				await ctx.prisma.socialmediaservice.aggregateRaw(input)
-			return aggregateSocialMediaServiceRaw
 		},
 	})

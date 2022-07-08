@@ -10,5 +10,4 @@ export const SessionUpdateInputObjectSchema = z.object({
 	expires: z
 		.union([z.date(), DateTimeFieldUpdateOperationsInputObjectSchema])
 		?.optional(),
-	user: UserUpdateOneRequiredWithoutSessionsInputObjectSchema?.optional(),
 })

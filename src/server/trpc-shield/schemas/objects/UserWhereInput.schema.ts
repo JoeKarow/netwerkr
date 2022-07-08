@@ -11,7 +11,6 @@ import { ContactListRelationFilterObjectSchema } from './ContactListRelationFilt
 import { ProfileCompositeListFilterObjectSchema } from './ProfileCompositeListFilter.schema'
 import { ProfileObjectEqualityInputObjectSchema } from './ProfileObjectEqualityInput.schema'
 
-///@ts-ignore
 export const UserWhereInputObjectSchema = z.object({
 	id: z.union([StringFilterObjectSchema, z.string()])?.optional(),
 	name: z
@@ -33,19 +32,19 @@ export const UserWhereInputObjectSchema = z.object({
 	disabled: z
 		.union([BoolNullableFilterObjectSchema, z.boolean().nullable()])
 		?.optional(),
-	accounts: AccountListRelationFilterObjectSchema?.optional(),
-	sessions: SessionListRelationFilterObjectSchema?.optional(),
-	contacts: ContactListRelationFilterObjectSchema?.optional(),
-	profile: z
-		.union([
-			ProfileCompositeListFilterObjectSchema,
-			z.array(ProfileObjectEqualityInputObjectSchema),
-		])
-		?.optional(),
-	createdAt: z
-		.union([DateTimeNullableFilterObjectSchema, z.date().nullable()])
-		?.optional(),
-	updatedAt: z
-		.union([DateTimeNullableFilterObjectSchema, z.date().nullable()])
-		?.optional(),
+	// accounts: AccountListRelationFilterObjectSchema?.optional(),
+	// sessions: SessionListRelationFilterObjectSchema?.optional(),
+	// contacts: ContactListRelationFilterObjectSchema?.optional(),
+	// profile: z
+	// 	.union([
+	// 		ProfileCompositeListFilterObjectSchema,
+	// 		z.array(ProfileObjectEqualityInputObjectSchema),
+	// 	])
+	// 	?.optional(),
+	// createdAt: z
+	// 	.union([DateTimeNullableFilterObjectSchema, z.date().nullable()])
+	// 	?.optional(),
+	// updatedAt: z
+	// 	.union([DateTimeNullableFilterObjectSchema, z.date().nullable()])
+	// 	?.optional(),
 })

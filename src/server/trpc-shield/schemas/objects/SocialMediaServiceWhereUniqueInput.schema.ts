@@ -1,6 +1,8 @@
 import { z } from 'zod'
 
-export const SocialMediaServiceWhereUniqueInputObjectSchema = z.object({
-	id: z.string()?.optional(),
-	name: z.string()?.optional(),
-})
+export const SocialMediaServiceWhereUniqueInputObjectSchema = z
+	.object({
+		id: z.string(),
+		name: z.string(),
+	})
+	.partial()

@@ -42,26 +42,20 @@ export const ContactUpdateManyMutationInputObjectSchema = z.object({
 			NullableStringFieldUpdateOperationsInputObjectSchema.nullable(),
 		])
 		?.optional(),
-	socialMedia: z
-		.union([
-			SocialMediaListUpdateEnvelopeInputObjectSchema,
-			SocialMediaCreateInputObjectSchema,
-			z.array(SocialMediaCreateInputObjectSchema),
-		])
-		?.optional(),
-	interactions: z
-		.union([
-			InteractionsNullableUpdateEnvelopeInputObjectSchema,
-			InteractionsCreateInputObjectSchema.nullable(),
-		])
-		?.optional(),
+	// socialMedia: z
+	// 	.union([
+	// 		SocialMediaListUpdateEnvelopeInputObjectSchema,
+	// 		SocialMediaCreateInputObjectSchema,
+	// 		z.array(SocialMediaCreateInputObjectSchema),
+	// 	])
+	// 	?.optional(),
+	// interactions: z
+	// 	.union([
+	// 		InteractionsNullableUpdateEnvelopeInputObjectSchema,
+	// 		InteractionsCreateInputObjectSchema.nullable(),
+	// 	])
+	// 	?.optional(),
 	onTwitterList: z
 		.union([z.boolean(), BoolFieldUpdateOperationsInputObjectSchema])
-		?.optional(),
-	createdAt: z
-		.union([
-			z.date(),
-			NullableDateTimeFieldUpdateOperationsInputObjectSchema.nullable(),
-		])
 		?.optional(),
 })

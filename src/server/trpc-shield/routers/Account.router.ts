@@ -49,13 +49,13 @@ export const accountsRouter = createRouter()
 		},
 	})
 
-	.mutation('createManyAccount', {
-		input: AccountCreateSchema,
-		async resolve({ ctx, input }) {
-			const createManyAccount = await ctx.prisma.account.createMany(input)
-			return createManyAccount
-		},
-	})
+	// .mutation('createManyAccount', {
+	// 	input: AccountCreateSchema,
+	// 	async resolve({ ctx, input }) {
+	// 		const createManyAccount = await ctx.prisma.account.createMany(input)
+	// 		return createManyAccount
+	// 	},
+	// })
 
 	.mutation('deleteOneAccount', {
 		input: AccountDeleteOneSchema,
@@ -126,21 +126,5 @@ export const accountsRouter = createRouter()
 				skip: input.skip,
 			})
 			return groupByAccount
-		},
-	})
-
-	.undefined('findAccountRaw', {
-		input: undefined,
-		async resolve({ ctx, input }) {
-			const findAccountRaw = await ctx.prisma.account.findRaw(input)
-			return findAccountRaw
-		},
-	})
-
-	.undefined('aggregateAccountRaw', {
-		input: undefined,
-		async resolve({ ctx, input }) {
-			const aggregateAccountRaw = await ctx.prisma.account.aggregateRaw(input)
-			return aggregateAccountRaw
 		},
 	})

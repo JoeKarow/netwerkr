@@ -49,13 +49,13 @@ export const sessionsRouter = createRouter()
 		},
 	})
 
-	.mutation('createManySession', {
-		input: SessionCreateSchema,
-		async resolve({ ctx, input }) {
-			const createManySession = await ctx.prisma.session.createMany(input)
-			return createManySession
-		},
-	})
+	// .mutation('createManySession', {
+	// 	input: SessionCreateSchema,
+	// 	async resolve({ ctx, input }) {
+	// 		const createManySession = await ctx.prisma.session.createMany(input)
+	// 		return createManySession
+	// 	},
+	// })
 
 	.mutation('deleteOneSession', {
 		input: SessionDeleteOneSchema,
@@ -86,25 +86,25 @@ export const sessionsRouter = createRouter()
 		},
 	})
 
-	.mutation('updateManySession', {
-		input: SessionUpdateManySchema,
-		async resolve({ ctx, input }) {
-			const updateManySession = await ctx.prisma.session.updateMany(input)
-			return updateManySession
-		},
-	})
+	// .mutation('updateManySession', {
+	// 	input: SessionUpdateManySchema,
+	// 	async resolve({ ctx, input }) {
+	// 		const updateManySession = await ctx.prisma.session.updateMany(input)
+	// 		return updateManySession
+	// 	},
+	// })
 
-	.mutation('upsertOneSession', {
-		input: SessionUpsertSchema,
-		async resolve({ ctx, input }) {
-			const upsertOneSession = await ctx.prisma.session.upsert({
-				where: input.where,
-				create: input.create,
-				update: input.update,
-			})
-			return upsertOneSession
-		},
-	})
+	// .mutation('upsertOneSession', {
+	// 	input: SessionUpsertSchema,
+	// 	async resolve({ ctx, input }) {
+	// 		const upsertOneSession = await ctx.prisma.session.upsert({
+	// 			where: input.where,
+	// 			create: input.create,
+	// 			update: input.update,
+	// 		})
+	// 		return upsertOneSession
+	// 	},
+	// })
 
 	.query('aggregateSession', {
 		input: SessionAggregateSchema,
@@ -126,21 +126,5 @@ export const sessionsRouter = createRouter()
 				skip: input.skip,
 			})
 			return groupBySession
-		},
-	})
-
-	.undefined('findSessionRaw', {
-		input: undefined,
-		async resolve({ ctx, input }) {
-			const findSessionRaw = await ctx.prisma.session.findRaw(input)
-			return findSessionRaw
-		},
-	})
-
-	.undefined('aggregateSessionRaw', {
-		input: undefined,
-		async resolve({ ctx, input }) {
-			const aggregateSessionRaw = await ctx.prisma.session.aggregateRaw(input)
-			return aggregateSessionRaw
 		},
 	})

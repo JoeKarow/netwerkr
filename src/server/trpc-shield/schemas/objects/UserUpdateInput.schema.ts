@@ -50,26 +50,13 @@ export const UserUpdateInputObjectSchema = z.object({
 			NullableBoolFieldUpdateOperationsInputObjectSchema.nullable(),
 		])
 		?.optional(),
-	accounts: AccountUpdateManyWithoutUserInputObjectSchema?.optional(),
-	sessions: SessionUpdateManyWithoutUserInputObjectSchema?.optional(),
-	contacts: ContactUpdateManyWithoutAssociatedUserInputObjectSchema?.optional(),
-	profile: z
-		.union([
-			ProfileListUpdateEnvelopeInputObjectSchema,
-			ProfileCreateInputObjectSchema,
-			z.array(ProfileCreateInputObjectSchema),
-		])
-		?.optional(),
-	createdAt: z
-		.union([
-			z.date(),
-			NullableDateTimeFieldUpdateOperationsInputObjectSchema.nullable(),
-		])
-		?.optional(),
-	updatedAt: z
-		.union([
-			z.date(),
-			NullableDateTimeFieldUpdateOperationsInputObjectSchema.nullable(),
-		])
-		?.optional(),
+	// accounts: AccountUpdateManyWithoutUserInputObjectSchema?.optional(),
+	// sessions: SessionUpdateManyWithoutUserInputObjectSchema?.optional(),
+	// contacts: ContactUpdateManyWithoutAssociatedUserInputObjectSchema?.optional(),
+	// profile: z
+	// 	.union([
+	// 		ProfileListUpdateEnvelopeInputObjectSchema.deepPartial(),
+	// 		ProfileCreateInputObjectSchema.deepPartial(),
+	// 		z.array(ProfileCreateInputObjectSchema.deepPartial()),
+	// 	])
 })

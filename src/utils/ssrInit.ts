@@ -12,7 +12,7 @@ import { appRouter } from 'server/router/'
  * Make sure to `return { props: { trpcState: ssr.dehydrate() } }` at the end.
  */
 export async function ssrInit(context: GetServerSidePropsContext) {
-	const ctx = await createContext(context)
+	const ctx = await createContext()
 
 	const ssr = createSSGHelpers({
 		router: appRouter,

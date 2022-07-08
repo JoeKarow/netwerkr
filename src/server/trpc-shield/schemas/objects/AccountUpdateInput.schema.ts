@@ -4,6 +4,11 @@ import { NullableStringFieldUpdateOperationsInputObjectSchema } from './Nullable
 import { NullableIntFieldUpdateOperationsInputObjectSchema } from './NullableIntFieldUpdateOperationsInput.schema'
 import { UserUpdateOneRequiredWithoutAccountsInputObjectSchema } from './UserUpdateOneRequiredWithoutAccountsInput.schema'
 import { NullableDateTimeFieldUpdateOperationsInputObjectSchema } from './NullableDateTimeFieldUpdateOperationsInput.schema'
+import { byID } from '../connect'
+
+const ConnectUser = z.object({
+	connect: byID,
+})
 
 export const AccountUpdateInputObjectSchema = z.object({
 	type: z
@@ -57,17 +62,5 @@ export const AccountUpdateInputObjectSchema = z.object({
 			NullableStringFieldUpdateOperationsInputObjectSchema.nullable(),
 		])
 		?.optional(),
-	user: UserUpdateOneRequiredWithoutAccountsInputObjectSchema?.optional(),
-	createdAt: z
-		.union([
-			z.date(),
-			NullableDateTimeFieldUpdateOperationsInputObjectSchema.nullable(),
-		])
-		?.optional(),
-	updatedAt: z
-		.union([
-			z.date(),
-			NullableDateTimeFieldUpdateOperationsInputObjectSchema.nullable(),
-		])
-		?.optional(),
+	user: ConnectUser?.optional(),
 })
