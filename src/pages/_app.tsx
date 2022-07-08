@@ -1,9 +1,11 @@
 // src/pages/_app.tsx
-import { withTRPC } from '@trpc/next'
-import { loggerLink } from '@trpc/client/links/loggerLink'
-import { httpBatchLink } from '@trpc/client/links/httpBatchLink'
-import type { AppRouter } from '~/server/router'
-import superjson from 'superjson'
+// import { withTRPC } from '@trpc/next'
+// import { loggerLink } from '@trpc/client/links/loggerLink'
+// import { httpBatchLink } from '@trpc/client/links/httpBatchLink'
+// import type { AppRouter } from '~/server/router'
+// import superjson from 'superjson'
+
+import { trpc } from '~/utils/trpc'
 
 import { SessionProvider } from 'next-auth/react'
 
@@ -70,45 +72,4 @@ const MyApp: NextComponentType<
 	)
 }
 
-const getBaseUrl = () => {
-	/* It's a way to get the base url for the app. */
-	if (typeof window !== 'undefined') {
-		return ''
-	}
-	// if (typeof window === 'object') return '' // Browser should use current path
-	if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}` // SSR should use vercel url
-
-	return `http://localhost:${process.env.PORT ?? 3000}` // dev SSR should use localhost
-}
-
-export default withTRPC<AppRouter>({
-	config({ ctx }) {
-		/**
-		 * If you want to use SSR, you need to use the server's full URL
-		 * @link https://trpc.io/docs/ssr
-		 */
-		// console.log('ctx', ctx)
-		console.log({ url: `${getBaseUrl()}/api/trpc` })
-		return {
-			links: [
-				loggerLink({
-					enabled: opts =>
-						(process.env.NODE_ENV === 'development' &&
-							typeof window !== 'undefined') ||
-						(opts.direction === 'down' && opts.result instanceof Error),
-				}),
-				httpBatchLink({ url: `${getBaseUrl()}/api/trpc` }),
-			],
-
-			// url,
-			transformer: superjson,
-			/**
-			 * @link https://react-query.tanstack.com/reference/QueryClient
-			 */
-			// queryClientConfig: { defaultOptions: { queries: { staleTime: 60 } } },
-		}
-	},
-	/**
-	 * @link https://trpc.io/docs/ssr
-	 */
-})(MyApp)
+export default trpc.withTRPC(MyApp)

@@ -1,4 +1,5 @@
 // @ts-check
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { env } = require('./src/server/env')
 
 /**
@@ -18,7 +19,7 @@ const nextConfig = {
 	reactStrictMode: true,
 }
 
-module.exports = nextConfig
+// module.exports = nextConfig
 
 module.exports = getConfig({
 	/**
@@ -29,4 +30,5 @@ module.exports = getConfig({
 	publicRuntimeConfig: {
 		NODE_ENV: env.NODE_ENV,
 	},
+	nextConfig,
 })

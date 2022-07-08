@@ -6,31 +6,30 @@ import { JsonView } from '~/components/devtools'
 import { trpc } from '~/utils/trpc'
 import { GetServerSidePropsContext, InferGetServerSidePropsType } from 'next'
 import { createSSGHelpers } from '@trpc/react/ssg'
-import { appRouter } from '~/server/router'
-import { createContext } from '~/server/router/context'
+import { appRouter, createContext } from '~/pages/api/trpc/[trpc]'
+
 import superjson from 'superjson'
 
 export const getServerSideProps = async (
 	context: GetServerSidePropsContext<{ uid: string }>
 ) => {
 	try {
-		const ctx = await createContext()
+		// const ctx = await createContext(context)
 		const ssg = await createSSGHelpers({
 			router: appRouter,
-			ctx, //await createContext({ req, res }),
+			ctx: await createContext(),
 			transformer: superjson,
 		})
 
 		const id = context.params?.uid as string
-		await ssg.fetchQuery('net.user.findFirstUser', {
-			where: { id },
-		})
+		await ssg.fetchQuery('user.getById', { id })
 
 		return {
 			props: {
 				trpcState: ssg.dehydrate(),
 				id,
 			},
+			// revalidate: 1,
 		}
 	} catch (error) {
 		console.error(error)
@@ -41,10 +40,7 @@ export default function Profile(
 	props: InferGetServerSidePropsType<typeof getServerSideProps>
 ) {
 	const { id } = props
-	const contactQuery = trpc.useQuery([
-		'net.user.findFirstUser',
-		{ where: { id } },
-	])
+	const contactQuery = trpc.proxy.user.getById.useQuery({ id })
 
 	const { data } = contactQuery
 	// console.log( data )
