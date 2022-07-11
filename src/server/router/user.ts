@@ -1,8 +1,9 @@
 import { t } from '~/server/trpc'
 import { Prisma } from '@prisma/client'
 import { TRPCError } from '@trpc/server'
-import { z } from 'zod'
 import { prisma } from '~/server/prisma'
+import { zId, zUserProfile } from '~/utils/zodValidation'
+import { z } from 'zod'
 
 const defaultUserSelect = Prisma.validator<Prisma.UserSelect>()({
 	id: true,
@@ -15,26 +16,70 @@ const defaultUserSelect = Prisma.validator<Prisma.UserSelect>()({
 	profile: true,
 })
 
-export const userRouter = t.router({
-	getById: t.procedure
-		.input(
-			z.object({
-				id: z.string(),
+const getById = t.procedure.input(zId).query(async ({ input }) => {
+	const { id } = input
+	try {
+		const data = await prisma.user.findFirstOrThrow({
+			where: { id },
+			select: defaultUserSelect,
+		})
+		return data
+	} catch (error) {
+		throw new TRPCError({
+			code: 'NOT_FOUND',
+			message: `${error}`,
+		})
+	}
+})
+
+const userProfileSelect = Prisma.validator<Prisma.UserSelect>()({
+	profile: true,
+})
+
+const getUserProfile = t.procedure.input(zId).query(async ({ input }) => {
+	const { id } = input
+	try {
+		const data = await prisma.user.findFirstOrThrow({
+			where: { id },
+			select: userProfileSelect,
+		})
+		const { profile } = data
+
+		return profile
+	} catch (error) {
+		throw new TRPCError({
+			code: 'NOT_FOUND',
+			message: `${error}`,
+		})
+	}
+})
+
+const updateProfile = t.procedure
+	.input(
+		z.object({
+			id: z.string(),
+			profile: zUserProfile,
+		})
+	)
+	.mutation(async ({ input }) => {
+		try {
+			const { id, profile } = input
+			await prisma.user.update({
+				where: { id },
+				data: {
+					profile,
+				},
 			})
-		)
-		.query(async ({ input }) => {
-			const { id } = input
-			try {
-				const data = await prisma.user.findFirstOrThrow({
-					where: { id },
-					select: defaultUserSelect,
-				})
-				return data
-			} catch (error) {
-				throw new TRPCError({
-					code: 'NOT_FOUND',
-					message: `${error}`,
-				})
-			}
-		}),
+		} catch (error) {
+			throw new TRPCError({
+				code: 'BAD_REQUEST',
+				message: `${error}`,
+			})
+		}
+	})
+
+export const userRouter = t.router({
+	getById,
+	getUserProfile,
+	updateProfile,
 })
