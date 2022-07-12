@@ -1,10 +1,10 @@
-import { Prisma, PrismaClient } from '@prisma/client'
+import { PrismaClient } from '@prisma/client'
 import { twitterUrlBase, linkedInUrlBase } from './seed/socialMediaSetup'
-import { generateFakeContact } from './seed/fakedata'
-
+// import { generateFakeContact } from './seed/fakedataComposite'
+import { generateFakeContact } from './seed/fakedataUnified'
 const prisma = new PrismaClient()
 
-const fakeContacts = 21
+const fakeContacts = 20
 
 const associatedId = '62b8d027d989e0e820ebfa52'
 
@@ -29,7 +29,7 @@ const main = async () => {
 	for (let i = 0; i < fakeContacts; i++) {
 		console.info(`Generating fake contact ${i + 1} of ${fakeContacts}`)
 
-		const data: Prisma.ContactCreateInput = generateFakeContact({
+		const data = generateFakeContact({
 			associatedId,
 			socialMediaIds,
 		})

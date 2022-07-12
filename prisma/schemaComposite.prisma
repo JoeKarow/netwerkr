@@ -1,0 +1,167 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+// generator zod {
+//   provider      = "zod-prisma"
+//   output        = "./zod"
+//   relationModel = true
+
+// }
+
+// generator trpc {
+//   provider       = "prisma-trpc-generator"
+//   output         = "./trpc-generated"
+//   withMiddleware = true
+//   withShield     = true
+// }
+
+datasource db {
+  provider = "mongodb"
+  url      = env("MONGODB_CONN")
+}
+
+model Account {
+  id                String    @id @default(auto()) @map("_id") @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  user              User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId            String    @unique @db.ObjectId
+  createdAt         DateTime? @default(now())
+  updatedAt         DateTime? @updatedAt
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  sessionToken String   @unique
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId       String   @db.ObjectId
+}
+
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
+  twitterList   String?
+  role          Role      @default(USER)
+  disabled      Boolean?
+  accounts      Account[]
+  sessions      Session[]
+  contacts      Contact[]
+  profile       Profile[]
+  createdAt     DateTime? @default(now())
+  updatedAt     DateTime? @updatedAt
+
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Contact {
+  id               String         @id @default(auto()) @map("_id") @db.ObjectId
+  firstName        String?
+  lastName         String?
+  email            Email[]
+  phone            Phone[]
+  photo            String?
+  socialMedia      SocialMedia[]
+  interactions     Interactions[]
+  onTwitterList    Boolean        @default(false)
+  createdAt        DateTime?      @default(now())
+  associatedUser   User?          @relation(fields: [associatedUserId], references: [id])
+  associatedUserId String?        @db.ObjectId
+}
+
+type Profile {
+  firstName   String
+  lastName    String
+  email       Email[]
+  phone       Phone[]
+  photo       String?
+  socialMedia SocialMedia[]
+  createdAt   DateTime?     @default(now())
+}
+
+type Email {
+  email     String
+  primary   Boolean?
+  label     EmailLabel @default(Home)
+  createdAt DateTime?  @default(now())
+}
+
+enum EmailLabel {
+  Home
+  Work
+  Other
+}
+
+type Phone {
+  number    String
+  label     PhoneLabel
+  primary   Boolean?
+  createdAt DateTime?  @default(now())
+}
+
+enum PhoneLabel {
+  Home
+  Work
+  Mobile
+  Other
+}
+
+type SocialMedia {
+  service     String    @db.ObjectId
+  userId      String
+  displayName String
+  username    String
+  protected   Boolean
+  profileImg  String?
+  createdAt   DateTime? @default(now())
+}
+
+model SocialMediaService {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  name      String    @unique
+  urlbase   String
+  createdAt DateTime? @default(now())
+  updatedAt DateTime  @updatedAt
+}
+
+type Interactions {
+  source       InteractionSource
+  sourceSocial String            @db.ObjectId
+  time         DateTime
+  content      String
+  extPostId    String?
+  conversation Conversation[]
+  createdAt    DateTime?         @default(now())
+}
+
+enum InteractionSource {
+  Twitter
+  LinkedIn
+  PhoneCall
+  SMS
+  Email
+  DM
+  InPerson
+}
+
+type Conversation {
+  twitterConvoId String?
+}
