@@ -24,7 +24,7 @@
 		"ts-node": "ts-node --compiler-options \"{\\\"module\\\":\\\"commonjs\\\"}\""
 	},
 	"dependencies": {
-		"@mantine/core": "^4.2.12",
+		"@mantine/core": "^5.0.0",
 		"@mantine/dates": "^4.2.12",
 		"@mantine/dropzone": "^4.2.12",
 		"@mantine/form": "^4.2.12",
