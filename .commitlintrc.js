@@ -1,4 +1,18 @@
 /** @type {import('cz-git').UserConfig} */
+const { execSync } = require('child_process')
+
+const commitFile =
+	`${execSync('git rev-parse --path-format=absolute --git-dir')
+		.toString()
+		.trim()}/COMMIT_EDITMSG` || false
+
+const getCommitMsg = () => {
+	if (commitFile) {
+		return execSync(`head -n 1 ${commitFile}`).toString().trim().split('/n')[0]
+	}
+	return false
+}
+const commitMsg = getCommitMsg()
 
 module.exports = {
 	extends: ['@commitlint/config-conventional'],
@@ -6,6 +20,7 @@ module.exports = {
 		// @see: https://commitlint.js.org/#/reference-rules
 	},
 	prompt: {
+		defaultSubject: commitMsg && `${commitMsg}`,
 		types: [
 			{
 				value: 'feat',

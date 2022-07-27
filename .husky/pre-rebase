@@ -3,9 +3,5 @@
 
 TMP_FILE=$(git rev-parse --path-format=absolute --git-dir)/commit-skip
 
-if [ -f $TMP_FILE ]; then
-	echo 'Skipping Commitizen step'
-	exit 0
-fi
-
-exec < /dev/tty && npx cz --hook || true
+echo '1' > $TMP_FILE
+echo 'Pausing prepare-commit-msg hook during rebase'

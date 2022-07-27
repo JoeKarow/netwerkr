@@ -2,12 +2,22 @@
 command -v git-lfs >/dev/null 2>&1 || { echo >&2 "\nThis repository is configured for Git LFS but 'git-lfs' was not found on your path. If you no longer wish to use Git LFS, remove this hook by deleting '.git/hooks/post-merge'.\n"; exit 2; }
 git lfs post-merge "$@"
 
-changed_files="$(git diff-tree -r --name-only --no-commit-id ORIG_HEAD HEAD)"
+TMP_FILE=$(git rev-parse --path-format=absolute --git-dir)/commit-skip
 
-check_run() {
-	echo "$changed_files" | grep --quiet "$1" && eval "$2"
+if [ -f $TMP_FILE ]; then
+	echo 'Restoring prepare-commit-msg hook'
+	rm $TMP_FILE
+fi
+
+
+check_changed() {
+	if git diff HEAD^ HEAD --exit-code -- $1; then
+	echo "📦 No change to $1"
+else
+	echo "📦 $1 has been modified, executing $2"
+	eval "$2"
+fi
 }
 
-# Example usage
-# In this example it's used to run `pnpm install` if package.json changed.
-check_run package.json "pnpm install"
+# Run `pnpm install` if package.json changed.
+check_changed package.json "pnpm install"
