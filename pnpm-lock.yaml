@@ -7,7 +7,7 @@ specifiers:
   '@faker-js/faker': ^7.3.0
   '@jest/types': ^28.1.1
   '@mantine/core': ^4.2.12
-  '@mantine/dates': ^4.2.12
+  '@mantine/dates': ^5.0.0
   '@mantine/dropzone': ^4.2.12
   '@mantine/form': ^4.2.12
   '@mantine/hooks': ^4.2.12
@@ -54,7 +54,7 @@ specifiers:
 
 dependencies:
   '@mantine/core': 4.2.12_4fyez7wdr7aqmydmpektplx7fy
-  '@mantine/dates': 4.2.12_4yfrb77sreti4yhszibccv2ini
+  '@mantine/dates': 5.0.0_4yfrb77sreti4yhszibccv2ini
   '@mantine/dropzone': 4.2.12_n5fi23fjjzlwcbqhnnpdtjftw4
   '@mantine/form': 4.2.12_react@18.2.0
   '@mantine/hooks': 4.2.12_react@18.2.0
@@ -1019,16 +1019,17 @@ packages:
       - '@types/react'
     dev: false
 
-  /@mantine/dates/4.2.12_4yfrb77sreti4yhszibccv2ini:
-    resolution: {integrity: sha512-zyCZbU0Hx4pH3ylIFNvvg5EFh4b5ZnIE1nBWO0Yes9XI4j3exa6s5d1YQ5G8Hn+hrKWlu4YHVlXB08J0em83EA==}
+  /@mantine/dates/5.0.0_4yfrb77sreti4yhszibccv2ini:
+    resolution: {integrity: sha512-6Q4LOxyjKYj3/akGeYFGRJTEIRgGa9wqrXM2ihfSl7SgEn7Xxu1wfu4JGlW3VAnTmJZrYv8fsb4j/jGEwQpA0w==}
     peerDependencies:
-      '@mantine/core': 4.2.12
-      '@mantine/hooks': 4.2.12
-      dayjs: ^1.10.5
+      '@mantine/core': 5.0.0
+      '@mantine/hooks': 5.0.0
+      dayjs: '>=1.0.0'
       react: '>=16.8.0 || ^18'
     dependencies:
       '@mantine/core': 4.2.12_4fyez7wdr7aqmydmpektplx7fy
       '@mantine/hooks': 4.2.12_react@18.2.0
+      '@mantine/utils': 5.0.0_react@18.2.0
       dayjs: 1.11.3
       react: 18.2.0
     dev: false
@@ -1166,6 +1167,14 @@ packages:
     transitivePeerDependencies:
       - '@babel/core'
       - '@types/react'
+    dev: false
+
+  /@mantine/utils/5.0.0_react@18.2.0:
+    resolution: {integrity: sha512-Fy9BdxWvrXkplWua8ZKmsBQODo24QB8OPn6BEmvXUt4O+3qoP27VaAWQVea4opWZsy+L5dtEe/kOXY/Q/kC2qg==}
+    peerDependencies:
+      react: '>=16.8.0 || ^18'
+    dependencies:
+      react: 18.2.0
     dev: false
 
   /@modulz/radix-icons/4.0.0_react@18.2.0:
