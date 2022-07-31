@@ -3,5 +3,15 @@
 		"github>JoeKarow/renovate-config",
 		"github>whitesource/merge-confidence:beta"
 	],
-	"baseBranches": ["develop"]
+	"baseBranches": [
+		"develop"
+	],
+	"packageRules": [
+		{
+			"matchPackagePatterns": [
+				"^@mantine/"
+			],
+			"groupName": "Mantine"
+		}
+	]
 }
