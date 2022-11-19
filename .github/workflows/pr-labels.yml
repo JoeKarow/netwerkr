@@ -17,7 +17,7 @@ jobs:
           github-token: "${{ secrets.GITHUB_TOKEN }}"
           valid-labels: >-
             breaking-change, bugfix, documentation, enhancement,
-            refactor, performance, new-feature, maintenance, ci, dependencies
+            refactor, performance, new-feature, maintenance, ci, dependencies, release
       #           disable-reviews: true
       - name: 🏷 Verify PR has a valid label (without PR review)
         if: ${{ github.event.pull_request.user.login == 'github-actions[bot]' }}
