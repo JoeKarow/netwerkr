@@ -47,7 +47,7 @@ specifiers:
   react-query: ^3.39.1
   superjson: ^1.9.1
   tabler-icons-react: ^1.52.0
-  trpc-shield: ^0.1.1
+  trpc-shield: ^0.4.0
   ts-node: ^10.8.2
   typescript: ^4.7.4
   zod: ^3.17.3
@@ -76,7 +76,7 @@ dependencies:
   react-dom: 18.2.0_react@18.2.0
   react-query: 3.39.2_biqbaboplfbrettd7655fr4n2y
   superjson: 1.9.1
-  trpc-shield: 0.1.1
+  trpc-shield: 0.4.0
   zod: 3.18.0
 
 devDependencies:
@@ -1594,8 +1594,8 @@ packages:
     resolution: {integrity: sha512-CbJlGZethAzG/H3dY3Q+akBkQezz+DjjetH8iG3iyd3gJpWLPDJSsOn0mBcjxtMaUnfdO4eePGI6IbLPDCAp1w==}
     dev: false
 
-  /@trpc/server/9.27.2:
-    resolution: {integrity: sha512-LcXCC004SYWVdHqjSZVpoKkcM0tJNwWtvmjmE2Jir36F0siY1CCbr7g2vz6LcOtA/q7Jj5G2/x1qMWzlPq/Bwg==}
+  /@trpc/server/10.9.0:
+    resolution: {integrity: sha512-5psyZgbvy29pJND32hwkWTMbv6s86IbsPOeDopsgNF0VegZT6Dsijmb7Ub/TDhuJVQVq5u4u5briMXi3SxmBkw==}
     dev: false
 
   /@tsconfig/node10/1.0.9:
@@ -6062,10 +6062,10 @@ packages:
     engines: {node: '>=8'}
     dev: true
 
-  /trpc-shield/0.1.1:
-    resolution: {integrity: sha512-TySEf4lJoPkKCbSMpGtUp4tf42TMP90jiI9ugE3mpnLW5OAPToKkOlasszWSjyIWoTkM+IrsNEJX3rkfZm88Zw==}
+  /trpc-shield/0.4.0:
+    resolution: {integrity: sha512-QsimWm3K3i2WEvkggwuIir1pqkBB5lXnVqHgF8WgDWTPQ/W/iSkaYqbk9rP3ARI3kbPD6vfIDzwDli3dAPjY3A==}
     dependencies:
-      '@trpc/server': 9.27.2
+      '@trpc/server': 10.9.0
     dev: false
 
   /ts-node/10.9.1_tphhiizkxv2hzwkunblc3hbmra:
